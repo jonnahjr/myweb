@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --color-nexyovi-primary: #101827; /* Deep Professional Slate */
+  --color-nexyovi-accent: #0070f3; /* High-Tech Blue Highlight */
+  --color-nexyovi-surface: #ffffff;
+  --color-nexyovi-muted: #f3f4f6;
+  --color-nexyovi-border: #e5e7eb;
+  
+  --font-outfit: "Outfit", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  /* Spacing System */
+  --header-height: 4.5rem;
+  --spacing-section: 10rem;
+  --width-container: 80rem;
+
+  /* Minimalist Shadows */
+  --shadow-minimal: 0 1px 2px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  /* Signature Mesh Gradient (Softened) */
+  --bg-mesh-gradient: 
+    radial-gradient(at 0% 0%, #ffffff 0%, transparent 50%),
+    radial-gradient(at 100% 100%, #f9fafb 0%, transparent 50%);
+  
+  --glass-background: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(229, 231, 235, 0.5);
+  --glass-blur: 12px;
+}
+
+@layer base {
+  * {
+    @apply border-nexyovi-border selection:bg-nexyovi-accent/10;
+  }
+  
+  body {
+    @apply bg-white text-slate-900 antialiased font-outfit;
+    background-image: var(--bg-mesh-gradient);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-outfit tracking-tight text-slate-950 font-semibold;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-(--width-container) mx-auto px-6 md:px-10;
+  }
+
+  .section-spacing {
+    @apply py-(--spacing-section);
+  }
+
+  .nav-glass {
+    @apply backdrop-blur-(--glass-blur) bg-white/90 border-b border-nexyovi-border shadow-sm;
+  }
+
+  .glass-card {
+    @apply bg-white border border-nexyovi-border shadow-minimal transition-all duration-500 overflow-hidden rounded-2xl;
+  }
+
+  .glass-card:hover {
+    @apply shadow-hover -translate-y-1;
+  }
+
+  .btn-primary {
+    @apply bg-nexyovi-primary text-white hover:bg-slate-800 active:scale-[0.98] 
+           transition-all duration-300 font-medium tracking-tight text-sm py-3.5 px-8 rounded-full;
+  }
+
+  .btn-outline {
+    @apply border border-nexyovi-border hover:bg-slate-50 text-slate-900 
+           transition-all duration-300 font-medium tracking-tight text-sm py-3.5 px-8 rounded-full;
+  }
+
+  .gradient-text-primary {
+    @apply text-slate-950;
+  }
+
+  /* Ethiopian Hint Pattern Utilities */
+  .ethiopian-pattern-subtle {
+    background-image: radial-gradient(#101827 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+    opacity: 0.03;
+  }
+
+  .net-grid {
+    background-image: linear-gradient(#e5e7eb 1px, transparent 1px),
+                     linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.3;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
