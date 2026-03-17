@@ -1,39 +1,41 @@
-import React, { useEffect } from 'react';
-import { Activity, Shield, PieChart, Zap, Globe, ArrowRight, Server, Database } from 'lucide-react';
-import { GlassCard, Button, Badge } from '../components/ui/Core';
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { 
+  Target, 
+  Shield, 
+  BarChart, 
+  HeartPulse, 
+  ChevronRight,
+  Zap,
+  Monitor
+} from 'lucide-react';
+import { GlassCard, Badge } from '../components/ui/Core';
+import futureCityImage from '../assets/future_city.png';
 
-const solutions = [
+const sectors = [
   {
-    title: "Healthcare Digitalization",
-    icon: <Activity className="text-red-400" />,
-    description: "End-to-end software integration for modern medical facilities, optimizing patient flow and data accuracy with sub-second retrieval times.",
-    points: ["EMR/EHR Integrated Workflows", "Pharmacy & LIS Connectivity", "Patient Data Security (HIPAA/GDPR)", "Real-time Clinical Dashboards"],
-    stats: "20M+ Records Managed",
-    color: "from-red-500/10"
+    title: "Sovereign Finance",
+    role: "FIN_CORE_01",
+    icon: <BarChart size={40} />,
+    desc: "Next-gen banking infrastructure and autonomous clearing houses for regional financial nodes.",
+    metrics: ["0.1ms Settlement", "Zero-Failure Matrix", "L10 Security"],
+    col: "lg:col-span-12"
   },
   {
-    title: "Enterprise Automation",
-    icon: <PieChart className="text-blue-400" />,
-    description: "Streamlining corporate operations with high-performance EBS and Odoo ERP customizations that integrate with the legacy stack.",
-    points: ["Automated Financial Auditing", "Supply Chain Intelligence", "HR & Payroll Synchronization", "Unified Multi-Entity Reporting"],
-    stats: "35% Average Efficiency Gain",
-    color: "from-blue-500/10"
+    title: "Defense & Security",
+    role: "SEC_UNIT_02",
+    icon: <Shield size={32} />,
+    desc: "Secure intercontinental communications and threat detection meshes for national defense clusters.",
+    metrics: ["Encrypted Sink", "L10 Validation"],
+    col: "lg:col-span-6"
   },
   {
-    title: "Fintech Infrastructure",
-    icon: <Shield className="text-purple-400" />,
-    description: "Building secure, high-concurrency payment gateways and core banking modules for the next generation of digital finance.",
-    points: ["Fraud Detection Systems", "Omnichannel Payment API", "Regulatory Compliance Engines", "Real-time Settlement Hubs"],
-    stats: "$4B+ Transaction Volume",
-    color: "from-purple-500/10"
-  },
-  {
-    title: "Custom SaaS Engineering",
-    icon: <Zap className="text-yellow-400" />,
-    description: "Turning unique business models into scalable, cloud-native software platforms that dominate their respective markets.",
-    points: ["Multi-tenant Architecture", "Scalable Microservices", "Advanced API Ecosystems", "Global Edge Deployment"],
-    stats: "99.999% Global Uptime",
-    color: "from-yellow-500/10"
+    title: "Healthcare Tech",
+    role: "MED_LOGIC_03",
+    icon: <HeartPulse size={32} />,
+    desc: "Decentralized patient data orchestration and AI-driven clinical reasoning for large-scale health systems.",
+    metrics: ["99.9% Logic Accuracy", "Privacy First"],
+    col: "lg:col-span-6"
   }
 ];
 
@@ -43,100 +45,146 @@ export const Solutions = () => {
   }, []);
 
   return (
-    <div className="bg-transparent text-slate-900 pt-48 pb-32 overflow-hidden">
-      <div className="container-custom">
-        <div className="text-center mb-32 max-w-4xl mx-auto">
-           <Badge className="mb-10">Industry Vertical Mastery</Badge>
-           <h1 className="text-7xl md:text-[9.5rem] font-black mb-10 leading-[0.8] tracking-tighter text-slate-950">
-             Next-Level <br />
-             <span className="gradient-text">Verticals</span>
-           </h1>
-           <p className="text-2xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
-             NEXYOVI provides deep domain expertise across critical industries, 
-             delivering 'Next-Level Vision and Innovation' from Miami to Addis Ababa.
-           </p>
+    <div className="bg-brand-cream min-h-screen pt-20 overflow-hidden">
+      
+      {/* ============= SOLUTIONS HERO ============= */}
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={futureCityImage} 
+            className="w-full h-full object-cover brightness-[0.9] opacity-40 blur-[2px] scale-110" 
+            alt="Future Solutions City" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-cream via-brand-cream/60 to-transparent" />
+          <div className="absolute inset-0 mesh-gradient opacity-10" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-48">
-           {solutions.map((sol, i) => (
-             <GlassCard key={i} className={`!p-0 border-black/5 overflow-hidden group bg-gradient-to-br ${sol.color} to-transparent shadow-xl shadow-black/5`}>
-                <div className="p-10 md:p-16 flex flex-col h-full">
-                    <div className="flex justify-between items-start mb-20 relative z-10">
-                        <div className="w-24 h-24 bg-white/40 rounded-[2.5rem] flex items-center justify-center border border-white/60 shadow-inner group-hover:bg-nexyovi-primary/10 transition-colors duration-700">
-                           {React.cloneElement(sol.icon as React.ReactElement, { size: 40 })}
-                        </div>
-                        <div className="text-right">
-                           <p className="text-[10px] uppercase tracking-widest text-slate-400 font-black mb-2 uppercase">Performance Marker</p>
-                           <p className="text-sm font-black text-nexyovi-primary tracking-tighter uppercase">{sol.stats}</p>
-                        </div>
-                    </div>
+        <div className="container-custom relative z-10 pt-20">
+          <div className="max-w-6xl space-y-12">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Badge variant="blue"><Target size={12} className="mr-2" /> Sector Matrix v2.1</Badge>
+            </motion.div>
 
-                    <div className="flex-grow space-y-10 relative z-10">
-                        <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase">{sol.title}</h2>
-                        <p className="text-slate-500 text-xl leading-relaxed font-medium">{sol.description}</p>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 pt-10 border-t border-black/5">
-                           {sol.points.map((pt, idx) => (
-                             <div key={idx} className="flex items-center gap-4 group/item">
-                                <div className="w-2 h-2 rounded-full bg-nexyovi-primary/40 group-hover/item:bg-nexyovi-primary transition-colors"></div>
-                                <span className="text-sm text-slate-400 font-black tracking-widest uppercase leading-none">{pt}</span>
-                             </div>
-                           ))}
-                        </div>
-                    </div>
-
-                    <div className="mt-20 relative z-10 pt-10 border-t border-black/5">
-                       <Button variant="primary" size="lg" className="w-full md:w-auto tracking-[0.2em] text-[10px] uppercase py-6 px-12">
-                          Blueprint Analysis <ArrowRight size={16} className="ml-2" />
-                       </Button>
-                    </div>
-                </div>
-             </GlassCard>
-           ))}
+            <motion.h1 
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-7xl md:text-9xl font-black leading-[0.8] tracking-tightest uppercase font-outfit"
+            >
+              Sectoral <br />
+              <span className="gradient-text">Mastery.</span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-xl md:text-3xl text-brand-charcoal/40 font-medium leading-relaxed max-w-4xl"
+            >
+              Deploying specialized architectural clusters for high-frequency finance, national security, and healthcare logic.
+            </motion.p>
+          </div>
         </div>
+      </section>
 
-        {/* Tactical Infrastructure Section */}
-        <div className="relative p-16 md:p-32 rounded-[4rem] bg-slate-50 border border-black/5 overflow-hidden shadow-2xl shadow-black/5">
-           <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-nexyovi-primary/30 to-transparent"></div>
-           <div className="absolute top-0 right-0 p-10 opacity-10"><Globe size={300} strokeWidth={0.5} /></div>
-           
-           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-              <div>
-                 <Badge className="mb-10">Deployment Infrastructure</Badge>
-                 <h2 className="text-5xl md:text-7xl font-black mb-10 tracking-tighter leading-tight text-slate-900 uppercase">Zero-Point <br /> <span className="gradient-text">Global Deployment</span></h2>
-                 <p className="text-xl text-slate-500 font-medium leading-relaxed max-w-xl mb-16">
-                   Every NEXYOVI solution is containerized and deployed across a multi-region 
-                   edge network, ensuring sub-10ms latency for your international workforce.
+      {/* ============= SECTOR BENTO MATRIX (WHITE SECTION) ============= */}
+      <section className="section-padding relative bg-white text-brand-charcoal">
+        <div className="container-custom">
+          <div className="bento-grid">
+            {sectors.map((sector, i) => (
+              <motion.div 
+                key={sector.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.8 }}
+                className={`${sector.col} bento-item group bg-brand-cream-bold/30`}
+              >
+                  {/* Decorative Logic ID */}
+                  <div className="absolute top-10 right-10 text-8xl font-black text-brand-charcoal/[0.02] font-mono tracking-tighter select-none pointer-events-none group-hover:text-brand-blue/5 transition-colors">
+                    {sector.role}
+                  </div>
+                  
+                  <div className="relative z-10 h-full flex flex-col justify-between">
+                    <div className="space-y-10">
+                      <div className="w-20 h-20 rounded-3xl bg-brand-blue/5 border border-brand-blue/10 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue/10 transition-all shadow-sm">
+                        {sector.icon}
+                      </div>
+                      <div className="space-y-4">
+                        <h3 className={`${i === 0 ? 'text-6xl' : 'text-4xl'} font-black uppercase tracking-tighter text-brand-charcoal`}>{sector.title}</h3>
+                        <p className="text-xl text-brand-charcoal/40 font-medium leading-relaxed max-w-2xl">{sector.desc}</p>
+                      </div>
+                    </div>
+
+                    <div className="pt-12 flex flex-wrap gap-8 items-center border-t border-black/5 mt-12 w-full">
+                       <div className="flex flex-wrap gap-3 flex-grow">
+                          {sector.metrics.map(m => (
+                             <span key={m} className="px-5 py-2.5 rounded-xl bg-black/5 border border-black/5 text-[10px] font-black text-brand-blue uppercase tracking-widest">{m}</span>
+                          ))}
+                       </div>
+                       <button className="btn-secondary group/inner">
+                          Deploy Sector Logic <ChevronRight size={18} className="group-hover/inner:translate-x-1 transition-transform" />
+                       </button>
+                    </div>
+                  </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============= TACTICAL EXCELLENCE (BOLD CREAM SECTION) ============= */}
+      <section className="section-padding relative overflow-hidden bg-brand-cream-bold text-brand-charcoal">
+        <div className="container-custom">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+              <div className="space-y-12">
+                 <Badge variant="mint">Strategic Protocol</Badge>
+                 <h2 className="text-5xl md:text-8xl font-black font-outfit uppercase leading-[0.8] tracking-tightest">
+                    Tactical <br /> <span className="gradient-text-mint">Precision.</span>
+                 </h2>
+                 <p className="text-xl text-brand-charcoal/40 font-medium leading-relaxed">
+                    Our solutions are pre-validated against L10 security standards and intercontinental latency benchmarks. We don't just solve problems; we engineer certainty.
                  </p>
-                 
-                 <div className="flex flex-wrap gap-x-12 gap-y-8">
-                    <div className="flex items-center gap-4">
-                       <Server className="text-nexyovi-primary" />
-                       <span className="text-xs uppercase font-black tracking-widest text-slate-950">Tier IV Data Centers</span>
-                    </div>
-                    <div className="flex items-center gap-4">
-                       <Database className="text-nexyovi-primary" />
-                       <span className="text-xs uppercase font-black tracking-widest text-slate-950">Regional Sovereignty</span>
-                    </div>
+                 <div className="grid grid-cols-2 gap-10">
+                    {[
+                      { icon: <Zap />, title: "Rapid Deploy", sub: "Mission ready in < 24h" },
+                      { icon: <Monitor />, title: "Live Command", sub: "Full architectural HUD" }
+                    ].map((item, i) => (
+                      <div key={i} className="space-y-4">
+                         <div className="w-12 h-12 bg-brand-mint/10 rounded-xl flex items-center justify-center text-brand-mint">
+                            {item.icon}
+                         </div>
+                         <h4 className="text-xl font-bold">{item.title}</h4>
+                         <p className="text-sm text-brand-charcoal/40 font-medium">{item.sub}</p>
+                      </div>
+                    ))}
                  </div>
               </div>
-
-              <div className="grid grid-cols-2 gap-10">
-                 {[
-                    { label: "Active Regions", val: "24+" },
-                    { label: "Audit Pass Rate", val: "100%" },
-                    { label: "Data Integrity", val: "99.999%" },
-                    { label: "Response SLA", val: "<1hr" }
-                 ].map((stat, idx) => (
-                    <div key={idx} className="glass-card !p-10 border-black/5 text-center hover:border-nexyovi-primary/40 transition-colors shadow-lg shadow-black/5">
-                       <h3 className="text-4xl font-black text-slate-900 mb-2 tracking-tighter">{stat.val}</h3>
-                       <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">{stat.label}</p>
+              <div className="relative">
+                 <GlassCard intensity="strong" className="aspect-video p-0 overflow-hidden border-black/5 shadow-floating bg-white/40">
+                    <img src={futureCityImage} className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000 contrast-[0.9]" alt="Tactical View" />
+                    <div className="absolute inset-0 bg-brand-mint/5" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                       <motion.div 
+                          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
+                          transition={{ duration: 4, repeat: Infinity }}
+                          className="w-48 h-48 rounded-full border border-brand-mint/30 flex items-center justify-center"
+                       >
+                          <div className="w-32 h-32 rounded-full border border-brand-mint/50 flex items-center justify-center">
+                             <Target size={40} className="text-brand-mint" />
+                          </div>
+                       </motion.div>
                     </div>
-                 ))}
+                 </GlassCard>
               </div>
            </div>
         </div>
-      </div>
+      </section>
+
     </div>
   );
 };

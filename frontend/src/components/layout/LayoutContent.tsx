@@ -1,17 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Twitter, ArrowRight, ShieldCheck, Globe2, Clock } from 'lucide-react';
+import { 
+  Github, 
+  Linkedin, 
+  Twitter, 
+  ArrowUpRight, 
+  Menu, 
+  X
+} from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { Button, Badge } from '../ui/Core';
 import logo from '../../assets/logo 1.png';
 
 const navLinks = [
-  { name: 'Company', path: '/' },
-  { name: 'Solutions', path: '/solutions' },
+  { name: 'Company', path: '/about' },
   { name: 'Services', path: '/services' },
+  { name: 'Solutions', path: '/solutions' },
   { name: 'Products', path: '/products' },
-  { name: 'Architecture', path: '/portfolio' },
-  { name: 'R&D', path: '/blog' },
+  { name: 'Portfolio', path: '/portfolio' },
+  { name: 'Academy', path: '/blog' },
+  { name: 'Careers', path: '/careers' },
 ];
 
 export const Navbar = () => {
@@ -21,102 +28,109 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-700 ${scrolled ? 'nav-glass py-2' : 'bg-transparent py-4'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      scrolled 
+        ? 'py-4 bg-white/40 backdrop-blur-2xl border-b border-white/20 shadow-glass' 
+        : 'py-6 bg-transparent'
+    }`}>
       <div className="container-custom">
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center group">
-            <motion.div 
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="h-10 flex items-center justify-center"
-            >
-              <img 
-                src={logo} 
-                alt="NEXYOVI Logo" 
-                className="h-full w-auto object-contain"
-              />
-            </motion.div>
+          
+          {/* Logo */}
+          <Link to="/" className="flex items-center group relative z-10">
+            <img 
+              src={logo} 
+              alt="NEXYOVI" 
+              className="h-14 w-auto brightness-0"
+            />
           </Link>
 
-          {/* Industrial Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-12">
-            <div className="flex items-center space-x-10">
-                {navLinks.map((link) => (
-                    <Link 
-                        key={link.name} 
-                        to={link.path}
-                        className={`text-[11px] uppercase font-black tracking-[0.2em] transition-all hover:text-nexyovi-primary ${location.pathname === link.path || (link.path === '/' && location.pathname === '/') ? 'text-nexyovi-primary' : 'text-slate-950'}`}
-                    >
-                        {link.name}
-                    </Link>
-                ))}
-            </div>
-            
-            <div className="flex items-center pl-10 border-l border-black/[0.05]">
-               <Button className="btn-primary !py-3 !px-8 text-[9px] !rounded-lg">
-                  Initialize <ArrowRight size={12} className="ml-1" />
-               </Button>
-            </div>
+          {/* Center Links - Simple & Standard */}
+          <div className="hidden lg:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                to={link.path}
+                className={`text-[11px] font-semibold uppercase tracking-[0.15em] transition-all duration-300 relative group ${
+                  location.pathname === link.path 
+                    ? 'text-brand-blue' 
+                    : 'text-brand-charcoal/60 hover:text-brand-charcoal'
+                }`}
+              >
+                {link.name}
+                <motion.div 
+                  initial={false}
+                  animate={{ 
+                    scaleX: location.pathname === link.path ? 1 : 0,
+                    opacity: location.pathname === link.path ? 1 : 0
+                  }}
+                  className="absolute -bottom-2 left-0 right-0 h-[2px] bg-brand-blue origin-left"
+                />
+              </Link>
+            ))}
+          </div>
+
+          {/* Action Button */}
+          <div className="hidden lg:flex items-center gap-6">
+            <Link to="/contact">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-brand-charcoal text-white h-10 px-6 rounded-lg text-[10px] font-semibold uppercase tracking-[0.15em] flex items-center gap-2 shadow-sm hover:bg-black transition-all"
+              >
+                Get Started <ArrowUpRight size={12} className="text-brand-blue" />
+              </motion.button>
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
-          <div className="lg:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="w-10 h-10 flex items-center justify-center rounded-xl bg-black/[0.03] border border-black/[0.05] text-slate-900">
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
+          <button 
+            onClick={() => setIsOpen(!isOpen)} 
+            className="lg:hidden w-10 h-10 flex items-center justify-center text-brand-charcoal"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
-
-      {/* Industrial Mobile Menu */}
+      
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-            animate={{ opacity: 1, backdropFilter: 'blur(40px)' }}
-            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-            className="lg:hidden fixed inset-0 top-0 left-0 w-full h-screen bg-white/80 z-50 p-10 flex flex-col justify-between overflow-y-auto border-l border-black/5"
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-black/5 shadow-premium p-8 space-y-8"
           >
-            <div className="flex flex-col gap-12 pt-20">
-               <div className="flex justify-between items-center mb-10">
-                  <span className="text-xs uppercase font-black text-slate-400 tracking-[0.5em]">OPERATIONS MENU</span>
-                  <button onClick={() => setIsOpen(false)} className="w-12 h-12 flex items-center justify-center rounded-xl bg-black/[0.03] border border-black/[0.05] text-slate-900">
-                     <X size={24} />
-                  </button>
-               </div>
-              {navLinks.map((link, i) => (
-                <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
+            <div className="flex flex-col gap-6">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.name} 
+                  to={link.path}
+                  className={`text-sm font-black uppercase tracking-widest ${
+                    location.pathname === link.path ? 'text-brand-blue' : 'text-brand-charcoal'
+                  }`}
                 >
-                    <Link
-                        to={link.path}
-                        onClick={() => setIsOpen(false)}
-                        className="text-4xl font-black text-slate-900 hover:text-nexyovi-primary transition-all block uppercase tracking-tighter"
-                    >
-                        {link.name}
-                    </Link>
-                </motion.div>
+                  {link.name}
+                </Link>
               ))}
             </div>
-
-            <div className="flex flex-col gap-8 pb-10">
-               <Button onClick={() => setIsOpen(false)} variant="primary" size="lg" className="w-full !rounded-xl !py-6 text-base tracking-[0.2em] shadow-nexyovi-primary/10">Contact Engineering</Button>
-               <div className="flex gap-4 justify-center">
-                  {[Github, Linkedin, Twitter].map((Icon, i) => (
-                    <a key={i} href="#" className="w-12 h-12 rounded-xl bg-black/[0.03] border border-black/[0.05] flex items-center justify-center text-slate-400 hover:text-nexyovi-primary transition-colors"><Icon size={20} /></a>
-                  ))}
-               </div>
-            </div>
+            <Link to="/contact">
+              <button className="w-full bg-brand-charcoal text-white py-6 rounded-xl text-[10px] uppercase font-semibold tracking-[0.2em] flex items-center justify-center gap-4">
+                  Get Started <ArrowUpRight size={16} className="text-brand-blue" />
+              </button>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
@@ -125,104 +139,130 @@ export const Navbar = () => {
 };
 
 export const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="relative bg-white pt-16 pb-12 border-t border-slate-100 overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_top,var(--color-nexyovi-accent)_0%,transparent_50%)] opacity-5 blur-[120px]"></div>
+    <footer className="bg-brand-cream relative border-t border-black/[0.05] pt-24 pb-12 overflow-hidden">
+      {/* Background Decorative Elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-brand-blue/[0.02] blur-[200px] rounded-full pointer-events-none" />
       
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
-          {/* Brand Identity */}
-          <div className="lg:col-span-5 space-y-6">
-            <Link to="/" className="flex items-center opacity-80 hover:opacity-100 transition-opacity">
-              <div className="h-10 flex items-center justify-center">
-                 <img 
-                    src={logo} 
-                    alt="NEXYOVI Logo" 
-                    className="h-full w-auto object-contain"
-                 />
-              </div>
-            </Link>
-            
-            <p className="text-lg text-slate-500 font-medium leading-relaxed max-w-md">
-              A master-class engineering force. Architecting high-concurrency systems 
-              as the invisible foundation for global digital empires.
-            </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
+          
+          {/* Brand Vision */}
+          <div className="lg:col-span-12 xl:col-span-5 space-y-8">
+            <div className="space-y-6">
+              <Link to="/" className="inline-block group">
+                 <img src={logo} alt="NEXYOVI" className="h-16 w-auto brightness-0 opacity-80 group-hover:opacity-100 transition-all duration-500" />
+              </Link>
+              <p className="text-xl text-brand-charcoal/60 font-medium leading-relaxed max-w-lg">
+                Building intelligent infrastructure and secure digital solutions to power the next generation of global innovation.
+              </p>
+            </div>
 
-            <div className="flex space-x-5">
-              {[Github, Linkedin, Twitter].map((Icon, i) => (
-                <a key={i} href="#" className="w-12 h-12 bg-slate-50 border border-slate-100 hover:border-nexyovi-accent hover:bg-nexyovi-accent/5 rounded-2xl flex items-center justify-center text-slate-400 hover:text-nexyovi-accent transition-all duration-500">
-                  <Icon size={18} />
+            <div className="flex gap-4">
+              {[
+                { icon: Twitter, label: 'Twitter' },
+                { icon: Linkedin, label: 'LinkedIn' },
+                { icon: Github, label: 'GitHub' }
+              ].map((social, i) => (
+                <a 
+                  key={i} 
+                  href="#" 
+                  aria-label={social.label}
+                  className="w-12 h-12 rounded-xl bg-white border border-black/[0.04] flex items-center justify-center text-brand-charcoal/30 hover:text-brand-blue hover:border-brand-blue/20 hover:shadow-premium transition-all duration-300"
+                >
+                   <social.icon size={18} />
                 </a>
               ))}
             </div>
-            
-            <div className="flex flex-wrap gap-3 pt-6">
-                <Badge className="!bg-emerald-500/5 !text-emerald-400 !border-emerald-500/10 !rounded-lg !px-3 !py-1 !text-[9px]">ISO 27001</Badge>
-                <Badge className="!bg-blue-500/5 !text-blue-400 !border-blue-500/10 !rounded-lg !px-3 !py-1 !text-[9px]">SOC2 TYPE II</Badge>
-                <Badge className="!bg-red-500/5 !text-red-400 !border-red-500/10 !rounded-lg !px-3 !py-1 !text-[9px]">HIPAA COMPLIANT</Badge>
+          </div>
+
+          {/* Links Grid */}
+          <div className="lg:col-span-12 xl:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-12">
+            <div className="space-y-8">
+               <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/40">Company</h3>
+               <ul className="space-y-4">
+                  {[
+                    { name: 'About Us', path: '/about' },
+                    { name: 'Services', path: '/services' },
+                    { name: 'Solutions', path: '/solutions' },
+                    { name: 'Careers', path: '/careers' }
+                  ].map(item => (
+                    <li key={item.name}>
+                       <Link to={item.path} className="text-sm font-medium text-brand-charcoal/60 hover:text-brand-blue transition-colors">
+                          {item.name}
+                       </Link>
+                    </li>
+                  ))}
+               </ul>
             </div>
-          </div>
 
-          {/* Structured Navigation */}
-          <div className="lg:col-span-2 space-y-6">
-            <h3 className="text-slate-950 font-black uppercase text-[10px] tracking-[0.4em]">Core Verticals</h3>
-            <ul className="space-y-3">
-              {['Healthcare', 'Enterprise EBS', 'Fintech Hubs', 'Proprietary AI', 'Odoo Prime', 'Cloud Infra'].map((item) => (
-                <li key={item}><Link to="/solutions" className="text-slate-500 hover:text-slate-900 transition-colors text-[11px] font-bold uppercase tracking-widest">{item}</Link></li>
-              ))}
-            </ul>
-          </div>
+            <div className="space-y-8">
+               <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/40">Resources</h3>
+               <ul className="space-y-4">
+                  {[
+                    { name: 'Portfolio', path: '/portfolio' },
+                    { name: 'Case Studies', path: '/portfolio' },
+                    { name: 'Insights', path: '/blog' },
+                    { name: 'Documentation', path: '/about' }
+                  ].map(item => (
+                    <li key={item.name}>
+                       <Link to={item.path} className="text-sm font-medium text-brand-charcoal/60 hover:text-brand-blue transition-colors">
+                          {item.name}
+                       </Link>
+                    </li>
+                  ))}
+               </ul>
+            </div>
 
-          <div className="lg:col-span-2 space-y-6">
-            <h3 className="text-slate-950 font-black uppercase text-[10px] tracking-[0.4em]">Corporate</h3>
-            <ul className="space-y-3">
-              {['Methodology', 'Technical R&D', 'Engineering Missions', 'Legal Framework', 'Investor Relations', 'Press Area'].map((item) => (
-                <li key={item}><Link to="/about" className="text-slate-500 hover:text-slate-900 transition-colors text-[11px] font-bold uppercase tracking-widest">{item}</Link></li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Secure CTA */}
-          <div className="lg:col-span-3 space-y-6">
-            <h3 className="text-slate-950 font-black uppercase text-[10px] tracking-[0.4em] flex items-center gap-3">
-               <div className="w-1.5 h-1.5 rounded-full bg-nexyovi-primary animate-pulse"></div>
-               Mission Signals
-            </h3>
-            <p className="text-slate-500 text-[11px] font-bold leading-relaxed tracking-wider uppercase">Join the engineering network for infrastructure updates.</p>
-            <form className="relative group">
-              <input 
-                type="email" 
-                placeholder="ENGINEERING@ENTERPRISE.COM" 
-                className="w-full bg-black/[0.01] border border-black/[0.05] rounded-xl px-6 py-4 text-[10px] font-black tracking-widest focus:outline-none focus:border-nexyovi-primary transition-all duration-500 text-slate-900 placeholder:text-slate-300"
-              />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-nexyovi-primary rounded-lg flex items-center justify-center text-white font-black hover:scale-105 transition-all">
-                <ArrowRight size={14} />
-              </button>
-            </form>
-            <div className="flex items-center gap-6 pt-6 border-t border-black/[0.02]">
-                 <div className="flex items-center gap-3">
-                    <ShieldCheck className="text-slate-400" size={14} />
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">E2EE</span>
-                 </div>
-                 <div className="flex items-center gap-3">
-                    <Globe2 className="text-slate-400" size={14} />
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">GLOBAL</span>
-                 </div>
-                 <div className="flex items-center gap-3">
-                    <Clock className="text-slate-400" size={14} />
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">24/7/365</span>
-                 </div>
+            <div className="space-y-8">
+               <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-charcoal/40">Newsletter</h3>
+               <div className="space-y-4">
+                  <p className="text-sm text-brand-charcoal/60 font-medium leading-relaxed">Subscribe to receive our latest perspective on technology and innovation.</p>
+                  <form className="relative flex items-center">
+                    <input 
+                      type="email" 
+                      placeholder="Email Address" 
+                      className="w-full bg-white border border-black/[0.05] rounded-xl px-4 py-3 text-sm font-medium text-brand-charcoal placeholder:text-brand-charcoal/20 focus:outline-none focus:border-brand-blue/30 transition-all pr-12"
+                    />
+                    <button className="absolute right-1.5 p-2 rounded-lg bg-brand-charcoal text-white hover:bg-black transition-all">
+                       <ArrowUpRight size={16} className="text-brand-blue" />
+                    </button>
+                  </form>
+               </div>
             </div>
           </div>
         </div>
 
-        <div className="pt-10 border-t border-slate-100 flex flex-col lg:flex-row justify-between items-center gap-6 opacity-60">
-          <p className="text-[9px] uppercase font-bold tracking-[0.3em] text-slate-400">© 2026 NEXYOVI TECH OPERATIONS GROUP / ALL PROTOCOLS RESERVED</p>
-          <div className="flex flex-wrap items-center justify-center gap-10">
-            {['Privacy Protocol', 'Data Sovereignty', 'Encryption Standards'].map(l => (
-                <a key={l} href="#" className="text-[9px] uppercase font-bold tracking-widest text-slate-500 hover:text-white transition-colors">{l}</a>
-            ))}
-          </div>
+        {/* Footer Bottom */}
+        <div className="pt-12 border-t border-black/[0.05] flex flex-col md:flex-row justify-between items-center gap-8">
+           <div className="flex flex-col md:flex-row items-center gap-6">
+              <p className="text-sm font-medium text-brand-charcoal/40">
+                © {currentYear} NEXYOVI Technology Group. All rights reserved.
+              </p>
+              <div className="h-4 w-[1px] bg-black/5 hidden md:block" />
+              <div className="flex items-center gap-2">
+                 <div className="w-1.5 h-1.5 rounded-full bg-brand-mint" />
+                 <span className="text-[10px] font-bold uppercase tracking-widest text-brand-mint">Systems Operational</span>
+              </div>
+           </div>
+
+           <div className="flex gap-8">
+              {[
+                'Privacy Policy',
+                'Terms of Service',
+                'Cookie Settings'
+              ].map((label, i) => (
+                <a 
+                  key={i} 
+                  href="#" 
+                  className="text-[11px] font-bold uppercase tracking-wider text-brand-charcoal/30 hover:text-brand-blue transition-colors"
+                >
+                   {label}
+                </a>
+              ))}
+           </div>
         </div>
       </div>
     </footer>

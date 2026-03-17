@@ -1,145 +1,194 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Clock, ArrowRight, Search } from 'lucide-react';
-import { GlassCard, Button } from '../components/ui/Core';
+import { ArrowRight, Activity, Calendar, User } from 'lucide-react';
+import { Badge } from '../components/ui/Core';
 
-const blogPosts = [
+const posts = [
   {
-    title: "The Future of AI in Enterprise Infrastructure",
-    excerpt: "How generative models are transforming the way we think about scalable business systems and automation.",
-    category: "AI & ML",
-    author: "Elena Vance",
-    date: "March 10, 2026",
-    readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
+    title: "The Epoch of Technical Sovereignty",
+    id: "LOG_INTEL_01",
+    excerpt: "Architecting autonomous digital foundations for the next world-scale infrastructure transition.",
+    category: "STRATEGY",
+    date: "MAR 12, 2026",
+    author: "Unit L10",
+    image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=800",
+    col: "lg:col-span-8"
   },
   {
-    title: "Transitioning to Web3: A Guide for CTOs",
-    excerpt: "Demystifying decentralization and identifying where blockchain technology adds real value to the corporate stack.",
-    category: "Blockchain",
-    author: "Marcus Thorne",
-    date: "March 05, 2026",
-    readTime: "12 min read",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=800"
+    title: "Zero-Trust Protocol Sync",
+    id: "LOG_SEC_X9",
+    excerpt: "Ensuring data integrity across multi-node intercontinental clusters.",
+    category: "SECURITY",
+    date: "MAR 10, 2026",
+    author: "Unit SEC",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
+    col: "lg:col-span-4"
   },
   {
-    title: "Optimizing Kubernetes for Healthcare Compliance",
-    excerpt: "Deep dive into secure container orchestration for HIPAA and GDPR regulated environments.",
-    category: "Cloud",
-    author: "Sarah Jenkins",
-    date: "Feb 28, 2026",
-    readTime: "15 min read",
-    image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&q=80&w=800"
+    title: "AI Orchestration v4.0",
+    id: "LOG_AI_REASON",
+    excerpt: "Deploying high-frequency autonomous reasoning engines at the edge.",
+    category: "ENGINEERING",
+    date: "MAR 08, 2026",
+    author: "Unit AI",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
+    col: "lg:col-span-4"
+  },
+  {
+    title: "Global Logic Mesh",
+    id: "LOG_MESH_NET",
+    excerpt: "Optimizing cross-border data flux for sovereign cloud infrastructure.",
+    category: "INFRASTRUCTURE",
+    date: "MAR 05, 2026",
+    author: "Unit CLOUD",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
+    col: "lg:col-span-8"
   }
 ];
 
 export const Blog = () => {
+  const [activeTab, setActiveTab] = useState('ALL_LOGS');
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="pt-32 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-6xl font-black mb-6 text-slate-900 tracking-tighter uppercase">Engineering <span className="gradient-text">Insights</span></h1>
-            <p className="text-slate-500 text-lg font-medium">
-              Explore the latest thinking on software architecture, AI integration, 
-              and digital transformation from the NEXYOVI R&D team in Miami and Addis Ababa.
-            </p>
-          </div>
-          
-          <div className="w-full md:w-96">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-              <input 
-                type="text" 
-                placeholder="Search articles..." 
-                className="w-full bg-white/60 border border-black/5 rounded-full py-2.5 pl-12 pr-4 focus:outline-none focus:border-nexyovi-primary transition-all text-sm text-slate-900 placeholder:text-slate-400 backdrop-blur-md"
-              />
-            </div>
+    <div className="bg-brand-cream min-h-screen pt-20 overflow-hidden">
+      
+      {/* ============= ACADEMY HERO ============= */}
+      <section className="relative min-h-[80vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 mesh-gradient opacity-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-cream/40 to-brand-cream" />
+        <div className="container-custom relative z-10 pt-20">
+          <div className="max-w-6xl space-y-12">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Badge variant="blue"><Activity size={12} className="mr-2" /> Signal Intelligence Feed</Badge>
+            </motion.div>
+
+            <motion.h1 
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-7xl md:text-9xl font-black leading-[0.8] tracking-tightest uppercase font-outfit"
+            >
+              Intelligence <br />
+              <span className="gradient-text">Logbooks.</span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-xl md:text-3xl text-brand-charcoal/40 font-medium leading-relaxed max-w-4xl"
+            >
+              Technical documentation, strategic insight, and engineering artifacts from the mission frontier.
+            </motion.p>
           </div>
         </div>
+      </section>
 
-        {/* Featured Post */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-20"
-        >
-          <GlassCard className="p-0 overflow-hidden flex flex-col lg:flex-row border-black/5 shadow-2xl shadow-black/5">
-            <div className="lg:w-1/2 aspect-video lg:aspect-auto">
-               <img 
-                 src="https://images.unsplash.com/photo-1451187530220-41a5f1395067?auto=format&fit=crop&q=80&w=1200" 
-                 alt="Featured post" 
-                 className="w-full h-full object-cover"
-               />
-            </div>
-            <div className="lg:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-               <div className="flex items-center gap-4 mb-6">
-                  <span className="px-3 py-1 bg-nexyovi-primary/10 text-nexyovi-primary rounded-full text-[10px] font-black uppercase tracking-widest">Featured Insight</span>
-                  <span className="text-slate-400 text-xs flex items-center gap-1 font-bold uppercase"><Clock size={12} /> 10 min read</span>
-               </div>
-               <h2 className="text-3xl md:text-4xl font-black mb-6 text-slate-900 hover:text-nexyovi-primary transition-colors cursor-pointer tracking-tighter uppercase">
-                  Architecting Zero-Trust Systems for Modern Global Enterprises
-               </h2>
-               <p className="text-slate-500 mb-10 leading-relaxed text-lg font-medium">
-                  As the perimeter disappears, how should CTOs evaluate their internal 
-                  security posture? We explore the implementation of identity-aware 
-                  proxies and micro-segmentation at scale.
-               </p>
-               <div className="flex items-center justify-between mt-auto">
-                  <div className="flex items-center gap-3">
-                     <div className="w-10 h-10 rounded-full bg-slate-50 border border-black/5 flex items-center justify-center">
-                        <User size={20} className="text-slate-300" />
-                     </div>
-                     <div>
-                        <p className="text-sm font-black text-slate-900 uppercase tracking-tighter">David Chen</p>
-                        <p className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Security Principal</p>
-                     </div>
-                  </div>
-                  <Button variant="ghost" className="text-nexyovi-primary group p-0 font-black uppercase tracking-widest text-[10px]">
-                     Read Article <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
-                  </Button>
-               </div>
-            </div>
-          </GlassCard>
-        </motion.div>
-
-        {/* Categories */}
-         <div className="flex gap-4 mb-12 overflow-x-auto pb-4 no-scrollbar">
-            {["All Posts", "AI & Machine Learning", "Cloud Infrastructure", "Cybersecurity", "Fintech", "Health-Tech"].map((cat) => (
-              <button key={cat} className="whitespace-nowrap px-6 py-2 rounded-full border border-black/5 bg-white/40 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-nexyovi-primary hover:border-nexyovi-primary/40 transition-all backdrop-blur-md">
-                 {cat}
+      {/* ============= INTEL REGISTRY (WHITE SECTION) ============= */}
+      <section className="section-padding relative bg-white">
+        <div className="container-custom">
+          {/* Filter Registry */}
+          <div className="flex gap-4 mb-20 overflow-x-auto pb-6 scrollbar-hide">
+            {['ALL_LOGS', 'STRATEGY', 'SECURITY', 'ENGINEERING', 'INFRA'].map(tab => (
+              <button 
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-10 py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.4em] transition-all duration-500 relative ${
+                   activeTab === tab ? 'text-brand-charcoal' : 'text-brand-charcoal/20 hover:text-brand-charcoal'
+                }`}
+              >
+                {tab}
+                {activeTab === tab && (
+                  <motion.div 
+                    layoutId="intel-nav" 
+                    className="absolute inset-0 rounded-xl bg-black/5 border border-black/10 shadow-sm -z-10" 
+                  />
+                )}
               </button>
             ))}
-         </div>
+          </div>
 
-        {/* Post Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, i) => (
-              <GlassCard key={i} className="p-0 overflow-hidden group flex flex-col h-full border-black/5 shadow-xl shadow-black/5">
-                 <div className="aspect-video overflow-hidden">
-                    <img src={post.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={post.title} />
+          <div className="bento-grid">
+            {posts.map((post, i) => (
+              <motion.div 
+                key={post.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.8 }}
+                className={`${post.col} bento-item group relative h-[500px] overflow-hidden`}
+              >
+                 {/* Card Background Image */}
+                 <div className="absolute inset-0 z-0">
+                    <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 brightness-[0.9] contrast-[0.9]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-cream-bold via-brand-cream-bold/40 to-transparent" />
                  </div>
-                 <div className="p-8 flex flex-col flex-grow">
-                    <div className="flex items-center justify-between mb-4">
-                       <span className="text-nexyovi-secondary text-[10px] font-black uppercase tracking-widest">{post.category}</span>
-                       <span className="text-slate-400 text-[10px] font-black uppercase tracking-widest">{post.date}</span>
+
+                 <div className="relative z-10 h-full flex flex-col justify-between p-10">
+                    <div className="flex justify-between items-start">
+                       <Badge variant="blue">{post.category}</Badge>
+                       <span className="text-brand-charcoal/20 font-mono text-[9px] uppercase tracking-widest">{post.id}</span>
                     </div>
-                    <h3 className="text-xl font-black text-slate-900 mb-4 group-hover:text-nexyovi-secondary transition-colors line-clamp-2 tracking-tighter uppercase">
-                       {post.title}
-                    </h3>
-                    <p className="text-slate-500 text-sm mb-8 line-clamp-3 leading-relaxed font-medium">
-                       {post.excerpt}
-                    </p>
-                    <div className="flex items-center gap-3 mt-auto">
-                       <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center">
-                          <User size={14} className="text-slate-300" />
+
+                    <div className="space-y-6">
+                       <div className="flex items-center gap-6 text-brand-charcoal/40 text-[9px] font-black uppercase tracking-[0.3em]">
+                          <span className="flex items-center gap-2 font-mono"><Calendar size={12} className="text-brand-blue" /> {post.date}</span>
+                          <span className="flex items-center gap-2 font-mono"><User size={12} className="text-brand-blue" /> {post.author}</span>
                        </div>
-                       <p className="text-xs font-black text-slate-500 uppercase tracking-widest">{post.author}</p>
+                       <h3 className="text-4xl font-black uppercase tracking-tighter leading-tight group-hover:text-brand-blue transition-colors duration-500 font-outfit text-brand-charcoal">
+                          {post.title}
+                       </h3>
+                       <p className="text-lg text-brand-charcoal/60 font-medium max-w-xl line-clamp-2">
+                          {post.excerpt}
+                       </p>
+                       <div className="pt-6">
+                         <button className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-brand-charcoal hover:text-brand-blue transition-colors group/btn">
+                            Initialize_Reading_Protocol <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                         </button>
+                       </div>
                     </div>
                  </div>
-              </GlassCard>
+              </motion.div>
             ))}
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* ============= INTEL SYNC CTA (BOLD CREAM SECTION) ============= */}
+      <section className="section-padding bg-brand-cream-bold">
+         <div className="container-custom">
+            <div className="premium-card p-16 md:p-24 text-center space-y-12 overflow-hidden relative border-black/5 bg-white/40">
+               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-blue/5 blur-[150px] rounded-full pointer-events-none" />
+               
+               <div className="relative z-10 space-y-6">
+                  <Badge variant="blue">Deep Sync Registry</Badge>
+                  <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tightest font-outfit text-brand-charcoal">Sync with the <br /><span className="gradient-text">Frontier.</span></h2>
+                  <p className="text-xl text-brand-charcoal/40 font-medium max-w-2xl mx-auto">Get technical intel and mission updates delivered to your mail node via secure broadcast.</p>
+               </div>
+
+               <div className="relative z-10 max-w-xl mx-auto">
+                  <div className="flex flex-col md:flex-row gap-4">
+                     <input 
+                        type="email" 
+                        placeholder="MAIL_NODE@SECURE.LOG"
+                        className="flex-grow bg-black/5 border border-black/5 rounded-2xl py-6 px-8 text-brand-charcoal font-bold tracking-widest focus:outline-none focus:border-brand-blue/30 transition-all font-mono"
+                     />
+                     <button className="btn-primary py-6 px-12 shadow-sm uppercase font-black tracking-widest">Establish_Sync</button>
+                  </div>
+                  <p className="text-[9px] font-black text-brand-charcoal/10 uppercase tracking-[0.5em] mt-8 font-mono">Zero-Trust_Transport_Active // Priority_Node_Registry</p>
+               </div>
+            </div>
+         </div>
+      </section>
+
     </div>
   );
 };

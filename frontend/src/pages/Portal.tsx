@@ -1,99 +1,177 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Lock, Mail, ShieldCheck, Fingerprint } from 'lucide-react';
-import { GlassCard, Button } from '../components/ui/Core';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Shield, 
+  ArrowRight, 
+  Lock, 
+  Globe, 
+  Zap,
+  Fingerprint,
+  ChevronRight,
+  Activity,
+  Cpu
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo 1.png';
+import { Badge } from '../components/ui/Core';
 
 export const Portal = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      window.location.href = '/admin';
+    }, 2000);
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 relative overflow-hidden">
-      {/* Background Blobs */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-nexyovi-primary/5 rounded-full blur-[120px] -z-10"></div>
+    <div className="bg-brand-cream min-h-screen flex items-center justify-center p-8 relative overflow-hidden font-inter text-brand-charcoal">
       
-      <div className="max-w-md w-full">
-        <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           className="text-center mb-10"
+      {/* Background Decor */}
+      <div className="absolute inset-0 mesh-gradient opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 radial-grid opacity-5 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-brand-blue/5 blur-[150px] rounded-full pointer-events-none" />
+
+      <div className="w-full max-w-2xl relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-16 space-y-8"
         >
-           <Link to="/" className="inline-flex items-center mb-8">
-              <div className="h-32 flex items-center justify-center">
-                 <img 
-                    src={logo} 
-                    alt="NEXYOVI Logo" 
-                    className="h-full w-auto object-contain"
-                 />
-              </div>
-           </Link>
-           <h1 className="text-3xl font-bold text-white mb-2">Secure Access</h1>
-           <p className="text-gray-500 text-sm">Enter the portal for your project infrastructure</p>
+          <Link to="/" className="inline-block group">
+             <div className="flex items-center gap-4 justify-center">
+                <span className="text-4xl font-black uppercase tracking-tightest font-outfit text-brand-charcoal">NEXYOVI</span>
+             </div>
+          </Link>
+          <div className="flex justify-center">
+             <Badge variant="blue"><Activity size={12} className="mr-2" /> Access Node Active</Badge>
+          </div>
         </motion.div>
 
-        <GlassCard className="p-8 md:p-10">
-           <form className="space-y-6">
-              <div className="space-y-2">
-                 <label className="text-xs font-bold text-gray-500 uppercase tracking-widest px-1">Infrastructure ID (Email)</label>
-                 <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
-                    <input 
-                      type="email" 
-                      className="w-full bg-white bg-opacity-5 border border-white border-opacity-10 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:border-nexyovi-primary transition-all text-white text-sm"
-                      placeholder="admin@enterprise.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                 </div>
-              </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="premium-card p-12 md:p-20 relative overflow-hidden group border-black/5 bg-white/80 shadow-floating"
+        >
+          {/* Decorative Elements */}
+          <div className="absolute top-0 right-0 p-12 text-brand-blue/5 pointer-events-none">
+             <Cpu size={300} strokeWidth={0.5} />
+          </div>
 
-              <div className="space-y-2">
-                 <div className="flex justify-between items-center px-1">
-                    <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">Access Key</label>
-                    <a href="#" className="text-[10px] text-nexyovi-primary font-bold uppercase hover:underline">Reset Key</a>
-                 </div>
-                 <div className="relative">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
-                    <input 
-                      type="password" 
-                      className="w-full bg-white bg-opacity-5 border border-white border-opacity-10 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:border-nexyovi-primary transition-all text-white text-sm"
-                      placeholder="••••••••••••"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                 </div>
-              </div>
+          <div className="relative z-10">
+             <AnimatePresence mode="wait">
+                {step === 1 ? (
+                  <motion.div
+                    key="step1"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    className="space-y-12"
+                  >
+                    <div className="text-center space-y-6">
+                        <div className="w-24 h-24 bg-white/40 border border-black/[0.08] rounded-3xl flex items-center justify-center text-brand-blue mx-auto shadow-sm group-hover:bg-brand-blue/10 transition-all duration-700">
+                           <Fingerprint size={48} />
+                        </div>
+                        <h2 className="text-5xl font-black uppercase tracking-tighter text-brand-charcoal">Initialize Identity.</h2>
+                        <p className="text-[10px] font-black text-brand-charcoal/20 uppercase tracking-[0.5em] font-mono">// Establishing_Secure_Tunnel</p>
+                     </div>
 
-              <div className="flex items-center gap-2 px-1">
-                 <input type="checkbox" className="w-4 h-4 rounded border-white/10 bg-white/5 text-nexyovi-primary focus:ring-nexyovi-primary" />
-                 <span className="text-xs text-gray-400 font-medium">Remember terminal session</span>
-              </div>
+                    <div className="space-y-10">
+                        <div className="space-y-4">
+                           <label className="text-[10px] font-black text-brand-charcoal/10 uppercase tracking-[0.6em] ml-6 font-mono">Company_ID</label>
+                           <div className="relative">
+                              <div className="absolute left-8 top-1/2 -translate-y-1/2 text-brand-charcoal/20"><Lock size={20} /></div>
+                              <input 
+                                 type="text" 
+                                 placeholder="SQUAD_ENGINEER_X"
+                                 className="w-full bg-black/[0.02] border border-black/[0.08] rounded-[2rem] py-8 px-20 text-xl focus:outline-none focus:border-brand-blue/30 transition-all font-bold text-brand-charcoal placeholder:text-brand-charcoal/10 font-mono"
+                              />
+                           </div>
+                        </div>
+                        <button 
+                           onClick={() => setStep(2)}
+                           className="w-full btn-primary py-8 text-lg uppercase tracking-widest font-black shadow-sm"
+                        >
+                           Initialize Handshake <ArrowRight size={22} className="ml-3" />
+                        </button>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="step2"
+                    onSubmit={handleLogin}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    className="space-y-12"
+                  >
+                     <div className="text-center space-y-6">
+                        <div className="w-24 h-24 bg-brand-mint/10 border border-brand-mint/20 rounded-3xl flex items-center justify-center text-brand-mint mx-auto shadow-sm animate-pulse">
+                           <Shield size={48} />
+                        </div>
+                        <h2 className="text-5xl font-black uppercase tracking-tighter text-brand-charcoal">Sync Validation.</h2>
+                        <p className="text-[10px] font-black text-brand-mint uppercase tracking-[0.5em] font-mono">// Multi-Node_Verification</p>
+                     </div>
 
-              <Button className="w-full py-4 font-bold flex items-center justify-center gap-2">
-                 Establish Connection <Fingerprint size={18} />
-              </Button>
-           </form>
+                    <div className="space-y-10">
+                        <div className="space-y-4">
+                           <label className="text-[10px] font-black text-brand-charcoal/10 uppercase tracking-[0.6em] ml-6 font-mono">Access_Key</label>
+                           <div className="relative">
+                              <div className="absolute left-8 top-1/2 -translate-y-1/2 text-brand-mint"><Zap size={20} /></div>
+                              <input 
+                                 type="password" 
+                                 placeholder="••••••••••••••••"
+                                 className="w-full bg-black/[0.02] border border-black/[0.08] rounded-[2rem] py-8 px-20 text-xl focus:outline-none focus:border-brand-mint/30 transition-all font-bold text-brand-charcoal tracking-[0.6em] font-mono placeholder:text-brand-charcoal/10"
+                                 autoFocus
+                              />
+                           </div>
+                        </div>
+                        <button 
+                           type="submit"
+                           disabled={loading}
+                           className="w-full btn-primary py-8 text-lg uppercase tracking-widest font-black shadow-sm !bg-black/5 !text-brand-charcoal hover:!bg-black/10"
+                        >
+                           {loading ? (
+                              <>Synchronizing Logic...</>
+                           ) : (
+                              <>Initialize Protocol <ChevronRight size={22} className="ml-2" /></>
+                           )}
+                        </button>
+                        <button 
+                           type="button"
+                           onClick={() => setStep(1)}
+                           className="w-full text-[10px] font-black text-brand-charcoal/20 uppercase tracking-[0.4em] hover:text-brand-blue transition-colors"
+                        >
+                           [ Reset_Security_Registry ]
+                        </button>
+                    </div>
+                  </motion.form>
+                )}
+             </AnimatePresence>
+          </div>
 
-           <div className="mt-10 pt-8 border-t border-white/5 text-center">
-              <div className="flex items-center justify-center gap-4 text-gray-500">
-                 <div className="flex items-center gap-1.5 grayscale opacity-50">
-                    <ShieldCheck size={14} />
-                    <span className="text-[10px] uppercase font-bold tracking-widest">ISO 27001</span>
-                 </div>
-                 <div className="w-[1px] h-3 bg-white/10"></div>
-                 <div className="flex items-center gap-1.5 grayscale opacity-50">
-                    <Lock size={14} />
-                    <span className="text-[10px] uppercase font-bold tracking-widest">SSL Encrypted</span>
-                 </div>
-              </div>
-           </div>
-        </GlassCard>
+          <div className="mt-16 pt-8 border-t border-black/5 flex justify-between items-center text-[10px] font-black uppercase tracking-[0.5em] font-mono opacity-30">
+             <div className="flex gap-10">
+                <div className="flex gap-2">LOG: <span className="text-brand-blue">OPTIMAL</span></div>
+                <div className="flex gap-2">SINK: <span className="text-brand-mint">ACTIVE</span></div>
+             </div>
+             <div className="flex items-center gap-3">
+                STATUS: L10 <div className="w-2 h-2 rounded-full bg-brand-mint animate-pulse shadow-sm" />
+             </div>
+          </div>
+        </motion.div>
 
-        <p className="mt-8 text-center text-xs text-gray-600">
-           New Partner? <a href="#" className="text-nexyovi-primary font-bold hover:underline">Apply for Infrastructure Access</a>
-        </p>
+        <div className="mt-16 flex justify-center gap-16">
+            <Link to="/" className="text-[10px] font-black text-brand-charcoal/20 hover:text-brand-charcoal transition-colors uppercase tracking-[0.6em] flex items-center gap-4 group">
+                <Globe size={16} className="group-hover:rotate-45 transition-transform" /> COMMAND_VOID
+            </Link>
+            <button className="text-[10px] font-black text-brand-charcoal/20 hover:text-brand-charcoal transition-colors uppercase tracking-[0.6em] flex items-center gap-4 group">
+                <Shield size={16} /> REGISTRY_SECURITY
+            </button>
+        </div>
       </div>
     </div>
   );

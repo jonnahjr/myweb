@@ -1,140 +1,159 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Users, Rocket, Coffee, Zap, Globe, Heart, Briefcase, MapPin, ArrowRight } from 'lucide-react';
-import { GlassCard, Button } from '../components/ui/Core';
+import { Users, ArrowRight, MapPin, Shield, Globe, Command } from 'lucide-react';
+import { GlassCard, Badge } from '../components/ui/Core';
 
 const jobs = [
   {
-    title: "Senior AI Engineer",
-    department: "Engineering",
-    location: "Remote / SF",
-    type: "Full-time",
-    tags: ["PyTorch", "Rust", "LLMs"]
+    title: "Senior AI Logic Architect",
+    id: "UNIT_AI_X01",
+    type: "FULL_MISSION",
+    location: "Global / MIA_HUB",
+    desc: "Orchestrating autonomous reasoning engines for high-frequency regional clusters.",
+    col: "lg:col-span-8"
   },
   {
-    title: "Lead Solutions Architect",
-    department: "Enterprise",
-    location: "Stockholm",
-    type: "Full-time",
-    tags: ["AWS", "Odoo", "ERP"]
+    title: "Infra Security Lead",
+    id: "UNIT_SEC_ZT",
+    type: "DEEP_SINK",
+    location: "Addis_Node",
+    desc: "Mapping zero-trust protocols for national-scale digital sovereignty.",
+    col: "lg:col-span-4"
   },
   {
-    title: "Full-Stack Developer",
-    department: "Product",
-    location: "Global Remote",
-    type: "Contract",
-    tags: ["React", "Go", "Kubernetes"]
+    title: "Data Flux Engineer",
+    id: "UNIT_DATA_SYNC",
+    type: "GLOBAL_SYNC",
+    location: "London_Point",
+    desc: "Optimizing high-bandwidth logic synchronization across intercontinental nodes.",
+    col: "lg:col-span-4"
   },
   {
-    title: "Cybersecurity Analyst",
-    department: "Infrastructure",
-    location: "New York",
-    type: "Full-time",
-    tags: ["Zero Trust", "NIST", "Cloud"]
+    title: "Strategic Unit Strategy",
+    id: "UNIT_STRAT_OPS",
+    type: "FULL_MISSION",
+    location: "MIA_HUB",
+    desc: "Bridging architectural logic with national digital transformation goals.",
+    col: "lg:col-span-8"
   }
 ];
 
 export const Careers = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="pt-32 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-24">
-           <h1 className="text-4xl md:text-6xl font-bold mb-6">Join the <span className="gradient-text">Frontier</span></h1>
-           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-             Nexyovi is a team of explorers, engineers, and visionaries building 
-             the next generation of software. Ready to leave your mark?
-           </p>
-        </div>
+    <div className="bg-brand-cream min-h-screen pt-20 overflow-hidden">
+      
+      {/* ============= CAREERS HERO ============= */}
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 mesh-gradient opacity-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-cream/40 to-brand-cream" />
 
-        {/* Culture Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
-           {[
-             { icon: <Globe className="text-nexyovi-primary" />, title: "Remote-First", desc: "Work from anywhere in the world. We value output and creativity over office hours." },
-             { icon: <Zap className="text-nexyovi-secondary" />, title: "Hyper-Growth", desc: "Fast-track your career in a high-density talent environment focused on rapid innovation." },
-             { icon: <Users className="text-nexyovi-accent" />, title: "Diverse Logic", desc: "Collaborate with minds from cross-disciplinary backgrounds and global perspectives." }
-           ].map((item, i) => (
-             <GlassCard key={i} className="text-center">
-                <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
-                   {item.icon}
-                </div>
-                <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
-                <p className="text-gray-400 text-sm">{item.desc}</p>
-             </GlassCard>
-           ))}
-        </div>
+        <div className="container-custom relative z-10 pt-20">
+          <div className="max-w-6xl space-y-12">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Badge variant="mint"><Users size={12} className="mr-2" /> Hitting the Sigils v3.0</Badge>
+            </motion.div>
 
-        {/* Benefits Section */}
-        <div className="bg-white/5 border border-white/10 rounded-[40px] p-12 md:p-20 mb-32">
-           <div className="flex flex-col lg:flex-row gap-16 items-center">
-              <div className="flex-1">
-                 <h2 className="text-3xl font-bold mb-8">Why Nexyovi?</h2>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {[
-                      { icon: <Briefcase size={20} />, text: "Competitive Equity & Shares" },
-                      { icon: <Heart size={20} />, text: "Premium Health Coverage" },
-                      { icon: <Rocket size={20} />, text: "Learning & Growth Stipend" },
-                      { icon: <Coffee size={20} />, text: "Flexible Paid Time Off" }
-                    ].map((b, i) => (
-                      <div key={i} className="flex items-center gap-4 text-gray-300 font-medium">
-                         <div className="w-10 h-10 bg-nexyovi-primary/10 rounded-xl flex items-center justify-center text-nexyovi-primary">
-                            {b.icon}
-                         </div>
-                         {b.text}
-                      </div>
-                    ))}
-                 </div>
-              </div>
-              <div className="flex-1 w-full glass-card p-10 bg-gradient-to-br from-nexyovi-primary/5 to-transparent">
-                  <p className="text-gray-400 italic mb-6 leading-relaxed">
-                    "At NEXYOVI, we aren't just writing code. We're building the 'Next-Level Vision and Innovation' 
-                    that global enterprises in Miami and Addis Ababa rely on every single second. 
-                    The mission is clear: redefine what's possible."
-                  </p>
-                  <div className="flex items-center gap-4">
-                     <div className="w-12 h-12 rounded-full bg-nexyovi-primary/20 border border-nexyovi-primary/20 flex items-center justify-center font-black text-nexyovi-primary text-xs">YB</div>
-                     <div>
-                        <p className="text-white font-bold">Yonas Bogale</p>
-                        <p className="text-xs text-nexyovi-primary font-bold uppercase">Founder & Visionary Lead</p>
+            <motion.h1 
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-7xl md:text-9xl font-black leading-[0.8] tracking-tightest uppercase font-outfit"
+            >
+              Deployment <br />
+              <span className="gradient-text-mint">Registry.</span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-xl md:text-3xl text-brand-charcoal/40 font-medium leading-relaxed max-w-4xl"
+            >
+              Assembling an elite engineering unit for the next epoch of national-scale digital infrastructure. Map your logic to our mission clusters.
+            </motion.p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============= DEPLOYMENT BENTO GRID (WHITE SECTION) ============= */}
+      <section className="section-padding relative bg-white">
+        <div className="container-custom">
+          <div className="bento-grid">
+            {jobs.map((job, i) => (
+              <motion.div 
+                key={job.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.8 }}
+                className={`${job.col} bento-item group bg-brand-cream-bold/30`}
+              >
+                  {/* Decorative Background ID */}
+                  <div className="absolute -bottom-10 -right-10 text-9xl font-black text-brand-charcoal/[0.02] tracking-tighter select-none pointer-events-none group-hover:text-brand-blue/5 transition-colors font-mono">
+                    {job.id.split('_').pop()}
+                  </div>
+                  
+                  <div className="relative z-10 h-full flex flex-col justify-between space-y-12">
+                     <div className="space-y-6">
+                        <div className="flex justify-between items-center">
+                           <Badge variant="blue">{job.type}</Badge>
+                           <span className="text-brand-charcoal/20 font-mono text-[9px] uppercase tracking-widest">{job.id}</span>
+                        </div>
+                        <h3 className="text-4xl font-black uppercase tracking-tighter leading-tight group-hover:text-brand-blue transition-colors text-brand-charcoal">
+                           {job.title}
+                        </h3>
+                        <p className="text-xl text-brand-charcoal/40 font-medium leading-relaxed">
+                           {job.desc}
+                        </p>
+                        <div className="flex items-center gap-3 text-brand-mint text-[10px] font-black uppercase tracking-[0.3em]">
+                           <MapPin size={14} /> {job.location}
+                        </div>
+                     </div>
+                     
+                     <div className="pt-8 border-t border-black/5 flex items-center justify-between group/btn">
+                        <button className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-charcoal/30 group-hover/btn:text-brand-charcoal transition-colors">
+                           Initialize_Ops_Application
+                        </button>
+                        <div className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center group-hover/btn:bg-brand-blue group-hover/btn:border-brand-blue transition-all shadow-sm">
+                           <ArrowRight size={20} className="text-brand-charcoal group-hover/btn:text-white group-hover/btn:translate-x-1 transition-transform" />
+                        </div>
                      </div>
                   </div>
-              </div>
-           </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* Open Roles */}
-        <div>
-           <h2 className="text-3xl font-bold mb-12">Open Missions</h2>
-           <div className="space-y-4">
-              {jobs.map((job, i) => (
-                <motion.div 
-                  key={i}
-                  whileHover={{ x: 10, backgroundColor: 'rgba(255, 255, 255, 0.04)' }}
-                  className="glass-card p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-8 cursor-pointer border-opacity-5"
-                >
-                   <div className="flex-1">
-                      <div className="flex items-center gap-4 mb-2">
-                        <h3 className="text-xl font-bold text-white">{job.title}</h3>
-                        <span className="px-3 py-1 bg-white/5 rounded-full text-[10px] text-gray-500 font-bold uppercase tracking-wider">{job.type}</span>
-                      </div>
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
-                         <span className="flex items-center gap-1"><Briefcase size={14} /> {job.department}</span>
-                         <span className="flex items-center gap-1"><MapPin size={14} /> {job.location}</span>
-                      </div>
+      {/* ============= CULTURE PROTOCOL (BOLD CREAM SECTION) ============= */}
+      <section className="section-padding relative overflow-hidden bg-brand-cream-bold text-brand-charcoal">
+        <div className="container-custom">
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              {[
+                { title: "Sovereign Ownership", icon: <Shield />, desc: "Complete architectural ownership over mission-critical digital stacks." },
+                { title: "Global Synchrony", icon: <Globe />, desc: "Collaborate across intercontinental logic nodes with pure engineering focus." },
+                { title: "Pure Logic Flow", icon: <Command />, desc: "No bureaucratic bloat. Just elite engineering and definitive results." }
+              ].map((v, i) => (
+                <GlassCard key={i} intensity="strong" className="p-10 border-black/5 space-y-6 group bg-white/40 shadow-floating">
+                   <div className="w-14 h-14 rounded-2xl bg-brand-blue/5 border border-brand-blue/10 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue/10 transition-all shadow-sm">
+                      {v.icon}
                    </div>
-                   
-                   <div className="flex flex-wrap gap-2 md:justify-end flex-1 max-w-xs">
-                      {job.tags.map(t => (
-                        <span key={t} className="text-[10px] px-2 py-1 bg-nexyovi-primary/5 border border-nexyovi-primary/20 rounded text-nexyovi-primary font-mono">{t}</span>
-                      ))}
-                   </div>
-                   
-                   <Button variant="ghost" className="text-nexyovi-primary font-bold uppercase text-xs tracking-widest gap-2 flex items-center">
-                      Apply Now <ArrowRight size={14} />
-                   </Button>
-                </motion.div>
+                   <h4 className="text-2xl font-bold uppercase tracking-tight text-brand-charcoal">{v.title}</h4>
+                   <p className="text-lg text-brand-charcoal/40 font-medium leading-relaxed">{v.desc}</p>
+                </GlassCard>
               ))}
            </div>
         </div>
-      </div>
+      </section>
+
     </div>
   );
 };

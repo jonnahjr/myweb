@@ -3,20 +3,24 @@ import { motion } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-function cn(...inputs: ClassValue[]) {
+// --- Utility for Tailwind Class Merging ---
+export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// --- Glass Card Component ---
 interface GlassCardProps {
   children: React.ReactNode;
   className?: string;
   hoverEffect?: boolean;
+  intensity?: 'light' | 'medium' | 'strong' | 'ultra';
 }
 
 export const GlassCard = ({ 
   children, 
   className, 
-  hoverEffect = true 
+  hoverEffect = true,
+  intensity = 'medium'
 }: GlassCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -28,42 +32,52 @@ export const GlassCard = ({
     setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
+  const intensityClasses = {
+    light: 'bg-white/20 border-black/5',
+    medium: 'bg-white/40 border-black/5',
+    strong: 'bg-white/60 border-black/10 backdrop-blur-3xl',
+    ultra: 'glass-shader shadow-floating'
+  };
+
   return (
     <motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setOpacity(1)}
       onMouseLeave={() => setOpacity(0)}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      initial={{ opacity: 0, scale: 0.98 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
-        "glass-card p-1 relative",
+        "rounded-[2.5rem] relative overflow-hidden transition-all duration-700",
+        intensityClasses[intensity],
+        hoverEffect && "hover:border-brand-blue/30",
         className
       )}
     >
-      {/* Interactive Shine Effect */}
+      {/* Interactive Spotlight Effect */}
       {hoverEffect && (
         <div 
-          className="pointer-events-none absolute -inset-px transition-opacity duration-300 rounded-[2.5rem]"
+          className="pointer-events-none absolute -inset-px transition-opacity duration-1000 z-0"
           style={{
             opacity,
-            background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.06), transparent 40%)`,
+            background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(0, 102, 255, 0.05), transparent 40%)`,
           }}
         />
       )}
       
-      <div className="relative p-8 h-full w-full">
+      <div className="relative z-10 h-full w-full">
         {children}
       </div>
     </motion.div>
   );
 };
 
+// --- Premium Button Component ---
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'outline' | 'ghost' | 'shiny';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'mint' | 'cyan';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   children: React.ReactNode;
 }
 
@@ -74,35 +88,64 @@ export const Button = ({
   className,
   ...props 
 }: ButtonProps) => {
-  const baseStyles = "px-8 py-4 rounded-full font-bold transition-all duration-500 flex items-center justify-center gap-2 relative overflow-hidden active:scale-95";
-  
-  const variants = {
+  const variantStyles = {
     primary: 'btn-primary',
+    secondary: 'btn-secondary',
     outline: 'btn-outline',
-    ghost: 'hover:bg-white/[0.05] text-white transition-all duration-300',
-    shiny: 'bg-white text-black hover:bg-opacity-90 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)]'
+    ghost: 'text-brand-charcoal/40 hover:text-brand-charcoal hover:bg-black/[0.05] border-transparent',
+    mint: 'bg-brand-mint text-brand-charcoal hover:bg-brand-mint-light shadow-glow-mint border-none',
+    cyan: 'bg-cyan-500 text-white hover:bg-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.4)] border-none'
   };
 
-  const sizes = {
-    sm: 'px-5 py-2.5 text-sm',
-    md: 'px-8 py-4',
-    lg: 'px-10 py-5 text-lg'
+  const sizeStyles = {
+    sm: 'px-8 py-3 text-[10px] uppercase tracking-[0.2em]',
+    md: 'px-10 py-4 text-xs uppercase tracking-[0.3em]',
+    lg: 'px-14 py-5 text-sm uppercase tracking-[0.4em]',
+    xl: 'px-20 py-7 text-base uppercase tracking-[0.5em]'
   };
 
   return (
     <motion.button 
-      whileHover={{ y: -2 }}
-      className={cn(baseStyles, variants[variant], sizes[size], className)}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className={cn(
+        "rounded-2xl font-black transition-all duration-500 relative flex items-center justify-center gap-4 overflow-hidden disabled:opacity-50 disabled:pointer-events-none font-inter",
+        variantStyles[variant],
+        sizeStyles[size],
+        className
+      )}
       {...(props as any)}
     >
-      {children}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+      <span className="relative z-10">{children}</span>
     </motion.button>
   );
 };
 
-export const Badge = ({ children, className }: { children: React.ReactNode, className?: string }) => (
-  <div className={cn("inline-flex items-center px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-white/[0.03] border border-white/[0.08] text-nexyovi-primary", className)}>
-    <span className="w-1.5 h-1.5 rounded-full bg-nexyovi-primary mr-2 animate-pulse shadow-[0_0_8px_#00f2ff]"></span>
-    {children}
-  </div>
-);
+// --- Premium Badge Component ---
+export const Badge = ({ 
+  children, 
+  variant = 'blue',
+  className 
+}: { 
+  children: React.ReactNode, 
+  variant?: 'blue' | 'mint' | 'purple' | 'gold',
+  className?: string 
+}) => {
+  const variantClasses = {
+    blue: 'badge-blue',
+    mint: 'badge-mint',
+    purple: 'badge-purple',
+    gold: 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20'
+  };
+
+  return (
+    <div className={cn(
+      "badge font-black uppercase tracking-[0.4em] text-[9px] px-6 py-2 rounded-full border", 
+      variantClasses[variant as keyof typeof variantClasses],
+      className
+    )}>
+      {children}
+    </div>
+  );
+};
