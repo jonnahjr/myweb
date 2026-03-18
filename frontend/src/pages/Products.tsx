@@ -1,34 +1,60 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Command, 
-  Shield, 
-  Layers, 
-  Box, 
-  ArrowUpRight, 
-  Workflow
+  ShieldCheck, 
+  Database, 
+  Cloud, 
+  ArrowRight, 
+  MessageSquare,
+  Bot,
+  CheckCircle2,
+  Activity
 } from 'lucide-react';
-import { GlassCard, Button, Badge } from '../components/ui/Core';
-import techAbstract from '../assets/tech_abstract.png';
+import { Link } from 'react-router-dom';
+import { Button, Badge } from '../components/ui/Core';
 
-const products = [
-  {
-    id: "PROD_CORE_X",
-    title: "Agentic-X Command",
-    icon: <Command size={48} />,
-    desc: "The primary orchestrator for autonomous agentic units. Deploy reasoning logic at scale with ultra-low latency.",
-    specs: ["Latency: 0.1ms", "L10 Security", "LLM Native"],
-    accent: "brand-blue"
-  },
-  {
-    id: "PROD_MESH_ZT",
-    title: "Zero-Trust Mesh",
-    icon: <Shield size={48} />,
-    desc: "A decentralized infrastructure guard protocol mapping global node identities to private sovereign clusters.",
-    specs: ["AES-256 Sink", "Node Isolation", "Quantum Ready"],
-    accent: "brand-mint"
-  }
-];
+const ProductCard = ({ name, icon, desc, features, tags }: { name: string, icon: any, desc: string, features: string[], tags: string[] }) => (
+  <div className="group p-10 bg-white border border-black/5 rounded-[3rem] hover:shadow-xl transition-all duration-700 space-y-10 group">
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+       <div className="flex items-center gap-6">
+          <div className="w-16 h-16 rounded-2xl bg-brand-gray-light flex items-center justify-center text-brand-blue shadow-sm group-hover:bg-brand-blue group-hover:text-white transition-all duration-500">
+             {icon}
+          </div>
+          <h3 className="text-2xl font-black font-outfit text-brand-charcoal uppercase leading-tight">{name}</h3>
+       </div>
+       <div className="flex gap-2">
+          {tags.map((tag, i) => (
+             <Badge key={i} variant="blue" className="bg-brand-blue/5 text-brand-blue border-transparent uppercase font-mono text-[8px]">{tag}</Badge>
+          ))}
+       </div>
+    </div>
+    
+    <p className="text-lg text-brand-charcoal/40 font-medium leading-relaxed max-w-xl">{desc}</p>
+    
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-6 border-t border-black/5">
+       {features.map((feat, i) => (
+          <div key={i} className="flex items-center gap-2 text-xs font-bold text-brand-charcoal/50">
+             <CheckCircle2 size={14} className="text-brand-blue" /> {feat}
+          </div>
+       ))}
+    </div>
+    
+    <div className="pt-4 flex justify-between items-center">
+       <div className="flex -space-x-2">
+          {[1,2,3].map(i => (
+             <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-brand-gray-light flex items-center justify-center text-brand-blue">
+                <Bot size={14} />
+             </div>
+          ))}
+       </div>
+       <Link to="/contact">
+         <Button variant="outline" className="h-12 px-8 rounded-full border-black/5 group-hover:bg-brand-charcoal group-hover:text-white transition-all">
+            Deploy Node <ArrowRight size={16} className="ml-2" />
+         </Button>
+       </Link>
+    </div>
+  </div>
+);
 
 export const Products = () => {
   useEffect(() => {
@@ -36,132 +62,107 @@ export const Products = () => {
   }, []);
 
   return (
-    <div className="bg-brand-cream min-h-screen pt-20 overflow-hidden">
+    <div className="bg-white min-h-screen text-brand-charcoal">
       
-      {/* ============= PRODUCTS HERO ============= */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={techAbstract} 
-            className="w-full h-full object-cover brightness-[0.9] opacity-40 blur-[2px] scale-110" 
-            alt="Product Abstract" 
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-cream via-brand-cream/80 to-transparent" />
-          <div className="absolute inset-0 mesh-gradient opacity-10" />
-        </div>
+      {/* ============= HERO ============= */}
+      <section className="relative min-h-[60vh] flex items-center px-6 pt-32">
+        <div className="container-custom relative z-10 mx-auto max-w-6xl">
+           <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+              >
+                <Badge variant="blue" className="bg-brand-blue/5 text-brand-blue border-transparent tracking-widest font-bold">DIGITAL INVENTORY</Badge>
+              </motion.div>
 
-        <div className="container-custom relative z-10 pt-20">
-          <div className="max-w-6xl space-y-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Badge variant="blue"><Box size={12} className="mr-2" /> Hardware-Software Sync v9.2</Badge>
-            </motion.div>
-
-            <motion.h1 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-7xl md:text-9xl font-black leading-[0.8] tracking-tightest uppercase font-outfit"
-            >
-              The Product <br />
-              <span className="gradient-text">Matrix.</span>
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl md:text-3xl text-brand-charcoal/40 font-medium leading-relaxed max-w-4xl"
-            >
-              Engineered logic tools for high-frequency deployment. Explore our primary sovereign software clusters and command units.
-            </motion.p>
-          </div>
+              <motion.h1 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight font-outfit"
+              >
+                Sovereign <br />
+                <span className="text-brand-blue">Builds.</span>
+              </motion.h1>
+              
+              <motion.p
+                 initial={{ opacity: 0, y: 20 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ delay: 0.2, duration: 0.8 }}
+                 className="text-lg md:text-xl text-brand-charcoal/60 font-medium max-w-2xl leading-relaxed"
+              >
+                 Proprietary, high-scale digital products designed for immediate industry deployment and node synchronization.
+              </motion.p>
+           </div>
         </div>
       </section>
 
-      {/* ============= PRODUCT BENTO GRID (WHITE SECTION) ============= */}
-      <section className="section-padding relative bg-white">
-        <div className="container-custom">
-          <div className="bento-grid">
-            {products.map((product, i) => (
-              <motion.div 
-                key={product.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.8 }}
-                className="lg:col-span-6 bento-item group bg-brand-cream-bold/30"
-              >
-                  {/* Decorative Monitor Design */}
-                  <div className="absolute -bottom-20 -right-20 text-brand-blue/5 group-hover:text-brand-blue/10 transition-colors pointer-events-none">
-                     <Workflow size={320} strokeWidth={0.5} />
-                  </div>
-                  
-                  <div className="relative z-10 h-full flex flex-col justify-between">
-                    <div className="space-y-10">
-                       <div className="flex justify-between items-start">
-                          <div className={`w-20 h-20 rounded-3xl bg-brand-blue/5 border border-brand-blue/10 flex items-center justify-center text-brand-blue shadow-sm`}>
-                            {product.icon}
-                          </div>
-                          <div className="font-mono text-[10px] font-black tracking-[0.4em] text-brand-charcoal/20 uppercase mt-4">{product.id}</div>
-                       </div>
-                       <div className="space-y-4">
-                          <h3 className="text-5xl font-black uppercase tracking-tighter leading-tight text-brand-charcoal">{product.title}</h3>
-                          <p className="text-xl text-brand-charcoal/40 font-medium leading-relaxed">{product.desc}</p>
-                       </div>
-                    </div>
+      {/* ============= PRODUCTS ============= */}
+      <section className="py-32 bg-brand-gray-light/30 border-y border-black/5">
+        <div className="container-custom space-y-8">
+           <ProductCard 
+             name="NEXYOVI AI Chat"
+             icon={<MessageSquare size={28} />}
+             desc="Enterprise AI assistant for business logic and tactical automation across clusters."
+             features={["Business Logic", "Support Nodes", "Private Data", "Multi-sync"]}
+             tags={["AI", "LLM"]}
+           />
+           <ProductCard 
+             name="NEXYOVI SecureCore"
+             icon={<ShieldCheck size={28} />}
+             desc="Security monitoring and threat detection hub for critical assets and national nodes."
+             features={["Monitoring", "Threat Detection", "Risk Analysis"]}
+             tags={["SEC", "TRUST"]}
+           />
+           <ProductCard 
+             name="NEXYOVI DataGrid"
+             icon={<Database size={28} />}
+             desc="Massive scale data management and analytics mesh for organizational decision logic."
+             features={["Pipelines", "Dashboards", "Analytics Nodes"]}
+             tags={["DATA", "GRID"]}
+           />
+        </div>
+      </section>
 
-                    <div className="pt-12 space-y-8">
-                       <div className="flex flex-wrap gap-3">
-                          {product.specs.map(spec => (
-                             <span key={spec} className="px-5 py-2.5 rounded-xl bg-black/5 border border-black/5 text-[10px] font-black text-brand-blue uppercase tracking-widest">{spec}</span>
-                          ))}
-                       </div>
-                       <button className="btn-primary w-full py-6 group/btn">
-                          Initialize Deployment <ArrowUpRight className="ml-3 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                       </button>
+      {/* ============= STATS ============= */}
+      <section className="py-32 bg-white">
+        <div className="container-custom grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+           <div className="space-y-8">
+              <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-transparent">Performance Matrix</Badge>
+              <h2 className="text-4xl md:text-5xl font-black font-outfit text-brand-charcoal">
+                 Reliability <br /> <span className="text-brand-blue">Metrics.</span>
+              </h2>
+              <div className="grid grid-cols-2 gap-8 pt-4">
+                 {[
+                   { label: "Deployments", val: "1.2k+" },
+                   { label: "Sync Nodes", val: "240+" },
+                   { label: "Uptime", val: "99.9%" },
+                   { label: "Capacity", val: "2.4 PB" }
+                 ].map((stat, i) => (
+                    <div key={i} className="space-y-1">
+                       <p className="text-3xl font-black font-outfit text-brand-charcoal">{stat.val}</p>
+                       <p className="text-[9px] font-black uppercase tracking-widest text-brand-charcoal/20 font-mono">{stat.label}</p>
                     </div>
-                  </div>
-              </motion.div>
-            ))}
+                 ))}
+              </div>
+           </div>
+           <div className="relative aspect-video bg-brand-charcoal rounded-[3rem] overflow-hidden flex items-center justify-center">
+              <Activity size={80} className="text-brand-blue/20 animate-spin-slow" />
+           </div>
+        </div>
+      </section>
 
-            {/* Modularity Protocol Feature (BOLD CREAM SECTION AS BENTO) */}
-            <motion.div className="lg:col-span-12 bento-item bg-brand-cream-bold text-brand-charcoal">
-               <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                  <div className="space-y-10">
-                     <Badge variant="mint">Modularity Protocol</Badge>
-                     <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.8] text-brand-charcoal">
-                        The <span className="gradient-text-mint">Stackable</span> <br /> Architecture.
-                     </h2>
-                     <p className="text-xl text-brand-charcoal/40 font-medium leading-relaxed font-outfit">
-                        Every NEXYOVI product is designed to stack synchronously with others. Build your own sovereign logic mesh by connecting Agentic Command units with Zero-Trust Sink nodes.
-                     </p>
-                     <div className="pt-6">
-                        <Button variant="outline" className="px-12">Review API Documentation</Button>
-                     </div>
-                  </div>
-                  <div className="relative aspect-video">
-                     <GlassCard intensity="strong" className="h-full flex items-center justify-center border-black/5 shadow-floating bg-white/40">
-                        <div className="flex flex-col gap-4 items-center scale-125">
-                           {[1, 2, 3].map(i => (
-                             <motion.div 
-                                key={i}
-                                animate={{ y: [0, -10, 0], scale: [1, 1.05, 1] }}
-                                transition={{ duration: 4, delay: i * 0.5, repeat: Infinity }}
-                                className="w-48 h-12 bg-black/5 border border-black/5 rounded-2xl flex items-center justify-center text-brand-blue/60 font-mono text-[9px] font-black tracking-widest uppercase"
-                             >
-                                <Layers size={14} className="mr-3" /> LOGIC_BLOCK_0{i}
-                             </motion.div>
-                           ))}
-                        </div>
-                     </GlassCard>
-                  </div>
-               </div>
-            </motion.div>
-          </div>
+      {/* ============= CTA ============= */}
+       <section className="py-32 bg-brand-gray-bold/50 border-t border-black/5">
+        <div className="container-custom text-center space-y-8">
+           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-outfit text-brand-charcoal uppercase leading-[0.8] mb-12">
+             Engage <br /> <span className="text-brand-blue">The Registry.</span>
+           </h2>
+           <Link to="/contact">
+             <Button size="lg" className="h-14 px-12 bg-brand-charcoal text-white hover:bg-brand-blue rounded-full transition-all border-0 shadow-lg">
+               Initialize Sync <ArrowRight className="ml-3" />
+             </Button>
+           </Link>
         </div>
       </section>
 

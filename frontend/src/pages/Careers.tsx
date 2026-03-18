@@ -1,42 +1,33 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Users, ArrowRight, MapPin, Shield, Globe, Command } from 'lucide-react';
-import { GlassCard, Badge } from '../components/ui/Core';
+import { 
+  ArrowRight, 
+  CheckCircle2,
+  User
+} from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Button, Badge } from '../components/ui/Core';
 
-const jobs = [
-  {
-    title: "Senior AI Logic Architect",
-    id: "UNIT_AI_X01",
-    type: "FULL_MISSION",
-    location: "Global / MIA_HUB",
-    desc: "Orchestrating autonomous reasoning engines for high-frequency regional clusters.",
-    col: "lg:col-span-8"
-  },
-  {
-    title: "Infra Security Lead",
-    id: "UNIT_SEC_ZT",
-    type: "DEEP_SINK",
-    location: "Addis_Node",
-    desc: "Mapping zero-trust protocols for national-scale digital sovereignty.",
-    col: "lg:col-span-4"
-  },
-  {
-    title: "Data Flux Engineer",
-    id: "UNIT_DATA_SYNC",
-    type: "GLOBAL_SYNC",
-    location: "London_Point",
-    desc: "Optimizing high-bandwidth logic synchronization across intercontinental nodes.",
-    col: "lg:col-span-4"
-  },
-  {
-    title: "Strategic Unit Strategy",
-    id: "UNIT_STRAT_OPS",
-    type: "FULL_MISSION",
-    location: "MIA_HUB",
-    desc: "Bridging architectural logic with national digital transformation goals.",
-    col: "lg:col-span-8"
-  }
-];
+const RoleCard = ({ title, category, location, id }: { title: string, category: string, location: string, id: string }) => (
+  <div className="group p-8 bg-white border border-black/5 rounded-[2.5rem] hover:shadow-xl transition-all duration-700 space-y-6">
+     <div className="flex justify-between items-start">
+        <div className="space-y-1">
+           <Badge variant="blue" className="bg-brand-blue/5 text-brand-blue border-transparent uppercase font-mono text-[8px] tracking-widest">{id}</Badge>
+           <h3 className="text-xl font-black font-outfit text-brand-charcoal uppercase leading-tight">{title}</h3>
+        </div>
+        <div className="w-10 h-10 rounded-xl bg-brand-gray-light flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-all">
+           <ArrowRight size={16} />
+        </div>
+     </div>
+     <div className="flex gap-4">
+        <span className="text-[9px] font-black uppercase tracking-widest text-brand-charcoal/30">{category}</span>
+        <span className="text-[9px] font-black uppercase tracking-widest text-brand-blue">{location}</span>
+     </div>
+     <Button className="w-full h-12 rounded-xl border-black/5 group-hover:bg-brand-charcoal group-hover:text-white transition-all text-sm font-bold" variant="outline">
+        Join Unit
+     </Button>
+  </div>
+);
 
 export const Careers = () => {
   useEffect(() => {
@@ -44,113 +35,93 @@ export const Careers = () => {
   }, []);
 
   return (
-    <div className="bg-brand-cream min-h-screen pt-20 overflow-hidden">
+    <div className="bg-white min-h-screen text-brand-charcoal">
       
-      {/* ============= CAREERS HERO ============= */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 mesh-gradient opacity-10 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-cream/40 to-brand-cream" />
-
-        <div className="container-custom relative z-10 pt-20">
-          <div className="max-w-6xl space-y-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Badge variant="mint"><Users size={12} className="mr-2" /> Hitting the Sigils v3.0</Badge>
-            </motion.div>
-
-            <motion.h1 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-7xl md:text-9xl font-black leading-[0.8] tracking-tightest uppercase font-outfit"
-            >
-              Deployment <br />
-              <span className="gradient-text-mint">Registry.</span>
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl md:text-3xl text-brand-charcoal/40 font-medium leading-relaxed max-w-4xl"
-            >
-              Assembling an elite engineering unit for the next epoch of national-scale digital infrastructure. Map your logic to our mission clusters.
-            </motion.p>
-          </div>
-        </div>
-      </section>
-
-      {/* ============= DEPLOYMENT BENTO GRID (WHITE SECTION) ============= */}
-      <section className="section-padding relative bg-white">
-        <div className="container-custom">
-          <div className="bento-grid">
-            {jobs.map((job, i) => (
-              <motion.div 
-                key={job.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.8 }}
-                className={`${job.col} bento-item group bg-brand-cream-bold/30`}
+      {/* ============= HERO ============= */}
+      <section className="relative min-h-[60vh] flex items-center px-6 pt-32 mx-auto max-w-6xl">
+        <div className="container-custom relative z-10 w-full mx-auto">
+           <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
               >
-                  {/* Decorative Background ID */}
-                  <div className="absolute -bottom-10 -right-10 text-9xl font-black text-brand-charcoal/[0.02] tracking-tighter select-none pointer-events-none group-hover:text-brand-blue/5 transition-colors font-mono">
-                    {job.id.split('_').pop()}
-                  </div>
-                  
-                  <div className="relative z-10 h-full flex flex-col justify-between space-y-12">
-                     <div className="space-y-6">
-                        <div className="flex justify-between items-center">
-                           <Badge variant="blue">{job.type}</Badge>
-                           <span className="text-brand-charcoal/20 font-mono text-[9px] uppercase tracking-widest">{job.id}</span>
-                        </div>
-                        <h3 className="text-4xl font-black uppercase tracking-tighter leading-tight group-hover:text-brand-blue transition-colors text-brand-charcoal">
-                           {job.title}
-                        </h3>
-                        <p className="text-xl text-brand-charcoal/40 font-medium leading-relaxed">
-                           {job.desc}
-                        </p>
-                        <div className="flex items-center gap-3 text-brand-mint text-[10px] font-black uppercase tracking-[0.3em]">
-                           <MapPin size={14} /> {job.location}
-                        </div>
-                     </div>
-                     
-                     <div className="pt-8 border-t border-black/5 flex items-center justify-between group/btn">
-                        <button className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-charcoal/30 group-hover/btn:text-brand-charcoal transition-colors">
-                           Initialize_Ops_Application
-                        </button>
-                        <div className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center group-hover/btn:bg-brand-blue group-hover/btn:border-brand-blue transition-all shadow-sm">
-                           <ArrowRight size={20} className="text-brand-charcoal group-hover/btn:text-white group-hover/btn:translate-x-1 transition-transform" />
-                        </div>
-                     </div>
-                  </div>
+                <Badge variant="blue" className="bg-brand-blue/5 text-brand-blue border-transparent tracking-widest font-bold">TALENT ASSEMBLY</Badge>
               </motion.div>
-            ))}
-          </div>
+
+              <motion.h1 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight font-outfit"
+              >
+                Join <br />
+                The <span className="text-brand-blue font-outfit">Unit.</span>
+              </motion.h1>
+              
+              <motion.p
+                 initial={{ opacity: 0, y: 20 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ delay: 0.2, duration: 0.8 }}
+                 className="text-lg md:text-xl text-brand-charcoal/60 font-medium max-w-2xl leading-relaxed"
+              >
+                 Join a team building advanced AI and infrastructure systems for global businesses.
+              </motion.p>
+           </div>
         </div>
       </section>
 
-      {/* ============= CULTURE PROTOCOL (BOLD CREAM SECTION) ============= */}
-      <section className="section-padding relative overflow-hidden bg-brand-cream-bold text-brand-charcoal">
-        <div className="container-custom">
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      {/* ============= ROLES ============= */}
+      <section className="py-32 bg-brand-gray-light/30 border-y border-black/5">
+        <div className="container-custom space-y-8">
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <RoleCard id="AI_01" title="AI Engineer" category="Logic Systems" location="Remote" />
+              <RoleCard id="BE_04" title="Backend Developer" category="Architecture" location="Hybrid" />
+              <RoleCard id="SEC_09" title="Security Analyst" category="Offensive Ops" location="Hybrid" />
+           </div>
+        </div>
+      </section>
+
+      {/* ============= BENEFITS ============= */}
+      <section className="py-32 bg-white">
+        <div className="container-custom grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+           <div className="space-y-8">
+              <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-transparent">DNA & Culture</Badge>
+              <h2 className="text-4xl md:text-5xl font-black font-outfit text-brand-charcoal">
+                 Elite <br /> <span className="text-brand-blue">Benefits.</span>
+              </h2>
+           </div>
+           
+           <div className="grid grid-cols-1 gap-8">
               {[
-                { title: "Sovereign Ownership", icon: <Shield />, desc: "Complete architectural ownership over mission-critical digital stacks." },
-                { title: "Global Synchrony", icon: <Globe />, desc: "Collaborate across intercontinental logic nodes with pure engineering focus." },
-                { title: "Pure Logic Flow", icon: <Command />, desc: "No bureaucratic bloat. Just elite engineering and definitive results." }
-              ].map((v, i) => (
-                <GlassCard key={i} intensity="strong" className="p-10 border-black/5 space-y-6 group bg-white/40 shadow-floating">
-                   <div className="w-14 h-14 rounded-2xl bg-brand-blue/5 border border-brand-blue/10 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue/10 transition-all shadow-sm">
-                      {v.icon}
-                   </div>
-                   <h4 className="text-2xl font-bold uppercase tracking-tight text-brand-charcoal">{v.title}</h4>
-                   <p className="text-lg text-brand-charcoal/40 font-medium leading-relaxed">{v.desc}</p>
-                </GlassCard>
+                { title: "Global Projects", desc: "Work on high-stakes missions spanning national clusters." },
+                { title: "Remote Friendly", desc: "Our synchrony allows for absolute professional freedom." },
+                { title: "High-impact", desc: "Engineer the future of the digital economy." }
+              ].map((benefit, i) => (
+                 <div key={i} className="flex gap-6 group">
+                    <div className="w-10 h-10 rounded-xl bg-brand-gray-light flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-all">
+                       <CheckCircle2 size={18} />
+                    </div>
+                    <div className="space-y-1">
+                       <h4 className="text-xl font-black font-outfit text-brand-charcoal uppercase">{benefit.title}</h4>
+                       <p className="text-base text-brand-charcoal/50 font-medium leading-relaxed max-w-sm">{benefit.desc}</p>
+                    </div>
+                 </div>
               ))}
            </div>
+        </div>
+      </section>
+
+      {/* ============= CONTACT CTA ============= */}
+       <section className="py-32 bg-brand-gray-bold/50 border-t border-black/5">
+        <div className="container-custom text-center space-y-8">
+           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-outfit text-brand-charcoal">
+             Apply <br /> <span className="text-brand-blue">Now.</span>
+           </h2>
+           <Link to="/contact">
+             <Button size="lg" className="h-14 px-12 bg-brand-blue text-white hover:bg-brand-blue-dark rounded-full transition-all border-0 shadow-lg">
+                Join The Registry <ArrowRight className="ml-3" />
+             </Button>
+           </Link>
         </div>
       </section>
 

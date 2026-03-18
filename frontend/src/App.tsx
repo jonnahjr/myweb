@@ -21,25 +21,25 @@ const Preloader = () => {
     <motion.div 
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
-      className="fixed inset-0 z-[9999] bg-brand-cream flex flex-col items-center justify-center space-y-8"
+      className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center space-y-12"
     >
-      <div className="absolute inset-0 mesh-gradient opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-brand-gray-bold/30 pointer-events-none" />
       <div className="relative">
         <motion.div 
           animate={{ 
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, -5, 0]
+            scale: [1, 1.05, 1],
+            opacity: [0.8, 1, 0.8]
           }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="relative z-10"
         >
-          <img src={logo} alt="NEXYOVI" className="h-20 w-auto brightness-0 drop-shadow-[0_0_10px_rgba(0,102,255,0.2)]" />
+          <img src={logo} alt="NEXYOVI" className="h-20 w-auto brightness-0 opacity-80" />
         </motion.div>
-        <div className="absolute -inset-10 bg-brand-blue/10 blur-[80px] rounded-full animate-pulse" />
+        <div className="absolute -inset-10 bg-brand-blue/5 blur-[80px] rounded-full animate-pulse" />
       </div>
       
-      <div className="flex flex-col items-center gap-4">
-        <div className="w-48 h-[1px] bg-black/5 relative overflow-hidden">
+      <div className="flex flex-col items-center gap-6">
+        <div className="w-48 h-[2px] bg-brand-gray-light relative overflow-hidden rounded-full">
           <motion.div 
             initial={{ left: "-100%" }}
             animate={{ left: "100%" }}
@@ -47,7 +47,7 @@ const Preloader = () => {
             className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-brand-blue to-transparent"
           />
         </div>
-        <span className="text-[10px] font-black tracking-[0.5em] text-brand-charcoal/30 uppercase animate-pulse">Initializing_Sovereign_Protocol</span>
+        <span className="text-[10px] font-black tracking-[0.6em] text-brand-charcoal/20 uppercase font-mono animate-pulse">Initializing_Sovereign_Protocol</span>
       </div>
     </motion.div>
   );
@@ -92,10 +92,10 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
     <AnimatePresence mode="wait">
       <motion.div
         key={location.pathname}
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        exit={{ opacity: 0, y: -15 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >
         {children}
       </motion.div>
@@ -107,7 +107,6 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading internal logic
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
@@ -119,7 +118,7 @@ export default function App() {
       </AnimatePresence>
       
       {!loading && (
-        <div className="relative">
+        <div className="relative bg-white selection:bg-brand-blue/10 selection:text-brand-blue">
           <CustomCursor />
           <ScrollToTop />
           <Layout>

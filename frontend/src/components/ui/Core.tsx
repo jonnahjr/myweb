@@ -33,10 +33,10 @@ export const GlassCard = ({
   };
 
   const intensityClasses = {
-    light: 'bg-white/20 border-black/5',
-    medium: 'bg-white/40 border-black/5',
-    strong: 'bg-white/60 border-black/10 backdrop-blur-3xl',
-    ultra: 'glass-shader shadow-floating'
+    light: 'bg-white/50 border-black/5 text-brand-charcoal',
+    medium: 'bg-white border-black/5 text-brand-charcoal shadow-sm',
+    strong: 'bg-white border-black/5 text-brand-charcoal shadow-premium',
+    ultra: 'bg-white border-black/10 text-brand-charcoal shadow-floating'
   };
 
   return (
@@ -48,7 +48,6 @@ export const GlassCard = ({
       initial={{ opacity: 0, scale: 0.98 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
         "rounded-[2.5rem] relative overflow-hidden transition-all duration-700",
         intensityClasses[intensity],
@@ -59,10 +58,10 @@ export const GlassCard = ({
       {/* Interactive Spotlight Effect */}
       {hoverEffect && (
         <div 
-          className="pointer-events-none absolute -inset-px transition-opacity duration-1000 z-0"
+          className="pointer-events-none absolute -inset-px transition-opacity duration-1000 z-0 text-brand-blue"
           style={{
             opacity,
-            background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(0, 102, 255, 0.05), transparent 40%)`,
+            background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, var(--brand-blue-glow), transparent 40%)`,
           }}
         />
       )}
@@ -92,22 +91,22 @@ export const Button = ({
     primary: 'btn-primary',
     secondary: 'btn-secondary',
     outline: 'btn-outline',
-    ghost: 'text-brand-charcoal/40 hover:text-brand-charcoal hover:bg-black/[0.05] border-transparent',
-    mint: 'bg-brand-mint text-brand-charcoal hover:bg-brand-mint-light shadow-glow-mint border-none',
-    cyan: 'bg-cyan-500 text-white hover:bg-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.4)] border-none'
+    ghost: 'text-brand-charcoal/40 hover:text-brand-charcoal hover:bg-brand-gray-light',
+    mint: 'bg-brand-mint text-white hover:bg-brand-mint-light shadow-glow-mint border-none',
+    cyan: 'bg-brand-blue text-white hover:bg-brand-blue-dark shadow-glow border-none'
   };
 
   const sizeStyles = {
     sm: 'px-8 py-3 text-[10px] uppercase tracking-[0.2em]',
-    md: 'px-10 py-4 text-xs uppercase tracking-[0.3em]',
-    lg: 'px-14 py-5 text-sm uppercase tracking-[0.4em]',
-    xl: 'px-20 py-7 text-base uppercase tracking-[0.5em]'
+    md: 'px-11 h-12 text-xs uppercase tracking-[0.3em]',
+    lg: 'px-14 h-16 text-sm uppercase tracking-[0.4em]',
+    xl: 'px-20 h-20 text-base uppercase tracking-[0.5em]'
   };
 
   return (
     <motion.button 
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       className={cn(
         "rounded-2xl font-black transition-all duration-500 relative flex items-center justify-center gap-4 overflow-hidden disabled:opacity-50 disabled:pointer-events-none font-inter",
         variantStyles[variant],
@@ -116,7 +115,6 @@ export const Button = ({
       )}
       {...(props as any)}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
       <span className="relative z-10">{children}</span>
     </motion.button>
   );
