@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Navbar, Footer } from './LayoutContent';
-import { AIBanner } from '../ui/AIBanner';
 import { ChatBot } from '../ui/ChatBot';
 
 interface LayoutProps {
@@ -18,7 +17,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main className="flex-grow">
         {children}
       </main>
-      {!isDashboard && <AIBanner />}
       {!isDashboard && <Footer />}
       {!isDashboard && <ChatBot />}
     </div>

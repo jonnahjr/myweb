@@ -20,34 +20,46 @@ const Preloader = () => {
   return (
     <motion.div 
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
-      className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center space-y-12"
+      exit={{ opacity: 0, transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] } }}
+      className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center space-y-16 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-brand-gray-bold/30 pointer-events-none" />
-      <div className="relative">
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.05, 1],
-            opacity: [0.8, 1, 0.8]
-          }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="relative z-10"
-        >
-          <img src={logo} alt="NEXYOVI" className="h-20 w-auto brightness-0 opacity-80" />
-        </motion.div>
-        <div className="absolute -inset-10 bg-brand-blue/5 blur-[80px] rounded-full animate-pulse" />
+      {/* 3D Background Pulse */}
+      <div className="absolute inset-0 z-0 opacity-20">
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vw] bg-brand-blue/10 blur-[180px] rounded-full animate-pulse-slow" />
+         <div className="absolute inset-0 tech-grid opacity-10" />
       </div>
-      
-      <div className="flex flex-col items-center gap-6">
-        <div className="w-48 h-[2px] bg-brand-gray-light relative overflow-hidden rounded-full">
-          <motion.div 
-            initial={{ left: "-100%" }}
-            animate={{ left: "100%" }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-brand-blue to-transparent"
-          />
+
+      <div className="relative z-10 flex flex-col items-center space-y-12">
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="relative"
+        >
+          <img src={logo} alt="NEXYOVI" className="h-24 w-auto invert brightness-0 opacity-90" />
+          <div className="absolute -inset-10 bg-brand-blue/20 blur-[100px] rounded-full animate-pulse" />
+        </motion.div>
+        
+        <div className="flex flex-col items-center gap-8">
+          <div className="w-80 h-[1.5px] bg-white/5 relative overflow-hidden rounded-full">
+            <motion.div 
+              initial={{ left: "-100%" }}
+              animate={{ left: "100%" }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-brand-blue to-transparent"
+            />
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <motion.span 
+               animate={{ opacity: [0.4, 1, 0.4] }}
+               transition={{ duration: 2, repeat: Infinity }}
+               className="text-[11px] font-black tracking-[0.8em] text-brand-blue uppercase font-mono"
+            >
+               Initializing_Sovereign_Protocol
+            </motion.span>
+            <span className="text-[9px] font-black text-white/20 uppercase tracking-[0.4em] font-mono">NODE_SYNC_v2.0.4_STABLE</span>
+          </div>
         </div>
-        <span className="text-[10px] font-black tracking-[0.6em] text-brand-charcoal/20 uppercase font-mono animate-pulse">Initializing_Sovereign_Protocol</span>
       </div>
     </motion.div>
   );
@@ -118,7 +130,7 @@ export default function App() {
       </AnimatePresence>
       
       {!loading && (
-        <div className="relative bg-white selection:bg-brand-blue/10 selection:text-brand-blue">
+        <div className="relative bg-white">
           <CustomCursor />
           <ScrollToTop />
           <Layout>

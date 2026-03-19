@@ -4,16 +4,15 @@ import {
   Github, 
   Linkedin, 
   Twitter, 
-  ArrowUpRight, 
   Menu, 
   X,
-  ArrowRight,
   ShieldCheck,
-  Lock
+  Lock,
+  Globe
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo 1.png';
-import { Button, Badge } from '../ui/Core';
+import { Button } from '../ui/Core';
 
 const navLinks = [
   { name: 'About', path: '/about' },
@@ -42,33 +41,36 @@ export const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
       scrolled 
-        ? 'py-4 bg-white/90 backdrop-blur-xl border-b border-black/5 shadow-sm' 
+        ? 'py-3 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-premium' 
         : 'py-6 bg-transparent'
     }`}>
       <div className="container-custom">
         <div className="flex justify-between items-center">
           
-          {/* Logo */}
-          <Link to="/" className="flex items-center group relative z-10 transition-transform duration-300 hover:scale-105">
+          <Link 
+            to="/" 
+            className="flex items-center group relative z-[60] transition-all duration-500 hover:scale-110 -mt-2"
+          >
             <img 
               src={logo} 
               alt="NEXYOVI" 
-              className="h-8 w-auto brightness-0 opacity-90"
+              className={`h-16 md:h-24 w-auto p-1 transition-all duration-500 ${
+                scrolled ? 'brightness-0 opacity-100' : 'brightness-0 invert opacity-100'
+              } drop-shadow-md contrast-150`}
             />
           </Link>
 
-          {/* Center Links */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link 
                 key={link.name} 
                 to={link.path}
-                className={`text-xs font-bold uppercase tracking-wider transition-all duration-300 relative group ${
+                className={`text-xs font-black uppercase tracking-widest transition-all duration-300 relative group ${
                   location.pathname === link.path 
-                    ? 'text-brand-blue' 
-                    : 'text-brand-charcoal/50 hover:text-brand-charcoal'
+                    ? scrolled ? 'text-brand-blue' : 'text-brand-yellow'
+                    : scrolled ? 'text-brand-charcoal/60 hover:text-brand-charcoal' : 'text-white/60 hover:text-white'
                 }`}
               >
                 {link.name}
@@ -76,16 +78,18 @@ export const Navbar = () => {
             ))}
           </div>
 
-          {/* Action Button */}
           <div className="hidden lg:flex items-center gap-6">
             <Link to="/contact">
-              <Button size="sm" className="bg-brand-charcoal text-white h-10 px-6 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-brand-blue">
+              <Button size="sm" className={`h-11 px-8 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
+                scrolled 
+                  ? 'bg-brand-charcoal text-white hover:bg-brand-blue' 
+                  : 'bg-white text-brand-charcoal hover:bg-brand-yellow'
+              }`}>
                 Contact Us
               </Button>
             </Link>
           </div>
 
-          {/* Mobile Toggle */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
             className="lg:hidden w-10 h-10 flex items-center justify-center text-brand-charcoal"
@@ -95,7 +99,6 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -131,97 +134,141 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-brand-gray-light pt-24 pb-12">
-      <div className="container-custom">
+    <footer className="bg-[#050505] text-white pt-24 pb-12 relative overflow-hidden font-outfit">
+      
+      {/* Hyper-Modern Glow Architecture */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-brand-blue/[0.08] blur-[160px] rounded-full" />
+      </div>
+
+      <div className="container-custom relative z-10">
         
-        {/* Top: Simple Callout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 items-center">
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black font-outfit text-brand-charcoal">
-               Build your next <br /> <span className="text-brand-blue">Project</span> with us.
-            </h2>
-            <p className="text-lg text-brand-charcoal/40 font-medium max-w-sm">
-               Partner with Africa's leading technology experts in AI and secure software.
-            </p>
-          </div>
-          
-          <div className="flex flex-col justify-center space-y-6 lg:pl-20">
-             <form className="relative flex items-center max-w-sm group">
-               <input 
-                 type="email" 
-                 placeholder="Enter your email" 
-                 className="w-full bg-white border border-black/5 rounded-2xl px-6 py-4 text-sm font-medium text-brand-charcoal placeholder:text-brand-charcoal/30 focus:outline-none focus:border-brand-blue/30 transition-all shadow-sm"
-               />
-               <button 
-                 type="button"
-                 className="absolute right-2 h-10 px-6 rounded-xl bg-brand-charcoal text-white hover:bg-brand-blue transition-all"
-               >
-                 <ArrowRight size={16} />
-               </button>
-             </form>
-          </div>
+        {/* Step 1: Horizontal Mega Navigation */}
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-24 mb-20">
+           
+           <div className="max-w-md space-y-8">
+              <img src={logo} alt="NEXYOVI" className="h-40 w-auto brightness-0 invert opacity-100 transition-all drop-shadow-lg -translate-x-16 hover:drop-shadow-glow" />
+              <div className="space-y-6 -mt-4">
+                 <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20">Coordination Hub</h3>
+                 <p className="text-2xl font-black tracking-tight leading-tight">
+                    Addis Ababa, <br /> Ethiopia
+                 </p>
+                 <p className="text-sm font-bold text-white/30 truncate uppercase tracking-widest leading-relaxed">
+                   Innovation Tower // Floor 16
+                 </p>
+              </div>
+           </div>
+
+           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 flex-1">
+              
+              <div className="space-y-8">
+                 <h4 className="text-[10px] font-black uppercase tracking-[0.6em] text-brand-blue">Protocols</h4>
+                 <ul className="space-y-4">
+                    {['AI Logic & LLMs', 'Security Audit', 'Infrastructure', 'Software Dev', 'Data Insights'].map(item => (
+                       <li key={item}>
+                          <Link to="/services" className="text-sm font-bold text-white/40 hover:text-white transition-all underline decoration-brand-blue/0 hover:underline hover:decoration-brand-blue decoration-2 underline-offset-8">
+                             {item}
+                          </Link>
+                       </li>
+                    ))}
+                 </ul>
+              </div>
+
+              <div className="space-y-8">
+                 <h4 className="text-[10px] font-black uppercase tracking-[0.6em] text-brand-blue">Inventory</h4>
+                 <ul className="space-y-4">
+                    {['Core Registry', 'Mission Log', 'Unit Profile', 'Human Capital', 'Handshake'].map(item => (
+                       <li key={item}>
+                          <Link to="/portfolio" className="text-sm font-bold text-white/40 hover:text-white transition-all underline decoration-white/0 hover:underline hover:decoration-white decoration-2 underline-offset-8">
+                             {item}
+                          </Link>
+                       </li>
+                    ))}
+                 </ul>
+              </div>
+
+              <div className="space-y-12">
+                 <h4 className="text-[10px] font-black uppercase tracking-[0.6em] text-brand-blue">Tech_Nodes</h4>
+                 <div className="space-y-10">
+                    {[
+                      { label: 'SOVEREIGN_AI', val: 'V4_LOGIC' },
+                      { label: 'SHIELD_LAYER', val: 'ACTIVE' },
+                      { label: 'NODE_LATENCY', val: '0.4 MS' }
+                    ].map(n => (
+                       <div key={n.label} className="group relative">
+                          <div className="absolute -inset-x-8 -inset-y-4 bg-brand-blue/0 group-hover:bg-brand-blue/[0.03] rounded-3xl transition-all" />
+                          <div className="relative space-y-2">
+                             <div className="flex items-center gap-3">
+                                <div className="w-1 h-1 rounded-full bg-brand-blue animate-pulse" />
+                                <span className="text-[10px] font-black tracking-[0.2em] text-white/20 uppercase">{n.label}</span>
+                             </div>
+                             <span className="text-4xl font-black font-outfit text-white tracking-tighter leading-none group-hover:text-brand-blue transition-colors">{n.val}</span>
+                          </div>
+                       </div>
+                    ))}
+                 </div>
+              </div>
+
+              <div className="space-y-10">
+                 <h4 className="text-[10px] font-black uppercase tracking-[0.6em] text-brand-blue">Contact</h4>
+                 <div className="space-y-12">
+                    <div className="space-y-4 font-bold">
+                       <div className="flex flex-col">
+                          <span className="text-[9px] font-black uppercase tracking-widest text-brand-blue/50">Mission_Core</span>
+                          <p className="text-sm text-brand-blue tracking-tighter">sync@nexyovi.tech</p>
+                       </div>
+                       <div className="flex flex-col">
+                          <span className="text-[9px] font-black uppercase tracking-widest text-white/10">Support_Node</span>
+                          <p className="text-sm text-white/60 tracking-tighter">support@nexyovi.tech</p>
+                       </div>
+                       <div className="flex flex-col">
+                          <span className="text-[9px] font-black uppercase tracking-widest text-white/10">Media_Sync</span>
+                          <p className="text-sm text-white/60 tracking-tighter">press@nexyovi.tech</p>
+                       </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                       <p className="text-xl font-black text-white">+251 911 123 456</p>
+                       <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/20">Operational_Line // 24/7</p>
+                    </div>
+                    <div className="flex gap-4">
+                       {[Twitter, Linkedin, Github].map((Icon, i) => (
+                          <a key={i} href="#" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/30 hover:text-white hover:bg-brand-blue transition-all">
+                             <Icon size={18} />
+                          </a>
+                       ))}
+                    </div>
+                 </div>
+              </div>
+           </div>
         </div>
 
-        {/* Middle: Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20 border-t border-black/5 pt-16">
-          
-          <div className="space-y-8">
-            <Link to="/">
-               <img src={logo} alt="NEXYOVI" className="h-6 w-auto brightness-0 opacity-80" />
-            </Link>
-            <div className="flex gap-4">
-              {[Twitter, Linkedin, Github].map((Icon, i) => (
-                <a key={i} href="#" className="text-brand-charcoal/30 hover:text-brand-blue transition-all">
-                   <Icon size={20} />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-6">
-             <h3 className="text-[10px] font-black uppercase tracking-widest text-brand-charcoal/20">Services</h3>
-             <ul className="space-y-3">
-                {['AI Solutions', 'Cybersecurity', 'Cloud Systems', 'Software Dev'].map(item => (
-                   <li key={item}>
-                      <a href="/services" className="text-xs font-bold text-brand-charcoal/40 hover:text-brand-blue transition-all">{item}</a>
-                   </li>
-                ))}
-             </ul>
-          </div>
-
-          <div className="space-y-6">
-             <h3 className="text-[10px] font-black uppercase tracking-widest text-brand-charcoal/20">Company</h3>
-             <ul className="space-y-3">
-                {['About Us', 'Portfolio', 'Careers', 'Contact'].map(item => (
-                   <li key={item}>
-                      <a href={`/${item.toLowerCase().replace(' ', '')}`} className="text-xs font-bold text-brand-charcoal/40 hover:text-brand-blue transition-all">{item}</a>
-                   </li>
-                ))}
-             </ul>
-          </div>
-
-          <div className="space-y-6">
-             <h3 className="text-[10px] font-black uppercase tracking-widest text-brand-charcoal/20">Contact</h3>
-             <div className="space-y-2 text-xs font-bold text-brand-charcoal/40">
-                <p>Addis Ababa, Ethiopia</p>
-                <p>sync@nexyovi.tech</p>
-                <p>+251 911 123 456</p>
-             </div>
-          </div>
-
-        </div>
-
-        {/* Bottom */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-black/5">
-           <p className="text-[10px] font-bold text-brand-charcoal/20">
-             © {currentYear} NEXYOVI TECHNOLOGY GROUP. All rights reserved.
-           </p>
-           <div className="flex gap-6">
-              {['Privacy', 'Terms', 'Security'].map(label => (
-                <a key={label} href="#" className="text-[10px] font-bold text-brand-charcoal/20 hover:text-brand-blue">{label}</a>
+        {/* Step 2: Full-Width Registry Border */}
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+           <div className="flex gap-12">
+              <div className="flex gap-4">
+                 <ShieldCheck size={20} className="text-white/10" />
+                 <Lock size={20} className="text-white/10" />
+                 <Globe size={20} className="text-white/10" />
+              </div>
+              <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/10">
+                 © {currentYear} NEXYOVI TECHNOLOGY GROUP // ENGINEERING_DRIVEN
+              </p>
+           </div>
+           
+           <div className="flex gap-8">
+              {['Security', 'Privacy Registry', 'Mission Terms'].map(l => (
+                 <a key={l} href="#" className="text-[9px] font-black uppercase tracking-widest text-white/20 hover:text-brand-blue transition-colors">{l}</a>
               ))}
            </div>
         </div>
+      </div>
+
+      {/* Subtle Branding Backdrop */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] select-none pointer-events-none">
+         <h1 className="text-[12vw] font-black font-outfit uppercase tracking-wider leading-none text-white whitespace-nowrap">
+            NEXYOVI
+         </h1>
       </div>
     </footer>
   );

@@ -46,13 +46,13 @@ export const AdminDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white flex relative overflow-hidden text-brand-charcoal">
+    <div className="min-h-screen bg-brand-surface flex relative overflow-hidden text-brand-charcoal">
       
       {/* Side Background */}
       <div className="absolute inset-0 bg-brand-gray-bold/30 pointer-events-none" />
 
       {/* --- SIDEBAR --- */}
-      <aside className="w-80 border-r border-black/5 bg-white p-10 flex flex-col hidden lg:flex sticky top-0 h-screen z-50">
+      <aside className="w-80 border-r border-black/5 bg-brand-surface p-10 flex flex-col hidden lg:flex sticky top-0 h-screen z-50">
         <Link to="/" className="flex items-center space-x-6 mb-20 group">
           <div className="w-12 h-12 bg-brand-gray-light border border-black/5 rounded-2xl flex items-center justify-center text-brand-blue shadow-sm group-hover:bg-brand-blue group-hover:text-white transition-all duration-500">
             <Command size={24} />
@@ -104,7 +104,7 @@ export const AdminDashboard = () => {
 
       {/* --- MAIN CONTENT --- */}
       <div className="flex-grow flex flex-col h-screen overflow-y-auto relative z-10">
-        <header className="h-28 border-b border-black/5 flex items-center justify-between px-16 bg-white/80 backdrop-blur-2xl sticky top-0 z-40">
+        <header className="h-28 border-b border-black/5 flex items-center justify-between px-16 bg-brand-surface/80 backdrop-blur-2xl sticky top-0 z-40">
            <div className="max-w-xl w-full hidden md:block">
               <div className="relative group">
                  <div className="absolute left-8 top-1/2 -translate-y-1/2 text-brand-charcoal/10 group-focus-within:text-brand-blue transition-colors">
@@ -113,7 +113,7 @@ export const AdminDashboard = () => {
                  <input 
                     type="text" 
                     placeholder="Search mission registry..." 
-                    className="w-full bg-brand-gray-light border border-black/5 rounded-full py-5 pl-20 pr-8 text-sm focus:bg-white focus:border-brand-blue/30 transition-all font-bold placeholder:text-brand-charcoal/10"
+                    className="w-full bg-brand-gray-light border border-black/5 rounded-full py-5 pl-20 pr-8 text-sm focus:bg-brand-surface focus:border-brand-blue/30 transition-all font-bold placeholder:text-brand-charcoal/10"
                  />
               </div>
            </div>
@@ -155,7 +155,7 @@ export const AdminDashboard = () => {
                  <h1 className="text-5xl md:text-8xl font-black tracking-tightest leading-[0.85] uppercase font-outfit text-brand-charcoal">{activeTab} <br /><span className="text-brand-blue italic">Console.</span></h1>
               </div>
               <div className="flex gap-4">
-                 <Button className="h-14 px-8 bg-brand-gray-light text-brand-charcoal border-black/5 rounded-xl text-[10px] uppercase font-black tracking-widest hover:bg-white hover:shadow-premium transition-all">Protocol Logs</Button>
+                 <Button className="h-14 px-8 bg-brand-gray-light text-brand-charcoal border-black/5 rounded-xl text-[10px] uppercase font-black tracking-widest hover:bg-brand-surface hover:shadow-premium transition-all">Protocol Logs</Button>
                  <Button className="h-14 px-8 bg-brand-charcoal hover:bg-brand-blue text-white rounded-xl text-[10px] uppercase font-black tracking-widest shadow-premium">Execute Sweep <Zap size={16} className="ml-2"/></Button>
               </div>
            </div>
@@ -163,7 +163,7 @@ export const AdminDashboard = () => {
            {/* Stats Bento Grid */}
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {stats.map((stat, i) => (
-                <div key={i} className="group p-8 bg-white border border-black/5 rounded-[2.5rem] hover:shadow-floating transition-all duration-500 relative overflow-hidden">
+                <div key={i} className="group p-8 bg-brand-surface border border-black/5 rounded-[2.5rem] hover:shadow-floating transition-all duration-500 relative overflow-hidden">
                    <div className="absolute top-0 right-0 p-8 text-brand-blue/5 group-hover:text-brand-blue/10 scale-150 transition-all duration-700 pointer-events-none group-hover:rotate-12">
                       {stat.icon}
                    </div>
@@ -181,7 +181,7 @@ export const AdminDashboard = () => {
 
            {/* Core Registry Layer */}
            <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 pt-8">
-              <div className="xl:col-span-8 bg-white border border-black/5 rounded-[3rem] overflow-hidden flex flex-col shadow-floating">
+              <div className="xl:col-span-8 bg-brand-surface border border-black/5 rounded-[3rem] overflow-hidden flex flex-col shadow-floating">
                  <div className="p-10 border-b border-black/5 flex justify-between items-center bg-brand-gray-bold/20">
                     <h3 className="text-2xl font-black uppercase tracking-tightest flex items-center gap-4 font-outfit text-brand-charcoal">
                        <Terminal size={28} className="text-brand-blue" />
@@ -217,7 +217,7 @@ export const AdminDashboard = () => {
                                    <div className={`w-2.5 h-2.5 rounded-full ${msg.priority === 'HIGH' ? 'bg-red-500 shadow-sm' : 'bg-brand-blue/30 opacity-40'}`} />
                                 </td>
                                 <td className="px-10 py-8 text-right">
-                                   <button className="text-brand-charcoal/20 hover:text-brand-blue p-2 hover:bg-white rounded-xl transition-all"><MoreVertical size={20} /></button>
+                                   <button className="text-brand-charcoal/20 hover:text-brand-blue p-2 hover:bg-brand-surface rounded-xl transition-all"><MoreVertical size={20} /></button>
                                 </td>
                              </tr>
                           ))}
@@ -233,7 +233,7 @@ export const AdminDashboard = () => {
                  </div>
                  
                  <div className="relative z-10 space-y-6">
-                    <div className="w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-brand-blue shadow-sm">
+                    <div className="w-14 h-14 bg-brand-surface/5 border border-white/10 rounded-2xl flex items-center justify-center text-brand-blue shadow-sm">
                        <Cpu size={28} />
                     </div>
                     <div className="space-y-2">
@@ -256,7 +256,7 @@ export const AdminDashboard = () => {
                             </div>
                             <span className="text-[10px] font-black font-mono text-white/30">{svc.load}%</span>
                          </div>
-                         <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
+                         <div className="h-1 w-full bg-brand-surface/5 rounded-full overflow-hidden border border-white/5">
                             <motion.div 
                                 initial={{ width: 0 }}
                                 animate={{ width: `${svc.load}%` }}
