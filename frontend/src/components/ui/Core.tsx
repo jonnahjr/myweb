@@ -97,10 +97,10 @@ export const Button = ({
   };
 
   const sizeStyles = {
-    sm: 'px-8 py-3 text-[10px] uppercase tracking-[0.2em]',
-    md: 'px-11 h-12 text-xs uppercase tracking-[0.3em]',
-    lg: 'px-14 h-16 text-sm uppercase tracking-[0.4em]',
-    xl: 'px-20 h-20 text-base uppercase tracking-[0.5em]'
+    sm: 'px-6 py-2 text-xs',
+    md: 'px-8 py-4 text-sm font-semibold tracking-wide',
+    lg: 'px-10 h-14 text-base font-semibold tracking-wide',
+    xl: 'px-12 h-16 text-lg font-semibold tracking-wide'
   };
 
   return (
@@ -108,7 +108,7 @@ export const Button = ({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       className={cn(
-        "rounded-2xl font-black transition-all duration-500 relative flex items-center justify-center gap-4 overflow-hidden disabled:opacity-50 disabled:pointer-events-none font-inter",
+        "rounded-2xl transition-all duration-500 relative flex items-center justify-center gap-3 overflow-hidden disabled:opacity-50 disabled:pointer-events-none font-inter",
         variantStyles[variant],
         sizeStyles[size],
         className
@@ -139,7 +139,7 @@ export const Badge = ({
 
   return (
     <div className={cn(
-      "badge font-black uppercase tracking-[0.4em] text-[9px] px-6 py-2 rounded-full border", 
+      "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold border", 
       variantClasses[variant as keyof typeof variantClasses],
       className
     )}>

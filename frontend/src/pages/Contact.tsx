@@ -45,15 +45,15 @@ export const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen overflow-hidden text-brand-charcoal font-outfit">
+    <div className="min-h-screen overflow-hidden bg-[#F3EFE6] text-[#1A2332] font-outfit">
 
       {/* ===== DARK HERO ===== */}
-      <section className="relative min-h-[85vh] flex items-center pt-28 pb-20 overflow-hidden bg-black px-6">
+      <section className="relative min-h-[85vh] flex items-center pt-28 pb-20 overflow-hidden px-6 bg-[#F3EFE6]">
         {/* Background */}
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] bg-brand-blue/10 blur-[200px] rounded-full" />
-          <div className="absolute inset-0 tech-grid-blue opacity-10" />
-          <div className="scanline" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] bg-brand-purple/5 blur-[200px] rounded-full" />
+          <div className="absolute inset-0 tech-grid-blue opacity-5" />
+          <div className="hidden" />
         </div>
 
         <div className="container-custom relative z-10 w-full">
@@ -67,10 +67,10 @@ export const Contact = () => {
                 transition={{ duration: 0.6 }}
                 className="flex items-center gap-4"
               >
-                <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-transparent tracking-[0.5em] uppercase text-[10px] font-black font-mono px-5 py-2">
+                <Badge variant="blue" className="bg-blue-50 text-[#1B4F8A] border-transparent tracking-wider uppercase text-sm font-bold font-medium px-5 py-2">
                   INITIATE_CONTACT_NODE
                 </Badge>
-                <div className="flex items-center gap-2 text-[10px] font-black text-white/20 uppercase tracking-widest font-mono">
+                <div className="flex items-center gap-2 text-sm font-bold text-[#1A2332]/20 uppercase font-medium">
                   <Activity size={12} className="text-brand-yellow animate-pulse" /> RELAY_ACTIVE
                 </div>
               </motion.div>
@@ -80,16 +80,16 @@ export const Contact = () => {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-7xl md:text-9xl font-black leading-[0.85] tracking-tightest uppercase text-white"
+                  className="text-7xl md:text-9xl font-bold leading-[0.85] tracking-tightest uppercase text-[#1A2332]"
                 >
                   Let's Build <br />
-                  <span className="text-brand-blue italic">Together.</span>
+                  <span className="bg-gradient-to-r from-[#1B4F8A] to-[#00B4D8] bg-clip-text text-transparent italic">Together.</span>
                 </motion.h1>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 1 }}
-                  className="text-xl md:text-2xl text-white/40 font-bold max-w-xl leading-tight tracking-tight"
+                  className="text-xl md:text-2xl text-gray-500 font-bold max-w-xl leading-tight tracking-tight"
                 >
                   Our global engineering units are ready to synchronize with your mission. Response within 24 hours — guaranteed.
                 </motion.p>
@@ -107,11 +107,11 @@ export const Contact = () => {
                   { label: 'Active Nodes', val: '240+', icon: <Globe size={14} /> },
                   { label: 'Uptime', val: '99.99%', icon: <Activity size={14} /> },
                 ].map((s, i) => (
-                  <div key={i} className="flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
+                  <div key={i} className="flex items-center gap-3 px-5 py-3 bg-white border border-gray-200 rounded-2xl backdrop-blur-md">
                     <span className="text-brand-blue">{s.icon}</span>
                     <div>
-                      <p className="text-[9px] font-black text-white/20 uppercase tracking-widest font-mono">{s.label}</p>
-                      <p className="text-sm font-black text-white">{s.val}</p>
+                      <p className="text-xs font-bold text-[#1A2332]/20 uppercase font-medium">{s.label}</p>
+                      <p className="text-sm font-bold text-[#1A2332]">{s.val}</p>
                     </div>
                   </div>
                 ))}
@@ -125,23 +125,23 @@ export const Contact = () => {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="relative hidden lg:block perspective-3d"
             >
-              <div className="tilt-node bg-white/5 border border-white/10 rounded-[4rem] p-12 backdrop-blur-xl space-y-10">
+              <div className="tilt-node bg-white border border-gray-200 rounded-2xl p-8 backdrop-blur-xl space-y-10">
                 <div className="space-y-2">
-                  <p className="text-[10px] font-black text-brand-blue uppercase tracking-[0.5em] font-mono">SECURE_CHANNEL</p>
-                  <p className="text-3xl font-black text-white">sync@nexyovi.tech</p>
+                  <p className="text-sm font-bold text-brand-blue uppercase tracking-wider font-medium">SECURE_CHANNEL</p>
+                  <p className="text-3xl font-bold text-[#1A2332]">sync@nexyovi.tech</p>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-[10px] font-black text-white/20 uppercase tracking-[0.5em] font-mono">VOICE_NODE</p>
-                  <p className="text-3xl font-black text-white">+251 911 123 456</p>
+                  <p className="text-sm font-bold text-[#1A2332]/20 uppercase tracking-wider font-medium">VOICE_NODE</p>
+                  <p className="text-3xl font-bold text-[#1A2332]">+251 911 123 456</p>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-[10px] font-black text-white/20 uppercase tracking-[0.5em] font-mono">PRIMARY_HQ</p>
-                  <p className="text-xl font-black text-white/60">Bole Subcity, Innovation Tower<br/>Floor 12–16, Addis Ababa</p>
+                  <p className="text-sm font-bold text-[#1A2332]/20 uppercase tracking-wider font-medium">PRIMARY_HQ</p>
+                  <p className="text-xl font-bold text-gray-500">Bole Subcity, Innovation Tower<br/>Floor 12–16, Addis Ababa</p>
                 </div>
                 {/* Animated progress bar */}
                 <div className="space-y-2">
-                  <p className="text-[9px] font-black text-white/20 uppercase tracking-widest font-mono">RELAY_UPTIME</p>
-                  <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                  <p className="text-xs font-bold text-[#1A2332]/20 uppercase font-medium">RELAY_UPTIME</p>
+                  <div className="h-1 bg-gray-50 rounded-full overflow-hidden">
                     <motion.div
                       animate={{ width: ['60%', '95%', '78%', '99%'] }}
                       transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
@@ -156,7 +156,7 @@ export const Contact = () => {
       </section>
 
       {/* ===== MULTI-STEP FORM ===== */}
-      <section className="py-32 bg-brand-surface">
+      <section className="py-32 border-y border-gray-100 bg-[#000000]">
         <div className="container-custom">
           <AnimatePresence mode="wait">
             {!submitted ? (
@@ -165,7 +165,7 @@ export const Contact = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
               >
                 {/* Form */}
                 <div className="lg:col-span-7">
@@ -173,7 +173,7 @@ export const Contact = () => {
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="bg-white border border-black/5 rounded-[4rem] p-12 lg:p-16 shadow-premium"
+                    className="bg-[#F3EFE6] border border-white/20 rounded-2xl p-8 lg:p-8 shadow-md hover:shadow-xl transition-all"
                   >
                     {/* Step indicator */}
                     <div className="flex items-center gap-3 mb-12">
@@ -181,20 +181,20 @@ export const Contact = () => {
                         <div key={s} className="flex items-center gap-3">
                           <button
                             onClick={() => setStep(s)}
-                            className={`w-10 h-10 rounded-full font-black text-sm transition-all duration-500 ${
+                            className={`w-10 h-10 rounded-full font-bold text-sm transition-all duration-500 ${
                               step === s
-                                ? 'bg-brand-charcoal text-white shadow-premium scale-110'
+                                ? 'bg-brand-purple text-white shadow-md hover:shadow-xl transition-all scale-110'
                                 : step > s
                                 ? 'bg-brand-blue text-white'
-                                : 'bg-brand-gray-light text-brand-charcoal/30 border border-black/5'
+                                : 'bg-white/5/10 text-gray-400 border border-white/10'
                             }`}
                           >
                             {step > s ? <CheckCircle2 size={16} className="mx-auto" /> : s}
                           </button>
-                          {s < 2 && <div className={`w-16 h-0.5 transition-all duration-700 ${step > s ? 'bg-brand-blue' : 'bg-black/10'}`} />}
+                          {s < 2 && <div className={`w-16 h-0.5 transition-all duration-700 ${step > s ? 'bg-brand-blue' : 'bg-white/5/10'}`} />}
                         </div>
                       ))}
-                      <span className="ml-4 text-[10px] font-black uppercase tracking-[0.4em] text-brand-charcoal/20 font-mono">
+                      <span className="ml-4 text-sm font-bold uppercase tracking-wider text-gray-400 font-medium">
                         STEP_{step}_OF_2
                       </span>
                     </div>
@@ -211,8 +211,8 @@ export const Contact = () => {
                             className="space-y-8"
                           >
                             <div>
-                              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tightest leading-tight mb-2">Your Identity</h2>
-                              <p className="text-brand-charcoal/40 font-bold">Tell us who you are and how to reach you.</p>
+                              <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight mb-2 text-white">Your Identity</h2>
+                              <p className="text-gray-400 font-bold">Tell us who you are and how to reach you.</p>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                               {[
@@ -222,7 +222,7 @@ export const Contact = () => {
                                 { name: 'phone', label: 'Phone_Node', placeholder: '+251 911 000 000', type: 'tel' },
                               ].map((f) => (
                                 <div key={f.name} className="space-y-3">
-                                  <label className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-charcoal/30 font-mono">{f.label}</label>
+                                  <label className="text-sm font-bold uppercase tracking-wider text-gray-400 font-medium">{f.label}</label>
                                   <input
                                     type={f.type}
                                     name={f.name}
@@ -230,7 +230,7 @@ export const Contact = () => {
                                     onChange={handleChange}
                                     placeholder={f.placeholder}
                                     required
-                                    className="w-full bg-brand-surface border border-black/5 rounded-2xl px-6 py-4 text-brand-charcoal font-bold focus:bg-white focus:border-brand-blue/40 focus:outline-none transition-all placeholder:text-brand-charcoal/20 text-base"
+                                    className="w-full bg-white/5/10 border border-white/20 rounded-2xl px-6 py-4 text-white font-bold focus:bg-white/5/10/80 focus:border-brand-purple/40 focus:outline-none transition-all placeholder:text-white/20 text-base"
                                   />
                                 </div>
                               ))}
@@ -238,7 +238,7 @@ export const Contact = () => {
                             <button
                               type="button"
                               onClick={() => setStep(2)}
-                              className="w-full h-16 bg-brand-charcoal hover:bg-brand-blue text-white rounded-2xl font-black uppercase tracking-widest transition-all flex items-center justify-center gap-4 text-base group"
+                              className="w-full h-16 bg-gradient-to-r from-[#1B4F8A] to-[#00B4D8] text-white rounded-2xl font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-4 text-base group shadow-lg shadow-blue-500/20"
                             >
                               Next: Mission Details <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
                             </button>
@@ -255,18 +255,18 @@ export const Contact = () => {
                             className="space-y-8"
                           >
                             <div>
-                              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tightest leading-tight mb-2">Your Mission</h2>
-                              <p className="text-brand-charcoal/40 font-bold">Describe your project and scale.</p>
+                              <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight mb-2 text-white">Your Mission</h2>
+                              <p className="text-gray-400 font-bold">Describe your project and scale.</p>
                             </div>
                             <div className="space-y-6">
                               <div className="space-y-3">
-                                <label className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-charcoal/30 font-mono">Mission_Type</label>
+                                <label className="text-sm font-bold uppercase tracking-wider text-gray-400 font-medium">Mission_Type</label>
                                 <select
                                   name="mission"
                                   value={form.mission}
                                   onChange={handleChange}
                                   required
-                                  className="w-full bg-brand-surface border border-black/5 rounded-2xl px-6 py-4 text-brand-charcoal font-bold focus:bg-white focus:border-brand-blue/40 focus:outline-none transition-all appearance-none"
+                                  className="w-full bg-white/5/10 border border-white/20 rounded-2xl px-6 py-4 text-white font-bold focus:bg-white/5/10 focus:border-brand-purple/40 focus:outline-none transition-all appearance-none"
                                 >
                                   <option value="">Select mission type...</option>
                                   <option>National Infrastructure Build</option>
@@ -279,12 +279,12 @@ export const Contact = () => {
                                 </select>
                               </div>
                               <div className="space-y-3">
-                                <label className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-charcoal/30 font-mono">Budget_Range</label>
+                                <label className="text-sm font-bold uppercase tracking-wider text-gray-400 font-medium">Budget_Range</label>
                                 <select
                                   name="budget"
                                   value={form.budget}
                                   onChange={handleChange}
-                                  className="w-full bg-brand-surface border border-black/5 rounded-2xl px-6 py-4 text-brand-charcoal font-bold focus:bg-white focus:border-brand-blue/40 focus:outline-none transition-all appearance-none"
+                                  className="w-full bg-white/5/10 border border-white/20 rounded-2xl px-6 py-4 text-white font-bold focus:bg-white/5/10 focus:border-brand-blue/40 focus:outline-none transition-all appearance-none"
                                 >
                                   <option value="">Select budget range...</option>
                                   <option>Under $10k</option>
@@ -295,7 +295,7 @@ export const Contact = () => {
                                 </select>
                               </div>
                               <div className="space-y-3">
-                                <label className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-charcoal/30 font-mono">Mission_Details</label>
+                                <label className="text-sm font-bold uppercase tracking-wider text-gray-400 font-medium">Mission_Details</label>
                                 <textarea
                                   name="details"
                                   value={form.details}
@@ -303,7 +303,7 @@ export const Contact = () => {
                                   rows={5}
                                   required
                                   placeholder="Describe your operational requirements, technical scale, and desired timeline..."
-                                  className="w-full bg-brand-surface border border-black/5 rounded-[2rem] px-6 py-5 text-brand-charcoal font-bold focus:bg-white focus:border-brand-blue/40 focus:outline-none transition-all placeholder:text-brand-charcoal/20 resize-none"
+                                  className="w-full bg-white/5/10 border border-white/20 rounded-2xl px-6 py-5 text-white font-bold focus:bg-white/5/10 focus:border-brand-blue/40 focus:outline-none transition-all placeholder:text-white/20 resize-none"
                                 />
                               </div>
                             </div>
@@ -311,13 +311,13 @@ export const Contact = () => {
                               <button
                                 type="button"
                                 onClick={() => setStep(1)}
-                                className="h-16 px-8 bg-brand-surface hover:bg-brand-gray-light border border-black/5 text-brand-charcoal rounded-2xl font-black uppercase tracking-widest transition-all text-sm"
+                                className="h-16 px-8 bg-white/5/10 hover:bg-[#F3EFE6] border border-white/20 text-white rounded-2xl font-bold uppercase tracking-widest transition-all text-sm"
                               >
                                 Back
                               </button>
                               <button
                                 type="submit"
-                                className="flex-1 h-16 bg-brand-yellow hover:bg-brand-charcoal text-brand-charcoal hover:text-white rounded-2xl font-black uppercase tracking-widest transition-all flex items-center justify-center gap-4 text-base group"
+                                className="flex-1 h-16 bg-brand-yellow hover:bg-[#F3EFE6] text-white hover:text-white rounded-2xl font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-4 text-base group"
                               >
                                 Establish Handshake <Send size={20} className="group-hover:translate-x-1 transition-transform" />
                               </button>
@@ -336,11 +336,11 @@ export const Contact = () => {
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="bg-brand-charcoal rounded-[3rem] p-10 space-y-8"
+                    className="bg-white/5 rounded-2xl p-6 space-y-8"
                   >
                     <div className="space-y-4">
-                      <p className="text-[10px] font-black text-brand-yellow uppercase tracking-[0.5em] font-mono">NEXYOVI_HQ</p>
-                      <h3 className="text-4xl font-black text-white uppercase tracking-tightest leading-tight">Addis Ababa, <br />Ethiopia.</h3>
+                      <p className="text-sm font-bold text-brand-yellow uppercase tracking-wider font-medium">NEXYOVI_HQ</p>
+                      <h3 className="text-4xl font-bold text-white tracking-tight leading-tight">Addis Ababa, <br />Ethiopia.</h3>
                     </div>
                     <div className="space-y-6">
                       {[
@@ -349,12 +349,12 @@ export const Contact = () => {
                         { icon: MapPin, label: 'Nav Location', val: 'Innovation Tower, Floor 12–16' }
                       ].map((item, i) => (
                         <div key={i} className="flex items-start gap-5 group">
-                          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-all duration-500 shrink-0">
+                          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/20 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-all duration-500 shrink-0">
                             <item.icon size={20} />
                           </div>
                           <div>
-                            <p className="text-[9px] font-black text-white/20 uppercase tracking-widest font-mono mb-1">{item.label}</p>
-                            <p className="text-base font-black text-white">{item.val}</p>
+                            <p className="text-xs font-bold text-white/20 uppercase font-medium mb-1">{item.label}</p>
+                            <p className="text-base font-bold text-white">{item.val}</p>
                           </div>
                         </div>
                       ))}
@@ -367,12 +367,12 @@ export const Contact = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="bg-white border border-black/5 rounded-[3rem] p-10 space-y-6 shadow-premium"
+                    className="bg-white/5 border border-white/20 rounded-2xl p-6 space-y-6 shadow-md hover:shadow-xl transition-all"
                   >
-                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-charcoal/20 font-mono">VALIDATION_STATUS</p>
+                    <p className="text-sm font-bold uppercase tracking-wider text-white/20 font-medium">VALIDATION_STATUS</p>
                     <div className="flex flex-wrap gap-3">
                       {['ISO 27001+', 'SOC 2 Type II', 'NVIDIA Elite', 'AWS GovCloud'].map(c => (
-                        <div key={c} className="flex items-center gap-2 h-10 px-5 bg-brand-blue/5 border border-brand-blue/10 rounded-xl text-[10px] font-black text-brand-blue uppercase tracking-wide">
+                        <div key={c} className="flex items-center gap-2 h-10 px-5 bg-brand-blue/20 border border-brand-blue/10 rounded-xl text-sm font-bold text-brand-blue uppercase tracking-wide">
                           <Shield size={12} /> {c}
                         </div>
                       ))}
@@ -385,12 +385,12 @@ export const Contact = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
-                    className="bg-brand-yellow rounded-[3rem] p-10 space-y-4"
+                    className="bg-brand-yellow rounded-2xl p-6 space-y-4"
                   >
-                    <Zap size={28} className="text-brand-charcoal" />
-                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-charcoal/50 font-mono">RESPONSE SLA</p>
-                    <p className="text-3xl font-black text-brand-charcoal uppercase tracking-tightest">Response in<br />Under 24 Hours.</p>
-                    <p className="text-sm font-bold text-brand-charcoal/60">Our global relay nodes ensure your mission brief reaches the right engineering unit, worldwide.</p>
+                    <Zap size={28} className="text-white" />
+                    <p className="text-sm font-bold uppercase tracking-wider text-white/50 font-medium">RESPONSE SLA</p>
+                    <p className="text-3xl font-bold text-white tracking-tight">Response in<br />Under 24 Hours.</p>
+                    <p className="text-sm font-bold text-white/60">Our global relay nodes ensure your mission brief reaches the right engineering unit, worldwide.</p>
                   </motion.div>
                 </div>
               </motion.div>
@@ -406,17 +406,17 @@ export const Contact = () => {
                 <motion.div
                   animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                  className="w-32 h-32 rounded-[3rem] bg-brand-yellow flex items-center justify-center shadow-premium"
+                  className="w-32 h-32 rounded-2xl bg-brand-yellow flex items-center justify-center shadow-md hover:shadow-xl transition-all"
                 >
-                  <CheckCircle2 size={56} className="text-brand-charcoal" />
+                  <CheckCircle2 size={56} className="text-white" />
                 </motion.div>
                 <div className="space-y-4 max-w-2xl">
-                  <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-transparent tracking-[0.5em] uppercase text-[10px] font-black font-mono">HANDSHAKE_ESTABLISHED</Badge>
-                  <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tightest leading-[0.85]">Mission <span className="text-brand-blue italic">Received.</span></h2>
-                  <p className="text-xl text-brand-charcoal/40 font-bold leading-relaxed">Your brief has been synchronized with our operational relay. Expect a response from our elite engineering unit within 24 hours.</p>
+                  <Badge variant="blue" className="bg-blue-50 text-[#1B4F8A] border-transparent tracking-wider uppercase text-sm font-bold font-medium">HANDSHAKE_ESTABLISHED</Badge>
+                  <h2 className="text-2xl md:text-3xl lg:text-6xl font-bold tracking-tight leading-tight">Mission <span className="text-brand-blue italic">Received.</span></h2>
+                  <p className="text-xl text-white/40 font-bold leading-relaxed">Your brief has been synchronized with our operational relay. Expect a response from our elite engineering unit within 24 hours.</p>
                 </div>
                 <Link to="/">
-                  <Button size="xl" className="h-16 px-12 bg-brand-charcoal text-white rounded-[2rem] font-black uppercase tracking-widest hover:bg-brand-blue transition-all">
+                  <Button size="xl" className="h-16 px-12 bg-white/5 text-white rounded-2xl font-bold uppercase tracking-widest hover:bg-brand-blue transition-all">
                     Back to NEXYOVI HQ
                   </Button>
                 </Link>
@@ -427,19 +427,19 @@ export const Contact = () => {
       </section>
 
       {/* ===== GLOBAL NODE NETWORK ===== */}
-      <section className="py-32 bg-brand-charcoal relative overflow-hidden">
+      <section className="py-32 relative overflow-hidden bg-[#F3EFE6]">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] bg-brand-blue/20 blur-[200px] rounded-full" />
-          <div className="absolute inset-0 tech-grid-blue opacity-10" />
+          <div className="absolute inset-0 hidden" />
         </div>
         <div className="container-custom relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div className="space-y-12">
-              <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-transparent tracking-[0.5em] uppercase text-[10px] font-black font-mono">GLOBAL_REACH</Badge>
-              <h2 className="text-6xl md:text-8xl font-black tracking-tightest text-white uppercase leading-[0.85]">
+              <Badge variant="blue" className="bg-blue-50 text-[#1B4F8A] border-transparent tracking-wider uppercase text-sm font-bold font-medium">GLOBAL_REACH</Badge>
+              <h2 className="text-2xl md:text-3xl lg:text-6xl font-bold tracking-tightest text-[#1A2332] uppercase leading-[0.85]">
                 Mission <br /><span className="text-brand-blue italic">Presence.</span>
               </h2>
-              <p className="text-2xl text-white/40 font-bold max-w-xl leading-tight">
+              <p className="text-2xl text-gray-500 font-bold max-w-xl leading-tight">
                 Our units operate across intercontinental nodes to ensure absolute synchrony for your national and enterprise builds.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -451,7 +451,7 @@ export const Contact = () => {
                     whileInView="show"
                     viewport={{ once: true }}
                     variants={fadeUp}
-                    className="flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.2em] text-white/60 p-5 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm"
+                    className="flex items-center gap-4 text-sm font-bold uppercase tracking-[0.2em] text-gray-500 p-5 bg-white border border-gray-200 rounded-2xl backdrop-blur-sm"
                   >
                     <CheckCircle2 size={16} className="text-brand-yellow shrink-0" />
                     {loc}
@@ -464,16 +464,16 @@ export const Contact = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative aspect-square bg-white/5 border border-white/10 rounded-[4rem] flex items-center justify-center overflow-hidden backdrop-blur-xl"
+              className="relative aspect-square bg-white border border-gray-200 rounded-2xl flex items-center justify-center overflow-hidden backdrop-blur-xl"
             >
               <Globe size={320} className="text-brand-blue/10 animate-spin-slow" />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
               <div className="relative z-10 text-center space-y-4">
-                <p className="text-8xl font-black text-white leading-none tracking-tightest">240+</p>
-                <p className="text-[11px] font-black uppercase tracking-[0.6em] text-white/20 font-mono">Active_Nodes_Global</p>
+                <p className="text-8xl font-bold text-[#1A2332] leading-none tracking-tightest">240+</p>
+                <p className="text-sm font-bold uppercase tracking-wider text-[#1A2332]/20 font-medium">Active_Nodes_Global</p>
                 <div className="flex items-center justify-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-brand-blue animate-ping" />
-                  <span className="text-[9px] font-black text-brand-blue uppercase tracking-widest font-mono">All Systems Nominal</span>
+                  <span className="text-xs font-bold text-brand-blue uppercase font-medium">All Systems Nominal</span>
                 </div>
               </div>
             </motion.div>
@@ -482,21 +482,21 @@ export const Contact = () => {
       </section>
 
       {/* ===== FINAL CTA ===== */}
-      <section className="py-24 bg-brand-surface border-t border-black/5">
+      <section className="py-24 border-t border-gray-200 bg-[#000000]">
         <div className="container-custom text-center space-y-8">
-          <p className="text-[10px] font-black uppercase tracking-[0.6em] text-brand-charcoal/20 font-mono">EMERGENCY_RELAY</p>
-          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tightest leading-[0.85]">
+          <p className="text-sm font-bold uppercase tracking-wider text-white/20 font-medium">EMERGENCY_RELAY</p>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">
             Need Immediate <span className="text-brand-blue italic">Sync?</span>
           </h2>
-          <p className="text-xl text-brand-charcoal/40 font-bold">Call our voice relay directly or send a priority encrypted message.</p>
+          <p className="text-xl text-white/40 font-bold">Call our voice relay directly or send a priority encrypted message.</p>
           <div className="flex flex-wrap justify-center gap-6">
             <a href="tel:+251911123456">
-              <Button size="xl" className="h-16 px-12 bg-brand-charcoal text-white rounded-[2rem] font-black uppercase tracking-widest hover:bg-brand-blue transition-all flex items-center gap-4">
+              <Button size="xl" className="h-16 px-12 bg-white/5 text-white rounded-2xl font-bold uppercase tracking-widest hover:bg-brand-blue transition-all flex items-center gap-4">
                 <Phone size={20} /> +251 911 123 456
               </Button>
             </a>
             <a href="mailto:sync@nexyovi.tech">
-              <Button size="xl" className="h-16 px-12 bg-brand-yellow text-brand-charcoal rounded-[2rem] font-black uppercase tracking-widest hover:bg-brand-charcoal hover:text-white transition-all flex items-center gap-4">
+              <Button size="xl" className="h-16 px-12 bg-brand-yellow text-white rounded-2xl font-bold uppercase tracking-widest hover:bg-white/5 hover:text-white transition-all flex items-center gap-4">
                 <Mail size={20} /> sync@nexyovi.tech
               </Button>
             </a>

@@ -13,6 +13,7 @@ import { Careers } from './pages/Careers';
 import { Contact } from './pages/Contact';
 import { Portal } from './pages/Portal';
 import { AdminDashboard } from './pages/AdminDashboard';
+import { ClientDashboard } from './pages/ClientDashboard';
 import logo from './assets/logo 1.png';
 
 // --- Loading Component ---
@@ -21,7 +22,7 @@ const Preloader = () => {
     <motion.div 
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] } }}
-      className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center space-y-16 overflow-hidden"
+      className="fixed inset-0 z-[9999] bg-brand-primary flex flex-col items-center justify-center space-y-16 overflow-hidden"
     >
       {/* 3D Background Pulse */}
       <div className="absolute inset-0 z-0 opacity-20">
@@ -46,7 +47,7 @@ const Preloader = () => {
               initial={{ left: "-100%" }}
               animate={{ left: "100%" }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-brand-blue to-transparent"
+              className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-brand-purple to-transparent shadow-[0_0_15px_rgba(139,92,246,0.6)]"
             />
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -130,7 +131,7 @@ export default function App() {
       </AnimatePresence>
       
       {!loading && (
-        <div className="relative bg-white">
+        <div className="relative bg-[#F3EFE6]">
           <CustomCursor />
           <ScrollToTop />
           <Layout>
@@ -147,6 +148,7 @@ export default function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/portal" element={<Portal />} />
                 <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/client-dashboard" element={<ClientDashboard />} />
               </Routes>
             </PageTransition>
           </Layout>

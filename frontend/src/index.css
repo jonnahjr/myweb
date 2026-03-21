@@ -1,28 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: #1A1B1F;
-  --color-brand-charcoal: #1A1B1F;
-  --color-brand-blue: #c2dde6;
-  --color-brand-blue-dark: #a9c6d1;
-  --color-brand-blue-light: #d8edf5;
-  --color-brand-gray-light: #F9FAFA;
-  --color-brand-gray-bold: #ECEEEF;
+  --color-brand-primary: #0B0F19;
+  --color-brand-charcoal: #0B0F19;
+  --color-brand-secondary: #111827;
+  --color-brand-surface: #1F2937;
+  --color-brand-blue: #3B82F6;
+  --color-brand-purple: #8B5CF6;
+  --color-brand-blue-dark: #2563EB;
+  --color-brand-gray-light: #F9FAFB;
+  --color-brand-gray-text: #9CA3AF;
+  --color-brand-muted: #6B7280;
   --color-brand-white: #FFFFFF;
-  --color-brand-surface: #D4D4D8;
-  --color-brand-yellow: #cdd422;
-  --color-brand-yellow-dark: #b1b81e;
-  --color-brand-yellow-light: #e0e56e;
-  
+  --color-brand-yellow: #06B6D4;
+  /* Using Teal for extra pop */
+
   --font-inter: "Inter", sans-serif;
   --font-outfit: "Outfit", sans-serif;
+  --font-jakarta: "Plus Jakarta Sans", "Outfit", sans-serif;
 
-  /* Shadows (Minimal for clean UX) */
-  --shadow-premium: 0 4px 20px rgba(0, 0, 0, 0.03);
-  --shadow-floating: 0 20px 50px rgba(0, 0, 0, 0.05);
-  --shadow-glass: 0 4px 20px rgba(0, 0, 0, 0.02);
-  --shadow-glow: 0 0 40px rgba(15, 98, 254, 0.1);
-  --shadow-glow-mint: 0 0 40px rgba(0, 255, 170, 0.1);
+  /* Letter Spacing */
+  --tracking-tightest: -0.05em;
+
+  /* Shadows & Glows (Synchronized with AMSH DNA) */
+  --shadow-premium: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --shadow-glow: 0 0 60px rgba(59, 130, 246, 0.25);
+  --shadow-glow-purple: 0 0 60px rgba(139, 92, 246, 0.25);
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  --shadow-floating: 0 35px 70px -15px rgba(0, 0, 0, 0.4);
 }
 
 @layer base {
@@ -41,18 +46,23 @@
     color: #000000;
     text-shadow: none;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-brand-surface text-brand-charcoal antialiased font-inter;
+    @apply bg-brand-primary text-white antialiased font-inter;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-outfit tracking-tighter font-bold text-brand-charcoal;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-jakarta tracking-tightest font-black text-white leading-tight;
   }
 }
 
@@ -97,8 +107,13 @@
 
   /* Marquee Animation */
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
   }
 
   .animate-marquee {
@@ -109,32 +124,64 @@
 
   /* Slow Spin */
   @keyframes spin-slow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .animate-spin-slow {
     animation: spin-slow 20s linear infinite;
   }
 
-  /* 3D Perspective Architecture */
+  /* Glassmorphism Logic (AMSH Legacy) */
+  .glass {
+    @apply bg-white/5 backdrop-blur-2xl border border-white/10;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .glass-card {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/5 rounded-[3rem] shadow-premium transition-all duration-700 hover:shadow-floating hover:bg-white/[0.05];
+  }
+
+  /* Animations Logic */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes meshGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-mesh {
+    background-size: 200% 200%;
+    animation: meshGradient 15s ease infinite;
+  }
+
   .perspective-3d {
     perspective: 2000px;
     transform-style: preserve-3d;
   }
 
-  .tilt-node {
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .tilt-node:hover {
-    transform: perspective(2000px) rotateX(5deg) rotateY(-5deg) translateZ(30px);
-  }
-
   /* Automated Progress Layers */
   @keyframes progress-auto {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% {
+      transform: translateX(-100%);
+    }
+
+    100% {
+      transform: translateX(100%);
+    }
   }
 
   .progress-layer {
@@ -151,26 +198,36 @@
     box-shadow: 0 0 30px rgba(15, 98, 254, 0.2);
   }
 
-  .badge-blue { @apply bg-brand-blue/10 text-brand-blue border-brand-blue/20; }
-  .badge-mint { @apply bg-emerald-500/10 text-emerald-500 border-emerald-500/20; }
-  .badge-purple { @apply bg-purple-500/10 text-purple-500 border-purple-500/20; }
+  .badge-blue {
+    @apply bg-brand-blue/10 text-brand-blue border-brand-blue/20;
+  }
 
-  .text-glow-blue { text-shadow: 0 0 20px rgba(15, 98, 254, 0.3); }
-  .text-glow-yellow { text-shadow: 0 0 25px rgba(205, 212, 34, 0.5); }
+  .badge-mint {
+    @apply bg-emerald-500/10 text-emerald-500 border-emerald-500/20;
+  }
+
+  .badge-purple {
+    @apply bg-purple-500/10 text-purple-500 border-purple-500/20;
+  }
+
+  .text-glow-blue {
+    text-shadow: 0 0 20px rgba(15, 98, 254, 0.3);
+  }
+
+  .text-glow-yellow {
+    text-shadow: 0 0 25px rgba(205, 212, 34, 0.5);
+  }
 }
 
 /* Utilities for Layout */
 @layer utilities {
-  .tracking-tightest {
-    letter-spacing: -0.05em;
-  }
-  
+
   .backdrop-blur-ultra {
     backdrop-filter: blur(100px);
   }
 
   .mesh-gradient {
-    background-image: 
+    background-image:
       radial-gradient(at 0% 0%, rgba(15, 98, 254, 0.05) 0px, transparent 50%),
       radial-gradient(at 100% 0%, rgba(15, 98, 254, 0.02) 0px, transparent 50%),
       radial-gradient(at 100% 100%, rgba(15, 98, 254, 0.05) 0px, transparent 50%),
@@ -179,21 +236,26 @@
 
   .tech-grid {
     background-size: 40px 40px;
-    background-image: 
+    background-image:
       linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
   }
 
   .tech-grid-blue {
     background-size: 60px 60px;
-    background-image: 
+    background-image:
       linear-gradient(to right, rgba(15, 98, 254, 0.03) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(15, 98, 254, 0.03) 1px, transparent 1px);
   }
 
   @keyframes scanline {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
+    0% {
+      transform: translateY(-100%);
+    }
+
+    100% {
+      transform: translateY(100%);
+    }
   }
 
   .scanline {

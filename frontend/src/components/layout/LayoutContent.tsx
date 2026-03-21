@@ -1,14 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Github, 
-  Linkedin, 
-  Twitter, 
   Menu, 
   X,
-  ShieldCheck,
-  Lock,
-  Globe
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo 1.png';
@@ -27,6 +21,7 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,8 +38,8 @@ export const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
       scrolled 
-        ? 'py-3 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-premium' 
-        : 'py-6 bg-transparent'
+        ? 'py-3 bg-brand-primary/95 backdrop-blur-xl border-b border-white/5 shadow-premium' 
+        : isHomePage ? 'py-6 bg-transparent' : 'py-3 bg-brand-secondary/80 backdrop-blur-lg border-b border-white/5 shadow-glass'
     }`}>
       <div className="container-custom">
         <div className="flex justify-between items-center">
@@ -56,9 +51,7 @@ export const Navbar = () => {
             <img 
               src={logo} 
               alt="NEXYOVI" 
-              className={`h-16 md:h-24 w-auto p-1 transition-all duration-500 ${
-                scrolled ? 'brightness-0 opacity-100' : 'brightness-0 invert opacity-100'
-              } drop-shadow-md contrast-150`}
+              className={`h-16 md:h-24 w-auto p-1 transition-all duration-500 brightness-0 invert opacity-100 drop-shadow-md contrast-200`}
             />
           </Link>
 
@@ -69,8 +62,8 @@ export const Navbar = () => {
                 to={link.path}
                 className={`text-xs font-black uppercase tracking-widest transition-all duration-300 relative group ${
                   location.pathname === link.path 
-                    ? scrolled ? 'text-brand-blue' : 'text-brand-yellow'
-                    : scrolled ? 'text-brand-charcoal/60 hover:text-brand-charcoal' : 'text-white/60 hover:text-white'
+                    ? 'text-brand-blue' 
+                    : 'text-brand-gray-light/60 hover:text-brand-gray-light'
                 }`}
               >
                 {link.name}
@@ -80,11 +73,7 @@ export const Navbar = () => {
 
           <div className="hidden lg:flex items-center gap-6">
             <Link to="/contact">
-              <Button size="sm" className={`h-11 px-8 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
-                scrolled 
-                  ? 'bg-brand-charcoal text-white hover:bg-brand-blue' 
-                  : 'bg-white text-brand-charcoal hover:bg-brand-yellow'
-              }`}>
+              <Button size="sm" className="h-11 px-8 rounded-full text-[10px] font-black uppercase tracking-widest transition-all bg-gradient-to-r from-brand-blue to-brand-purple text-white hover:shadow-glow border-0">
                 Contact Us
               </Button>
             </Link>
@@ -92,7 +81,7 @@ export const Navbar = () => {
 
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="lg:hidden w-10 h-10 flex items-center justify-center text-brand-charcoal"
+            className="lg:hidden w-10 h-10 flex items-center justify-center text-white"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -105,21 +94,21 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-black/5 shadow-xl"
+            className="lg:hidden absolute top-full left-0 w-full bg-brand-primary border-b border-white/10 shadow-xl"
           >
             <div className="container-custom py-8 flex flex-col gap-6">
               {navLinks.map((link) => (
                 <Link 
                   key={link.name} 
                   to={link.path}
-                  className="text-base font-bold uppercase tracking-wider text-brand-charcoal"
+                  className="text-base font-bold uppercase tracking-wider text-white hover:text-brand-blue"
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="pt-6 border-t border-black/5">
+              <div className="pt-6 border-t border-white/10">
                  <Link to="/contact">
-                   <Button className="w-full h-12 bg-brand-blue text-white rounded-xl font-bold">Get Started</Button>
+                    <Button className="w-full h-12 bg-brand-blue text-white rounded-xl font-bold">Get Started</Button>
                  </Link>
               </div>
             </div>
@@ -134,141 +123,135 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#050505] text-white pt-24 pb-12 relative overflow-hidden font-outfit">
-      
-      {/* Hyper-Modern Glow Architecture */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-brand-blue/[0.08] blur-[160px] rounded-full" />
-      </div>
+    <footer className="bg-brand-primary text-white relative overflow-hidden border-t border-white/5 pt-24 font-jakarta">
+      {/* Background AMSH DNA */}
+      <div className="absolute inset-0 bg-brand-primary animate-mesh mesh-gradient opacity-40 pointer-events-none" />
+      <div className="absolute inset-0 tech-grid-blue opacity-10 pointer-events-none" />
+      <div className="scanline" />
 
-      <div className="container-custom relative z-10">
-        
-        {/* Step 1: Horizontal Mega Navigation */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-24 mb-20">
-           
-           <div className="max-w-md space-y-8">
-              <img src={logo} alt="NEXYOVI" className="h-40 w-auto brightness-0 invert opacity-100 transition-all drop-shadow-lg -translate-x-16 hover:drop-shadow-glow" />
-              <div className="space-y-6 -mt-4">
-                 <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20">Coordination Hub</h3>
-                 <p className="text-2xl font-black tracking-tight leading-tight">
-                    Addis Ababa, <br /> Ethiopia
-                 </p>
-                 <p className="text-sm font-bold text-white/30 truncate uppercase tracking-widest leading-relaxed">
-                   Innovation Tower // Floor 16
-                 </p>
-              </div>
-           </div>
+      {/* Main Command Registry */}
+      <div className="container-custom relative z-10 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-24">
+          
+          {/* Brand & Mission Statement (3/12) */}
+          <div className="lg:col-span-3 space-y-8">
+            <Link to="/" className="group flex flex-col gap-8 -mt-12">
+               <div className="w-32 h-32 flex items-center justify-start transition-all duration-700">
+                  <img src={logo} alt="NEXYOV" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 brightness-0 invert" />
+               </div>
+            </Link>
 
-           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 flex-1">
-              
-              <div className="space-y-8">
-                 <h4 className="text-[10px] font-black uppercase tracking-[0.6em] text-brand-blue">Protocols</h4>
-                 <ul className="space-y-4">
-                    {['AI Logic & LLMs', 'Security Audit', 'Infrastructure', 'Software Dev', 'Data Insights'].map(item => (
-                       <li key={item}>
-                          <Link to="/services" className="text-sm font-bold text-white/40 hover:text-white transition-all underline decoration-brand-blue/0 hover:underline hover:decoration-brand-blue decoration-2 underline-offset-8">
-                             {item}
-                          </Link>
-                       </li>
-                    ))}
-                 </ul>
-              </div>
+            <p className="text-lg text-white/50 font-bold leading-tight italic opacity-80">
+              Specialized technology unit established for global AI logic and secure data sovereignty.
+            </p>
+          </div>
 
-              <div className="space-y-8">
-                 <h4 className="text-[10px] font-black uppercase tracking-[0.6em] text-brand-blue">Inventory</h4>
-                 <ul className="space-y-4">
-                    {['Core Registry', 'Mission Log', 'Unit Profile', 'Human Capital', 'Handshake'].map(item => (
-                       <li key={item}>
-                          <Link to="/portfolio" className="text-sm font-bold text-white/40 hover:text-white transition-all underline decoration-white/0 hover:underline hover:decoration-white decoration-2 underline-offset-8">
-                             {item}
-                          </Link>
-                       </li>
-                    ))}
-                 </ul>
-              </div>
-
-              <div className="space-y-12">
-                 <h4 className="text-[10px] font-black uppercase tracking-[0.6em] text-brand-blue">Tech_Nodes</h4>
-                 <div className="space-y-10">
-                    {[
-                      { label: 'SOVEREIGN_AI', val: 'V4_LOGIC' },
-                      { label: 'SHIELD_LAYER', val: 'ACTIVE' },
-                      { label: 'NODE_LATENCY', val: '0.4 MS' }
-                    ].map(n => (
-                       <div key={n.label} className="group relative">
-                          <div className="absolute -inset-x-8 -inset-y-4 bg-brand-blue/0 group-hover:bg-brand-blue/[0.03] rounded-3xl transition-all" />
-                          <div className="relative space-y-2">
-                             <div className="flex items-center gap-3">
-                                <div className="w-1 h-1 rounded-full bg-brand-blue animate-pulse" />
-                                <span className="text-[10px] font-black tracking-[0.2em] text-white/20 uppercase">{n.label}</span>
-                             </div>
-                             <span className="text-4xl font-black font-outfit text-white tracking-tighter leading-none group-hover:text-brand-blue transition-colors">{n.val}</span>
-                          </div>
-                       </div>
-                    ))}
-                 </div>
-              </div>
-
-              <div className="space-y-10">
-                 <h4 className="text-[10px] font-black uppercase tracking-[0.6em] text-brand-blue">Contact</h4>
-                 <div className="space-y-12">
-                    <div className="space-y-4 font-bold">
-                       <div className="flex flex-col">
-                          <span className="text-[9px] font-black uppercase tracking-widest text-brand-blue/50">Mission_Core</span>
-                          <p className="text-sm text-brand-blue tracking-tighter">sync@nexyovi.tech</p>
-                       </div>
-                       <div className="flex flex-col">
-                          <span className="text-[9px] font-black uppercase tracking-widest text-white/10">Support_Node</span>
-                          <p className="text-sm text-white/60 tracking-tighter">support@nexyovi.tech</p>
-                       </div>
-                       <div className="flex flex-col">
-                          <span className="text-[9px] font-black uppercase tracking-widest text-white/10">Media_Sync</span>
-                          <p className="text-sm text-white/60 tracking-tighter">press@nexyovi.tech</p>
-                       </div>
-                    </div>
-                    
-                    <div className="space-y-2">
-                       <p className="text-xl font-black text-white">+251 911 123 456</p>
-                       <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/20">Operational_Line // 24/7</p>
-                    </div>
-                    <div className="flex gap-4">
-                       {[Twitter, Linkedin, Github].map((Icon, i) => (
-                          <a key={i} href="#" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/30 hover:text-white hover:bg-brand-blue transition-all">
-                             <Icon size={18} />
-                          </a>
-                       ))}
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-
-        {/* Step 2: Full-Width Registry Border */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-           <div className="flex gap-12">
-              <div className="flex gap-4">
-                 <ShieldCheck size={20} className="text-white/10" />
-                 <Lock size={20} className="text-white/10" />
-                 <Globe size={20} className="text-white/10" />
-              </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/10">
-                 © {currentYear} NEXYOVI TECHNOLOGY GROUP // ENGINEERING_DRIVEN
-              </p>
-           </div>
-           
-           <div className="flex gap-8">
-              {['Security', 'Privacy Registry', 'Mission Terms'].map(l => (
-                 <a key={l} href="#" className="text-[9px] font-black uppercase tracking-widest text-white/20 hover:text-brand-blue transition-colors">{l}</a>
+          {/* Protocols Registry (2/12) */}
+          <div className="lg:col-span-2 space-y-10">
+            <h3 className="text-[11px] font-black uppercase tracking-[0.6em] font-mono text-brand-blue pb-4 border-b border-white/5">Protocols</h3>
+            <ul className="space-y-4">
+              {['About Unit', 'Service Matrix', 'Mission Logs', 'Career Sync', 'Support Hub'].map((link) => (
+                <li key={link}>
+                  <Link to={`/${link.toLowerCase().replace(' ', '-')}`} className="text-white/40 hover:text-brand-blue transition-all flex items-center gap-3 group text-[11px] font-black uppercase tracking-widest">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-brand-blue transition-all" />
+                    {link}
+                  </Link>
+                </li>
               ))}
-           </div>
+            </ul>
+          </div>
+
+          {/* Resources Registry (2/12) */}
+          <div className="lg:col-span-2 space-y-10">
+            <h3 className="text-[11px] font-black uppercase tracking-[0.6em] font-mono text-brand-blue pb-4 border-b border-white/5">Resources</h3>
+            <ul className="space-y-4">
+              {['Logic Manuals', 'Whitepapers', 'API Registry', 'Tech_Nodes', 'Network Status'].map((link) => (
+                <li key={link}>
+                  <Link to="#" className="text-white/40 hover:text-brand-blue transition-all flex items-center gap-3 group text-[11px] font-black uppercase tracking-widest">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-brand-blue transition-all" />
+                    {link}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Institutional Contact Nodes (3/12) */}
+          <div className="lg:col-span-3 space-y-8">
+             <h3 className="text-[11px] font-black uppercase tracking-[0.6em] font-mono text-white pb-4 border-b border-white/10">Registry_Points</h3>
+             <div className="space-y-6">
+               {[
+                 { icon: "📍", label: "HQ_NODE", val: "Innovation Tower, Floor 16, Addis Ababa" },
+                 { icon: "📞", label: "MISSION_LINE", val: "+251 911 123 456" },
+                 { icon: "✉️", label: "SYNC_REGISTRY", val: "sync@nexyovi.tech" },
+                 { icon: "🕐", label: "OPS_WINDOW", val: "24/7 Digital Operations" }
+               ].map((c, i) => (
+                  <div key={i} className="flex items-start gap-4 group transition-all hover:translate-x-1 cursor-default">
+                     <span className="text-xl grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100">{c.icon}</span>
+                     <div>
+                        <p className="text-[9px] font-black text-brand-blue uppercase tracking-widest font-mono leading-none pb-1">{c.label}</p>
+                        <p className="text-[11px] font-black text-white/80 group-hover:text-white uppercase tracking-tight leading-tight transition-colors">{c.val}</p>
+                     </div>
+                  </div>
+               ))}
+             </div>
+          </div>
+
+          {/* External Institutional Nodes (2/12) */}
+          <div className="lg:col-span-2 space-y-10">
+            <h3 className="text-[11px] font-black uppercase tracking-[0.6em] font-mono text-white pb-4 border-b border-white/10">External</h3>
+            <ul className="space-y-6">
+              {[
+                { label: 'Min. of Tech', href: 'https://www.mint.gov.et' },
+                { label: 'AI Institute', href: 'https://www.eaid.gov.et' },
+                { label: 'Security Auth', href: 'https://www.insa.gov.et' },
+                { label: 'Cloud Consor', href: '#' }
+              ].map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-brand-blue transition-all flex items-center gap-3 group text-[10px] font-black uppercase tracking-[0.2em]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-brand-blue transition-all" />
+                    {link.label} <span className="opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
         </div>
       </div>
 
-      {/* Subtle Branding Backdrop */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] select-none pointer-events-none">
-         <h1 className="text-[12vw] font-black font-outfit uppercase tracking-wider leading-none text-white whitespace-nowrap">
-            NEXYOVI
-         </h1>
+      {/* Institutional Legal Bar */}
+      <div className="border-t border-white/5 py-4 bg-black/40 relative z-10 transition-all">
+        <div className="container-custom flex flex-col md:flex-row items-center justify-between gap-6">
+          
+          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+             <p className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/30 font-mono">
+                © {currentYear} NEXYOV TECHNOLOGY GROUP // ENGINEERING_DRIVEN
+             </p>
+             <div className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-none bg-emerald-500 animate-pulse" />
+                <span className="text-[8px] font-bold text-white/40 uppercase tracking-[0.2em] font-mono">Operations_Online</span>
+             </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+             <div className="flex flex-wrap justify-center gap-4">
+                <Link to="/privacy" className="text-[8px] font-bold text-white/30 hover:text-white transition-colors uppercase tracking-[0.2em] font-mono">Privacy_Registry</Link>
+                <Link to="/terms" className="text-[8px] font-bold text-white/30 hover:text-white transition-colors uppercase tracking-[0.2em] font-mono">Mission_Terms</Link>
+                <Link to="/admin" className="text-[8px] font-bold text-white/30 hover:text-white transition-colors uppercase tracking-[0.2em] font-mono">Admin_Node</Link>
+             </div>
+             <div className="flex items-center gap-3 sm:border-l border-white/10 sm:pl-6">
+                <div className="text-[8px] font-bold text-brand-blue uppercase tracking-[0.2em] font-mono">Built_By</div>
+                <div className="px-2 py-1 glass border-white/5 text-[8px] font-bold text-white uppercase tracking-[0.2em] font-mono">JB_CORE_ENG</div>
+             </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Massive Backdrop Watermark */}
+      <div className="absolute bottom-0 left-0 right-0 flex justify-center translate-y-1/2 opacity-[0.02] pointer-events-none select-none">
+         <h2 className="text-[25vw] font-black font-jakarta uppercase tracking-tightest leading-none text-white">NEXYOV</h2>
       </div>
     </footer>
   );
