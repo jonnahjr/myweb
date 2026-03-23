@@ -65,44 +65,77 @@ export const Services = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F3EFE6] text-[#1A2332] font-jakarta pt-24">
+    <div className="min-h-screen bg-white text-[#1A2332] font-jakarta">
       
-      {/* ============= HERO ============= */}
-      <section className="relative min-h-[50vh] flex items-center px-6 overflow-hidden bg-[#F3EFE6] border-b border-gray-100">
-        <div className="container-custom relative z-10 w-full py-12">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
-                 <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }}>
-                   <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-0 tracking-[0.3em] font-bold uppercase text-[9px] font-medium px-4 py-1.5 rounded-full">
-                      <Globe2 size={12} className="mr-2 animate-pulse" /> SERVICE_REGISTRY_HQ
-                   </Badge>
-                 </motion.div>
-                 <motion.h1 
-                   initial={{ opacity: 0, y: 40 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                   className="text-4xl md:text-6xl lg:text-7xl font-bold font-jakarta leading-none tracking-tightest uppercase text-[#1A2332]"
+      {/* ============= INSTITUTIONAL HERO ============= */}
+      <section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden px-6 bg-white">
+        {/* Background Elements (AMSH Mesh Infusion) */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+           <div className="absolute inset-0 bg-white" />
+           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-blue/5 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2" />
+           <div className="tech-grid absolute inset-0 opacity-10" />
+        </div>
+
+        <div className="container-custom relative z-10 w-full py-20 pb-40">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+              <div className="space-y-12">
+                 <motion.div 
+                    initial={{ opacity: 0, x: -20 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ duration: 0.8 }}
+                    className="flex items-center gap-6"
                  >
-                   Engineering<br />The <span className="italic text-brand-blue">Logic.</span>
-                 </motion.h1>
-                 <motion.p
+                    <Badge variant="blue" className="bg-blue-50 text-[#1B4F8A] border-transparent tracking-[0.3em] font-bold uppercase text-[10px] px-5 py-2 rounded-full">
+                       SERVICE_REGISTRY_HQ
+                    </Badge>
+                 </motion.div>
+
+                 <div className="space-y-8">
+                    <motion.h1 
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                      className="text-6xl md:text-8xl lg:text-9xl font-bold font-jakarta tracking-tightest leading-[0.85] text-[#1A2332] uppercase"
+                    >
+                      Engineering<br />The <span className="italic text-brand-blue">Logic.</span>
+                    </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 1 }}
+                        className="text-2xl text-gray-500 font-bold max-w-xl leading-snug tracking-tight"
+                    >
+                        We provide expert services across AI, cybersecurity, software, and digital infrastructure — built to global standards.
+                    </motion.p>
+                 </div>
+
+                 <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 1 }}
-                    className="text-lg text-gray-500 font-bold max-w-md leading-snug"
+                    transition={{ delay: 0.5, duration: 1 }}
+                    className="flex flex-col sm:flex-row gap-4 pt-4"
                  >
-                    We provide expert services across AI, cybersecurity, software, and digital infrastructure — built to global standards.
-                 </motion.p>
+                    <Link to="/contact">
+                       <motion.button
+                         whileHover={{ scale: 1.05, boxShadow: "0 0 32px rgba(27,79,138,0.3)" }}
+                         whileTap={{ scale: 0.98 }}
+                         className="h-16 px-12 bg-[#1B4F8A] text-white rounded-2xl text-sm font-bold uppercase tracking-widest shadow-lg shadow-blue-500/10"
+                       >
+                         View Services Inventory
+                       </motion.button>
+                    </Link>
+                 </motion.div>
               </div>
               
               <motion.div 
-                 initial={{ opacity: 0, scale: 0.8 }} 
-                 animate={{ opacity: 1, scale: 1 }} 
-                 transition={{ duration: 1, delay: 0.4 }} 
-                 className="hidden lg:flex items-center justify-center"
+                 initial={{ opacity: 0, scale: 0.9, rotateY: 10 }} 
+                 animate={{ opacity: 1, scale: 1, rotateY: 0 }} 
+                 transition={{ duration: 1.2, delay: 0.2 }} 
+                 className="hidden lg:flex items-center justify-center perspective-3d"
               >
-                 <div className="relative z-10 w-full max-w-[460px] aspect-square rounded-[3rem] overflow-hidden shadow-2xl border border-gray-200">
-                    <img src={heroImg} alt="Services" className="w-full h-full object-cover object-center" />
+                 <div className="relative z-10 w-full max-w-[550px] aspect-[4/5] rounded-[3.5rem] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] border border-white/5 transition-all duration-700 hover:shadow-[0_60px_100px_-20px_rgba(27,79,138,0.25)]">
+                    <img src={heroImg} alt="Services" className="w-full h-full object-cover grayscale-0 group-hover:grayscale-0 transition-all duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1B4F8A]/20 to-transparent pointer-events-none" />
                  </div>
               </motion.div>
            </div>

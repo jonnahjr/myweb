@@ -2,185 +2,182 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowRight, 
-  Globe2,
-  Zap,
   Shield,
-  CheckCircle2
+  Cpu,
+  Unplug
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Button, Badge } from '../components/ui/Core';
-import heroImg from '../assets/c3.jpg';
-
-const CareerRoleNode = ({ title, category, location, id }: { title: string, category: string, location: string, id: string }) => (
-  <motion.div 
-    whileHover={{ y: -10 }}
-    className="group p-8 bg-[#F3EFE6] border border-gray-100 rounded-[3.5rem] hover:shadow-floating transition-all duration-700 space-y-10 relative overflow-hidden"
-  >
-    <div className="absolute top-6 right-10 flex items-center gap-2">
-       <div className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse" />
-       <span className="text-xs font-bold text-brand-blue font-medium uppercase">OPEN_MISSION</span>
-    </div>
-
-    <div className="space-y-6">
-       <div className="space-y-2">
-          <Badge variant="blue" className="bg-blue-50 text-[#1B4F8A] border-transparent uppercase font-medium text-xs font-bold tracking-wider">{id}</Badge>
-          <h3 className="text-3xl font-bold font-outfit text-[#1A2332] uppercase leading-tight tracking-tighter">{title}</h3>
-       </div>
-       <div className="flex flex-wrap gap-4 pt-2">
-          <div className="px-4 py-2 bg-[#F3EFE6] rounded-xl border border-gray-200 text-xs font-bold text-gray-400 uppercase font-medium">{category}</div>
-          <div className="px-4 py-2 bg-brand-blue/5 rounded-xl border border-brand-blue/10 text-xs font-bold text-brand-blue uppercase font-medium">{location}</div>
-       </div>
-    </div>
-
-    <div className="pt-8 border-t border-gray-200">
-       <p className="text-base font-bold text-gray-400 leading-relaxed mb-8">Join the elite engineering unit responsible for this logical build.</p>
-       <Link to="/contact">
-         <Button size="xl" className="h-16 w-full rounded-xl bg-[#F3EFE6] text-[#1A2332] hover:bg-brand-blue transition-all border-gray-200 shadow-md hover:shadow-xl transition-all text-sm font-bold uppercase tracking-[0.2em] group">
-            Apply to Unit <ArrowRight size={18} className="ml-3 group-hover:translate-x-2 transition-transform" />
-         </Button>
-       </Link>
-    </div>
-  </motion.div>
-);
+import { Badge } from '../components/ui/Core';
 
 export const Careers = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  return (
-    <div className="min-h-screen bg-[#F3EFE6] text-[#1A2332] font-outfit pt-24">
-      
-      {/* ============= INSTITUTIONAL HERO ============= */}
-      <section className="relative min-h-[60vh] flex items-center px-6 overflow-hidden bg-[#F3EFE6]">
-        <div className="container-custom relative z-10 w-full">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-12">
-                 <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6 }}
-              >
-                <Badge variant="blue" className="bg-blue-50 text-[#1B4F8A] border-transparent tracking-wider uppercase text-sm font-bold font-medium px-6 py-2">
-                   <Globe2 size={14} className="mr-3 animate-pulse" /> TALENT_ASSEMBLY_HQ
-                </Badge>
-              </motion.div>
+  const roles = [
+    { 
+      id: "AI_01", 
+      title: "AI Systems Engineer", 
+      category: "Logic Nodes", 
+      location: "Global / Remote", 
+      sync: "100%",
+      desc: "Architecting elite AI logic cores for national data synchronization and sovereign registry nodes. Requires deep expertise in LLM orchestration and neural mesh grid logic."
+    },
+    { 
+      id: "BE_04", 
+      title: "Senior Backend Architect", 
+      category: "Mesh Core", 
+      location: "Hybrid / HQ", 
+      sync: "99.8%",
+      desc: "Designing high-scale distributed systems for intercontinental mesh networks. Focused on zero-latency replication protocols and absolute transaction reliability."
+    },
+    { 
+      id: "SEC_09", 
+      title: "Security Protocols Lead", 
+      category: "Sovereign Shield", 
+      location: "Hybrid / Cluster", 
+      sync: "100%",
+      desc: "Executing offensive and defensive security operations for critical digital infrastructure. Implementing zero-trust frameworks across sovereign national clusters."
+    },
+    { 
+      id: "UI_12", 
+      title: "Interface Logic Designer", 
+      category: "Creative Hub", 
+      location: "Remote / Sync", 
+      sync: "99.5%",
+      desc: "Defining the visual language of high-tech command centers and digital twins. Bridging the gap between complex system data and premium, intuitive user interaction."
+    },
+    { 
+      id: "DS_15", 
+      title: "Data Neural Scientist", 
+      category: "Analytic Nodes", 
+      location: "Global / Remote", 
+      sync: "100%",
+      desc: "Analyzing massive-scale datasets to extract strategic insights for institutional decision logic. Building predictive models for global market synchrony."
+    },
+    { 
+      id: "OPS_18", 
+      title: "Cloud Deployment Admin", 
+      category: "Sync Grid", 
+      location: "HQ / Node", 
+      sync: "99.9%",
+      desc: "Managing the elastic deployment grid for global organizational nodes. Ensuring absolute uptime through automated scaling and live sync-stabilization protocols."
+    }
+  ];
 
-              <div className="space-y-8">
+  return (
+    <div className="min-h-screen bg-white text-[#1A2332] font-jakarta pt-40 pb-32">
+       {/* Subtle Tech Mesh Overlay */}
+       <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+          <div className="tech-grid absolute inset-0" />
+          <div className="scanline" />
+       </div>
+
+       <div className="container-custom relative z-10">
+          <div className="max-w-4xl space-y-12 mb-32">
+             <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+             >
+                <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-brand-blue/20 tracking-[0.5em] font-bold uppercase text-[10px] px-8 py-2.5 rounded-full">
+                   TALENT_REGISTRY_v4.0
+                </Badge>
+             </motion.div>
+
+             <div className="space-y-6">
                 <motion.h1 
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-2xl md:text-3xl lg:text-6xl lg:text-9xl font-bold leading-tight tracking-tightest uppercase"
+                   initial={{ opacity: 0, y: 40 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                   className="text-7xl md:text-8xl lg:text-9xl font-black font-jakarta text-[#1A2332] tracking-tightest leading-[0.8] uppercase"
                 >
-                  Join <br />
-                  The <span className="text-brand-blue italic">Unit.</span>
+                   Open <br />
+                   <span className="text-brand-blue italic drop-shadow-sm">Missions.</span>
                 </motion.h1>
                 <motion.p
-                   initial={{ opacity: 0, y: 20 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   transition={{ delay: 0.3, duration: 1 }}
-                   className="text-xl md:text-3xl text-gray-500 font-bold max-w-3xl leading-tight tracking-tight"
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 1 }}
+                   transition={{ delay: 0.4, duration: 1.5 }}
+                   className="text-2xl text-gray-400 font-bold leading-tight max-w-2xl italic opacity-80"
                 >
                    We are assembling a team of elite engineers building advanced AI and infrastructure systems for global businesses and national clusters.
                 </motion.p>
-              </div>
-            </div>
+             </div>
+          </div>
 
-            <motion.div 
-               initial={{ opacity: 0, scale: 0.8 }} 
-               animate={{ opacity: 1, scale: 1 }} 
-               transition={{ duration: 1, delay: 0.4 }} 
-               className="relative flex items-center justify-center pt-16 lg:pt-0"
-           >
-              <div className="relative z-10 w-full max-w-[500px] aspect-square rounded-[3rem] overflow-hidden shadow-2xl border border-gray-200">
-                 <img src={heroImg} alt="Hero" className="w-full h-full object-cover object-center animate-float" />
-              </div>
-           </motion.div>
-           
-           </div>
-        </div>
-      </section>
+          <div className="space-y-8">
+             {roles.map((role, i) => (
+                <motion.div 
+                   key={i}
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: i * 0.1, duration: 0.8 }}
+                   whileHover={{ x: 10 }}
+                   className="group relative flex flex-col lg:flex-row lg:items-center justify-between p-12 bg-gray-50/50 border border-gray-100 hover:border-brand-blue/30 rounded-[3rem] transition-all duration-700 gap-12"
+                >
+                   <div className="flex flex-col lg:flex-row lg:items-center gap-12 flex-1">
+                      <div className="w-20 h-20 rounded-3xl bg-white border border-gray-100 flex items-center justify-center text-brand-blue font-black font-jakarta text-xl shadow-sm group-hover:scale-110 transition-transform flex-shrink-0">
+                         {role.id.split('_')[0]}
+                      </div>
+                      
+                      <div className="space-y-6 flex-1">
+                         <div className="space-y-2">
+                            <div className="flex items-center gap-3">
+                               <span className="text-[10px] font-black text-brand-blue uppercase tracking-widest">{role.id}</span>
+                               <div className="h-[1px] w-6 bg-gray-200" />
+                               <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">SYNC_{role.sync}</span>
+                            </div>
+                            <h3 className="text-4xl font-black font-jakarta text-[#1A2332] tracking-tighter uppercase">{role.title}</h3>
+                            <div className="flex gap-4">
+                               <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">{role.category}</span>
+                               <span className="text-[11px] font-bold text-brand-blue uppercase tracking-widest">/</span>
+                               <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">{role.location}</span>
+                            </div>
+                         </div>
+                         
+                         <div className="space-y-2 max-w-2xl">
+                            <div className="text-[9px] font-black text-gray-300 uppercase tracking-[0.3em]">MISSION_SCOPE</div>
+                            <p className="text-sm text-gray-500 font-bold leading-relaxed italic opacity-80">{role.desc}</p>
+                         </div>
+                      </div>
+                   </div>
 
-      {/* ============= ROLE REGISTRY MATRIX ============= */}
-      <section className="py-24 border-y border-gray-100 bg-[#000000]">
-        <div className="container-custom space-y-12">
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <CareerRoleNode id="AI_SYNC_01" title="AI Engineer" category="Logic Systems" location="Remote" />
-              <CareerRoleNode id="BE_SYNC_04" title="Backend Developer" category="Architecture" location="Hybrid" />
-              <CareerRoleNode id="SEC_SYNC_09" title="Security Analyst" category="Offensive Ops" location="Hybrid" />
-           </div>
-        </div>
-      </section>
+                   <Link to="/contact">
+                      <motion.button
+                         whileHover={{ scale: 1.05 }}
+                         whileTap={{ scale: 0.98 }}
+                         className="h-20 px-12 bg-[#1A2332] text-white rounded-full text-sm font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-4 shadow-xl hover:bg-brand-blue"
+                      >
+                         Apply Now <ArrowRight size={20} />
+                      </motion.button>
+                   </Link>
 
-      {/* ============= OPERATIONAL BENEFITS ============= */}
-      <section className="py-40 relative overflow-hidden bg-[#F3EFE6]">
-        <div className="container-custom">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-              <div className="space-y-12">
-                 <Badge variant="blue" className="bg-blue-50 text-[#1B4F8A] border-transparent tracking-wider font-bold uppercase text-sm font-medium">MISSION_BENEFITS</Badge>
-                 <h2 className="text-2xl md:text-3xl lg:text-6xl font-bold font-outfit tracking-tight leading-tight text-[#1A2332]">Elite <br /> <span className="text-brand-blue italic">DNA.</span></h2>
-                 <p className="text-2xl text-gray-500 font-bold leading-tight max-w-xl tracking-tight">
-                    Our units are engineered for high-performance and absolute synchrony across every deployment node.
-                 </p>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {[
-                      { icon: <Globe2 size={24} />, val: 'GLOBAL_MISSIONS' },
-                      { icon: <Zap size={24} />, val: 'HIGH_PERF_DNA' },
-                      { icon: <Shield size={24} />, val: 'SECURE_FUTURE' }
-                    ].map((v, i) => (
-                       <div key={i} className="flex items-center gap-4 text-brand-blue font-bold font-medium text-xs tracking-[0.2em] uppercase">
-                          {v.icon}
-                          {v.val}
-                       </div>
-                    ))}
-                 </div>
-              </div>
+                   {/* Background Tech Pulse */}
+                   <div className="absolute inset-0 bg-brand-blue/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-[3rem]" />
+                </motion.div>
+             ))}
+          </div>
 
-              <div className="grid grid-cols-1 gap-8">
-                 {[
-                   { title: "Global Projects", desc: "Work on high-stakes missions spanning national clusters and private enterprise nodes." },
-                   { title: "Remote Friendly", desc: "Our virtual synchrony protocols allow for absolute professional freedom." },
-                   { title: "High-impact", desc: "Engineer the future of the digital economy through sovereign logical builds." }
-                 ].map((benefit, i) => (
-                    <motion.div 
-                      key={i} 
-                      whileHover={{ x: 10 }}
-                      className="p-6 bg-[#F3EFE6] border border-gray-100 rounded-2xl space-y-4 group transition-all duration-700"
-                    >
-                       <div className="flex items-center gap-6">
-                          <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-brand-blue shadow-sm">
-                             <CheckCircle2 size={24} />
-                          </div>
-                          <h4 className="text-2xl font-bold font-outfit text-[#1A2332] tracking-tight">{benefit.title}</h4>
-                       </div>
-                       <p className="text-xl text-gray-500 font-bold leading-tight pl-18 max-w-sm">{benefit.desc}</p>
-                    </motion.div>
-                 ))}
-              </div>
-           </div>
-        </div>
-      </section>
-
-      {/* ============= CONTACT CALL TO ACTION ============= */}
-      <section className="py-40 relative overflow-hidden bg-[#000000]">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[600px] bg-brand-blue/20 blur-[180px] rounded-full" />
-        </div>
-        <div className="container-custom text-center relative z-10 space-y-16">
-           <Badge variant="blue" className="bg-brand-blue/20 text-brand-blue border-white/20 tracking-wider font-bold uppercase text-sm font-medium px-6 py-2">PROTOCOL_INITIALIZE</Badge>
-           <h2 className="text-6xl md:text-9xl font-bold font-outfit text-white tracking-tight leading-tight mb-12">
-             Apply <br /> <span className="text-brand-blue italic">Now.</span>
-           </h2>
-           <Link to="/contact">
-             <Button size="xl" className="h-24 px-16 bg-brand-blue hover:bg-white/5/10 text-white hover:text-white rounded-2xl border-0 transition-all shadow-lg shadow-blue-500/20 text-2xl font-bold uppercase tracking-widest group">
-                Join The Unit <ArrowRight size={28} className="ml-4 group-hover:translate-x-3 transition-transform" />
-             </Button>
-           </Link>
-        </div>
-      </section>
-
-
+          <motion.div 
+             initial={{ opacity: 0 }}
+             whileInView={{ opacity: 1 }}
+             viewport={{ once: true }}
+             transition={{ delay: 1, duration: 1.5 }}
+             className="mt-32 pt-20 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-10"
+          >
+             <div className="space-y-2 text-center md:text-left">
+                <div className="text-[10px] font-black text-gray-300 uppercase tracking-[0.4em]">SYSTEM_REGISTRY_v4.0</div>
+                <div className="text-sm font-bold text-gray-400 max-w-sm italic">All missions are globally synchronized and require absolute technical precision.</div>
+             </div>
+             <div className="flex gap-12 opacity-30 grayscale hover:grayscale-0 transition-all">
+                <Shield size={32} />
+                <Cpu size={32} />
+                <Unplug size={32} />
+             </div>
+          </motion.div>
+       </div>
     </div>
   );
 };

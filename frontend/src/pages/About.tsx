@@ -89,43 +89,82 @@ export const About = () => {
 
       
       {/* ============= INSTITUTIONAL HERO ============= */}
-      <section className="relative min-h-[50vh] flex items-center px-6 overflow-hidden bg-[#F3EFE6] border-b border-gray-100">
-        <div className="absolute inset-0 bg-[#F3EFE6]  hidden" />
+      <section className="relative min-h-[90vh] flex items-center px-6 overflow-hidden bg-[#F3EFE6] border-b border-gray-100">
+        <div className="absolute inset-0 bg-[#F3EFE6] hidden" />
         <div className="container-custom relative z-10 w-full">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8 py-12">
+              <div className="space-y-12 py-12">
                  <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }}>
-                   <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-0 tracking-[0.3em] font-bold uppercase text-[9px] font-medium px-4 py-1.5 rounded-full">
+                   <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-0 tracking-[0.3em] font-bold uppercase text-[9px] font-medium px-5 py-2 rounded-full">
                       <Globe2 size={12} className="mr-2 animate-pulse" /> WHO WE ARE
                    </Badge>
                  </motion.div>
 
-                 <motion.h1 style={{ y: yHero, opacity: opacityHero }}
-                   initial={{ opacity: 0, y: 40 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                   className="text-4xl md:text-6xl lg:text-7xl font-bold font-jakarta leading-none tracking-tightest uppercase text-[#1A2332]"
-                 >
-                   The <span className="italic text-brand-blue">Logic</span><br />Behind Success.
-                 </motion.h1>
-                 <motion.p style={{ y: yHero, opacity: opacityHero }}
+                 <div className="space-y-8">
+                    <motion.h1 style={{ y: yHero, opacity: opacityHero }}
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                      className="text-5xl md:text-7xl lg:text-8xl font-bold font-jakarta leading-[0.85] tracking-tightest uppercase text-[#1A2332]"
+                    >
+                      The <span className="italic text-brand-blue">Logic</span><br />Behind Success.
+                    </motion.h1>
+                    <motion.p style={{ y: yHero, opacity: opacityHero }}
+                       initial={{ opacity: 0, y: 20 }}
+                       animate={{ opacity: 1, y: 0 }}
+                       transition={{ delay: 0.3, duration: 1 }}
+                       className="text-xl md:text-2xl text-gray-600 font-bold max-w-2xl leading-tight tracking-tight mt-6"
+                    >
+                       NEXYOVI is a technology company delivering software development, AI systems, cybersecurity, and digital infrastructure solutions to organizations across Africa and beyond.
+                    </motion.p>
+                 </div>
+
+                 <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 1 }}
-                    className="text-lg text-gray-500 font-bold max-w-lg leading-snug"
-                 >
-                    NEXYOVI is a technology company delivering software development, AI systems, cybersecurity, and digital infrastructure solutions to organizations across Africa and beyond.
-                 </motion.p>
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                    className="flex flex-row flex-wrap gap-4 pt-4"
+                  >
+                    <Link to="/contact">
+                      <Badge variant="blue" className="bg-brand-blue hover:bg-brand-blue-dark text-white px-8 py-4 rounded-xl transition-all cursor-pointer border-0 shadow-lg shadow-blue-500/20 group">
+                        Work with us <Activity size={16} className="ml-2 group-hover:animate-pulse" />
+                      </Badge>
+                    </Link>
+                 </motion.div>
                </div>
 
                <motion.div 
                   initial={{ opacity: 0, scale: 0.8 }} 
                   animate={{ opacity: 1, scale: 1 }} 
-                  transition={{ duration: 1, delay: 0.4 }} 
-                  className="hidden lg:flex items-center justify-center"
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} 
+                  className="hidden lg:flex items-center justify-center relative"
                >
-                  <div className="relative z-10 w-full max-w-[460px] aspect-square rounded-[3rem] overflow-hidden shadow-2xl border border-gray-200">
-                     <motion.img src={heroImg} alt="Hero" className="w-full h-full object-cover object-center scale-110" style={{ y: yImage }} />
+                  <div className="absolute inset-0 bg-brand-blue/20 blur-[150px] rounded-full animate-pulse-slow" />
+                  <div className="relative z-10 w-full max-w-[550px] aspect-square rounded-[3rem] overflow-hidden shadow-3xl border border-gray-200 bg-white/50 backdrop-blur-xl">
+                     <motion.img 
+                        src={heroImg} 
+                        alt="Hero" 
+                        className="w-full h-full object-cover object-center scale-110 opacity-40 blur-2xl absolute inset-0" 
+                        style={{ y: yImage }} 
+                     />
+                     <motion.img 
+                        src={heroImg} 
+                        alt="Hero" 
+                        className="w-full h-full object-cover object-center relative z-10 drop-shadow-2xl animate-float" 
+                        style={{ y: yImage }} 
+                     />
+                     
+                     {/* Overlay Markers similar to Home */}
+                     <div className="absolute top-8 left-10 p-5 bg-white/80 backdrop-blur-md rounded-3xl border border-gray-100 shadow-xl space-y-2 z-20">
+                        <div className="text-[10px] font-bold text-brand-blue uppercase tracking-widest font-medium">SOVEREIGN_SYSTEM</div>
+                        <div className="w-20 h-1 bg-gray-100 rounded-full overflow-hidden">
+                           <motion.div 
+                              animate={{ x: ["-100%", "100%"] }} 
+                              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                              className="w-1/2 h-full bg-brand-blue" 
+                           />
+                        </div>
+                     </div>
                   </div>
                </motion.div>
             </div>
@@ -179,35 +218,43 @@ export const About = () => {
         </section>
 
             {/* ============= LEADERSHIP NODES ============= */}
-      <section className="py-20 bg-[#F3EFE6] border-y border-gray-100">
+      <section className="py-40 bg-[#F3EFE6] border-y border-gray-100">
         <div className="container-custom">
-           <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-12">
-              <div className="space-y-4">
-                 <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-0 tracking-[0.3em] font-bold uppercase text-[9px] font-medium px-5 py-1.5 rounded-full">INSTITUTIONAL_LEADERSHIP</Badge>
-                 <h2 className="text-4xl font-bold font-jakarta text-[#1A2332] tracking-tightest leading-none uppercase">Architectural <br /> <span className="text-brand-blue italic">Guardians.</span></h2>
+           <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12">
+              <div className="space-y-6">
+                 <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-0 tracking-[0.3em] font-bold uppercase text-[11px] font-medium px-6 py-2 rounded-full">INSTITUTIONAL_LEADERSHIP</Badge>
+                 <h2 className="text-5xl md:text-7xl font-bold font-jakarta text-[#1A2332] tracking-tightest leading-[0.85] uppercase">Architectural <br /> <span className="text-brand-blue italic">Guardians.</span></h2>
               </div>
            </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                { name: 'Jonas Kassahun', role: 'Chief Executive Node', detail: 'Founder & Lead Systems Architect.' },
-                { name: 'Nardos Tekle', role: 'Security Ops Director', detail: 'Global Asset Governance & Cloud Shield.' },
-                { name: 'Elias Bekele', role: 'Head of Infrastructure', detail: 'Low-Latency Network & Cluster Logistics.' },
-                { name: 'Sara Solomon', role: 'Chief of AI Research', detail: 'Neural Synchrony & Reasoning Protocols.' }
-              ].map((leader, i) => (
-                 <motion.div key={i} className="space-y-6 text-center lg:text-left">
-                    <div className="w-20 h-20 bg-white border border-gray-100 rounded-2xl flex items-center justify-center mx-auto lg:mx-0 shadow-sm relative overflow-hidden group">
-                       <div className="absolute inset-0 bg-brand-blue/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                       <User size={32} className="text-brand-blue/20 group-hover:text-brand-blue transition-colors" />
-                    </div>
-                    <div className="space-y-1">
-                       <p className="text-[9px] font-bold text-brand-blue uppercase tracking-widest">{leader.role}</p>
-                       <h4 className="text-xl font-bold font-jakarta text-[#1A2332] tracking-tight">{leader.name}</h4>
-                       <p className="text-[10px] text-gray-400 font-bold leading-tight uppercase tracking-wide pt-2 border-t border-gray-100 mt-2">{leader.detail}</p>
-                    </div>
-                 </motion.div>
-              ))}
-           </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+               {[
+                 { name: 'Jonas Kassahun', role: 'Chief Executive Node', detail: 'Founder & Lead Systems Architect.' },
+                 { name: 'Nardos Tekle', role: 'Security Ops Director', detail: 'Global Asset Governance & Cloud Shield.' },
+                 { name: 'Elias Bekele', role: 'Head of Infrastructure', detail: 'Low-Latency Network & Cluster Logistics.' },
+                 { name: 'Sara Solomon', role: 'Chief of AI Research', detail: 'Neural Synchrony & Reasoning Protocols.' }
+               ].map((leader, i) => (
+                  <motion.div 
+                    key={i} 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: i * 0.1 }}
+                    className="space-y-8 text-center lg:text-left group"
+                  >
+                     <div className="w-52 h-52 bg-white border border-gray-100 rounded-[3rem] flex items-center justify-center mx-auto lg:mx-0 shadow-2xl relative overflow-hidden transition-all duration-700 hover:shadow-[0_40px_80px_-15px_rgba(27,79,138,0.2)] hover:-translate-y-4">
+                        <div className="absolute inset-0 bg-brand-blue/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <User size={80} className="text-brand-blue/10 group-hover:text-brand-blue transition-all duration-700 scale-100 group-hover:scale-110" />
+                     </div>
+                     <div className="space-y-3">
+                        <p className="text-xs font-bold text-brand-blue uppercase tracking-[0.3em] opacity-60 group-hover:opacity-100 transition-opacity">{leader.role}</p>
+                        <h4 className="text-2xl font-bold font-jakarta text-[#1A2332] tracking-tight group-hover:text-brand-blue transition-colors duration-500">{leader.name}</h4>
+                        <div className="w-10 h-1 bg-brand-blue/20 group-hover:w-20 transition-all duration-700" />
+                        <p className="text-sm text-gray-400 font-bold leading-relaxed uppercase tracking-wide">{leader.detail}</p>
+                     </div>
+                  </motion.div>
+               ))}
+            </div>
         </div>
       </section>
 
@@ -270,16 +317,16 @@ export const About = () => {
 
       {/* ============= EXECUTIVE UNIT ============= */}
       {/* ============= EXECUTIVE UNIT ============= */}
-      <section className="py-16 bg-[#000000] relative overflow-hidden">
+      <section className="py-24 bg-[#000000] relative overflow-hidden">
         <div className="container-custom relative z-10">
-           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
               <div className="space-y-4 text-center md:text-left">
-                 <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-0 tracking-[0.3em] font-bold uppercase text-[9px] font-medium px-4 py-1 rounded-full">EXECUTIVE_UNIT</Badge>
-                 <h2 className="text-3xl md:text-4xl font-bold font-jakarta tracking-tightest leading-none text-white uppercase">Command Council.</h2>
+                 <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-0 tracking-[0.3em] font-bold uppercase text-[10px] font-medium px-5 py-2 rounded-full">EXECUTIVE_UNIT</Badge>
+                 <h2 className="text-4xl md:text-5xl font-bold font-jakarta tracking-tightest leading-none text-white uppercase">Command Council.</h2>
               </div>
            </div>
 
-           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-20">
               {[
                 { name: "CEO", role: "Chief Executive Node", group: "Strategic Operations" },
                 { name: "CTO", role: "Chief Technology Architect", group: "System Logic" },
@@ -296,19 +343,19 @@ export const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  whileHover={{ y: -5 }}
-                  className="space-y-4 group text-center"
+                  whileHover={{ y: -8 }}
+                  className="space-y-8 group text-center"
                 >
-                   <div className="w-28 h-28 mx-auto bg-white/5 rounded-full flex items-center justify-center relative overflow-hidden transition-all duration-700">
+                   <div className="w-44 h-44 mx-auto bg-white/5 rounded-full flex items-center justify-center relative overflow-hidden transition-all duration-700 hover:shadow-3xl hover:shadow-blue-500/20">
                       <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                      <User size={40} className="text-white/10 group-hover:text-brand-blue transition-colors duration-700" />
+                      <User size={64} className="text-white/10 group-hover:text-brand-blue transition-colors duration-700" />
                    </div>
                    
-                   <div className="space-y-1">
-                      <div className="text-[9px] font-bold text-brand-blue uppercase tracking-[0.2em] font-medium opacity-70">{member.role}</div>
-                      <h4 className="text-lg font-bold font-jakarta text-white tracking-tight">{member.name}</h4>
-                      <div className="w-6 h-px bg-white/10 mx-auto mt-2 group-hover:w-10 transition-all duration-700" />
-                      <p className="text-[9px] font-bold text-gray-500 uppercase tracking-widest pt-1.5 font-medium">{member.group}</p>
+                   <div className="space-y-2">
+                      <div className="text-[10px] font-bold text-brand-blue uppercase tracking-[0.3em] font-medium opacity-70 group-hover:opacity-100 transition-opacity">{member.role}</div>
+                      <h4 className="text-2xl font-bold font-jakarta text-white tracking-tight">{member.name}</h4>
+                      <div className="w-8 h-px bg-white/10 mx-auto mt-2 group-hover:w-16 transition-all duration-700" />
+                      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest pt-1.5 font-medium">{member.group}</p>
                    </div>
                 </motion.div>
               ))}

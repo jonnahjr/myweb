@@ -21,7 +21,6 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,8 +37,8 @@ export const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
       scrolled 
-        ? 'py-3 bg-brand-primary/95 backdrop-blur-xl border-b border-white/5 shadow-premium' 
-        : isHomePage ? 'py-6 bg-transparent' : 'py-3 bg-brand-secondary/80 backdrop-blur-lg border-b border-white/5 shadow-glass'
+        ? 'py-3 bg-black/95 backdrop-blur-xl border-b border-white/5 shadow-premium' 
+        : 'py-4 bg-black border-b border-white/5'
     }`}>
       <div className="container-custom">
         <div className="flex justify-between items-center">
