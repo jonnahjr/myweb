@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { motion, AnimatePresence } from 'framer-motion';
 import { Layout } from './components/layout/Layout';
 import { Home } from './pages/Home';
-import { About } from './pages/About';
+import { Company } from './pages/Company';
 import { Services } from './pages/Services';
 import { Solutions } from './pages/Solutions';
 import { Products } from './pages/Products';
@@ -138,7 +138,7 @@ export default function App() {
             <PageTransition>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/company" element={<Company />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/solutions" element={<Solutions />} />
                 <Route path="/products" element={<Products />} />

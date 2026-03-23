@@ -110,7 +110,7 @@ export const Home = () => {
                         Start a Project <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </Link>
-                    <Link to="/about">
+                    <Link to="/company">
                       <Button size="md" className="bg-brand-blue/10 hover:bg-brand-blue/20 text-brand-blue rounded-xl border border-brand-blue/30 hover:border-brand-blue/50 transition-all">
                         Talk to an Architect
                       </Button>

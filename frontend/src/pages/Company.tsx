@@ -52,7 +52,7 @@ const MetricCounter = ({ value, label, unit }: { value: number | string, label: 
   );
 };
 
-export const About = () => {
+export const Company = () => {
   const { scrollY } = useScroll();
   const yHero = useTransform(scrollY, [0, 500], [0, 150]);
   const opacityHero = useTransform(scrollY, [0, 300], [1, 0]);
@@ -96,7 +96,7 @@ export const About = () => {
               <div className="space-y-12 py-12">
                  <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }}>
                    <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-0 tracking-[0.3em] font-bold uppercase text-[9px] font-medium px-5 py-2 rounded-full">
-                      <Globe2 size={12} className="mr-2 animate-pulse" /> WHO WE ARE
+                      <Globe2 size={12} className="mr-2 animate-pulse" /> OUR COMPANY
                    </Badge>
                  </motion.div>
 
@@ -222,7 +222,7 @@ export const About = () => {
         <div className="container-custom">
            <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12">
               <div className="space-y-6">
-                 <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-0 tracking-[0.3em] font-bold uppercase text-[11px] font-medium px-6 py-2 rounded-full">INSTITUTIONAL_LEADERSHIP</Badge>
+                 <Badge variant="blue" className="bg-brand-blue/10 text-brand-blue border-0 tracking-[0.3em] font-bold uppercase text-[11px] font-medium px-6 py-2 rounded-full">EXECUTIVE_LEADERSHIP</Badge>
                  <h2 className="text-5xl md:text-7xl font-bold font-jakarta text-[#1A2332] tracking-tightest leading-[0.85] uppercase">Architectural <br /> <span className="text-brand-blue italic">Guardians.</span></h2>
               </div>
            </div>
